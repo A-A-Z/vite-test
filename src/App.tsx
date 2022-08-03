@@ -1,13 +1,11 @@
 import './App.css'
-
-import { InvoiceTable } from './components/invoiceTable'
+import { PeopleGrid } from './components/peopleGrid'
 
 function App() {
-
   return (
     <div className="App">
       <h1>Paul's Vite Test</h1>
-      <InvoiceTable />
+      <PeopleGrid />
     </div>
   )
 }

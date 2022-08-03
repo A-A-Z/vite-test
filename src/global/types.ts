@@ -20,6 +20,23 @@ export enum CycleEnum {
 
 // interfaces
 
+export type PersonId = {
+    name: string,
+    value: string | null
+}
+
+export type PersonName = {
+    first: string
+    last: string
+    title: string
+}
+
+export type Person = {
+    id: PersonId,
+    name: PersonName,
+    email: string
+}
+
 export type Invoice = {
     id: number
     status: StatusEnum

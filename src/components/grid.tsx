@@ -6,9 +6,12 @@ import {
     ColumnDef
 } from '@tanstack/react-table'
 
-export const Grid = (columns: ColumnDef<any, any>[], defaultData: object[]) => {
-    const [data, setData] = React.useState(() => [...defaultData])
+interface GridProps {
+    columns: ColumnDef<any, any>[]
+    data: object[]
+}
 
+export const Grid = ({ columns, data }: GridProps) => {
     const table = useReactTable({
         data,
         columns,
