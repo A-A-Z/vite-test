@@ -19,12 +19,12 @@ export const Grid = ({ columns, data }: GridProps) => {
     })
 
     return (
-        <table>
+        <table className="grid">
           <thead>
             {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                <th key={header.id}>
+                <th key={header.id} className="grid__cell-head">
                     {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -41,7 +41,7 @@ export const Grid = ({ columns, data }: GridProps) => {
             {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
                 {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
+                <td key={cell.id} className="grid__cell">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
                 ))}

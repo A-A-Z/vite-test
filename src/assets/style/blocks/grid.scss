@@ -1,0 +1,12 @@
+
+.grid {
+    text-align: left;
+
+    &__cell-head {
+        padding: 0.5rem 1rem;
+    }
+
+    &__cell {
+        padding: 0 1rem;
+    }
+}

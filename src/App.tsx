@@ -1,4 +1,5 @@
 import './App.css'
+import './assets/style/app.scss'
 import { PeopleGrid } from './components/peopleGrid'
 
 function App() {
