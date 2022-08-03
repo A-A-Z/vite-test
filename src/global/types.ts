@@ -31,10 +31,16 @@ export type PersonName = {
     title: string
 }
 
+export type PersonDob = {
+    age: number
+    date: string
+}
+
 export type Person = {
-    id: PersonId,
-    name: PersonName,
+    id: PersonId
+    name: PersonName
     email: string
+    dob: PersonDob
 }
 
 export type Invoice = {

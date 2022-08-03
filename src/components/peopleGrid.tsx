@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createColumnHelper } from '@tanstack/react-table'
+import * as dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
 import { Person } from '../global/types'
@@ -24,6 +25,13 @@ const columns = [
     columnHelper.accessor('email', {
         header: 'Email',
         cell: info => info.getValue()
+    }),
+    columnHelper.accessor('dob', {
+        header: 'DoB',
+        cell: info => {
+            const { date } = info.getValue()
+            return dayjs(date).format('DD/MM/YYYY')
+        }
     }),
 ]
 
