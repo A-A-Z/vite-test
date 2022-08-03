@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { createColumnHelper } from '@tanstack/react-table'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
 import { Person } from '../global/types'
