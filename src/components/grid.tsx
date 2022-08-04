@@ -6,9 +6,11 @@ import {
     ColumnDef,
     SortingState,
     getSortedRowModel,
-    Header
+    Header,
+    SortDirection
 } from '@tanstack/react-table'
 import classnames from 'classnames'
+import { CaretUpIcon, CaretDownIcon, CaretSortIcon } from '@radix-ui/react-icons';
 
 interface GridProps {
     columns: ColumnDef<any, any>[]
@@ -17,6 +19,29 @@ interface GridProps {
 
 interface GridCellHeaderProps {
     header: Header<any, any>
+}
+
+interface SortingIconProps {
+    type: SortDirection | false
+}
+
+const SortingIcon = ({ type }: SortingIconProps) => {
+    let content
+    console.log('sort', type)
+    switch(type) {
+        case('asc'):
+            content = <CaretUpIcon className="sorting-icon" />
+            break
+
+        case('desc'):
+            content = <CaretDownIcon className="sorting-icon" />
+            break
+        
+        default:
+            content = <CaretSortIcon className="sorting-icon" />
+    }
+
+    return content
 }
 
 const GridCellHeader = ({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps) => (
@@ -37,7 +62,9 @@ const GridCellHeaderSortable = ({ header: { isPlaceholder, column, getContext } 
                 }
             )}
             onClick={column.getToggleSortingHandler()}
-        >{flexRender(column.columnDef.header, getContext())}</th>
+        >
+            <div className="grid__cell-head-content">{flexRender(column.columnDef.header, getContext())}<SortingIcon type={column.getIsSorted()} /></div>
+        </th>
 )
 
 export const Grid = ({ columns, data }: GridProps) => {
