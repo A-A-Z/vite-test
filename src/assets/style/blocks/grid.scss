@@ -4,6 +4,22 @@
 
     &__cell-head {
         padding: 0.5rem 1rem;
+
+        &--sortable {
+            cursor: pointer;
+        }
+
+        &--asc:after {
+            content: ' A';
+        }
+
+        &--desc:after {
+            content: ' D';
+        }
+
+        &--no-sort:after {
+            content: ' -';
+        }
     }
 
     &__cell {

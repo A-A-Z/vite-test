@@ -13,14 +13,12 @@ const columns = [
         cell: info => {
             const { value } = info.getValue()
             return value || '-----'
-        }
+        },
+        enableSorting: false
     }),
-    columnHelper.accessor('name', {
+    columnHelper.accessor(({ name: { first, last} }) => `${first} ${last}`, {
         header: 'Full Name',
-        cell: info => {
-            const { first, last, title } = info.getValue()
-            return `${title} ${first} ${last}`
-        }
+        cell: info => info.getValue(),
     }),
     columnHelper.accessor('email', {
         header: 'Email',
