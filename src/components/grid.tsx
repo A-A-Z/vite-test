@@ -6,6 +6,8 @@ import {
     ColumnDef,
     SortingState,
     getSortedRowModel,
+    ColumnFiltersState,
+    getFilteredRowModel,
     Header,
 } from '@tanstack/react-table'
 import SortingIcon from './sortingIcon'
@@ -29,22 +31,34 @@ const GridCellHeader = ({ header: { isPlaceholder, column, getContext } }: GridC
 const GridCellHeaderSortable = ({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps) => (
     isPlaceholder 
         ? <th className="grid__cell-head">&nbsp;</th>
-        : <th className="grid__cell-head grid__cell-head--sortable" onClick={column.getToggleSortingHandler()}>
-            <div className="grid__cell-head-content">{flexRender(column.columnDef.header, getContext())}<SortingIcon type={column.getIsSorted()} /></div>
+        : <th className="grid__cell-head grid__cell-head--sortable">
+            <div className="grid__cell-head-content" onClick={column.getToggleSortingHandler()}>{flexRender(column.columnDef.header, getContext())}<SortingIcon type={column.getIsSorted()} /></div>
+        </th>
+)
+
+const GridCellHeaderFilter = ({ header: { isPlaceholder, column } }: GridCellHeaderProps) => (
+    isPlaceholder 
+        ? <th className="grid__cell-filter">&nbsp;</th>
+        : <th className="grid__cell-filter">
+            <input type="text" className="grid__cell-filter-input" onChange={value => column.setFilterValue(value.target.value)} />
         </th>
 )
 
 export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps) => {
     const hasResults = data.length > 0
 
+    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
     const [sorting, setSorting] = React.useState<SortingState>([])
 
     const table = useReactTable({
         data,
         columns,
         state: {
+            columnFilters,
             sorting,
         },
+        onColumnFiltersChange: setColumnFilters,
+        getFilteredRowModel: getFilteredRowModel(),
         onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel()
@@ -53,15 +67,31 @@ export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps
     return (
         <div className="grid">
             <table className="grid__table">
+                {table.getHeaderGroups().map(headerGroup => (
+                    <colgroup key={`colgroup-${headerGroup.id}`}>
+                        {headerGroup.headers.map(header => (
+                            <col key={`col-${header.id}`} width={header.getSize()} />
+                        ))}
+                    </colgroup>
+                ))}
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map(header => (
-                                header.column.getCanSort() 
-                                    ? <GridCellHeaderSortable key={header.id} header={header} />
-                                    : <GridCellHeader key={header.id} header={header} />
-                            ))}
-                        </tr>
+                        <React.Fragment key={headerGroup.id}>
+                            <tr>
+                                {headerGroup.headers.map(header => (
+                                    header.column.getCanSort() 
+                                        ? <GridCellHeaderSortable key={`h1-${header.id}`} header={header} />
+                                        : <GridCellHeader key={`h1-${header.id}`} header={header} />
+                                ))}
+                            </tr>
+                            <tr>
+                                {headerGroup.headers.map(header => (
+                                    header.column.getCanFilter()
+                                        ? <GridCellHeaderFilter key={`h1-${header.id}`} header={header} />
+                                        : <th key={`h1-${header.id}`}>&nbsp;</th>
+                                ))}
+                            </tr>
+                        </React.Fragment>
                     ))}
                 </thead>
                 <tbody>

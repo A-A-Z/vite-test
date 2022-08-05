@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { createColumnHelper } from '@tanstack/react-table'
+import React from 'react'
+import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
 import dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
@@ -29,7 +29,9 @@ const columns = [
         cell: info => {
             const { date } = info.getValue()
             return dayjs(date).format('DD/MM/YYYY')
-        }
+        },
+        enableColumnFilter: false,
+        size: 20,
     }),
 ]
 
