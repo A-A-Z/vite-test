@@ -1,4 +1,9 @@
 
 .sorting-icon {
+    color: #999;
     margin: 0 0 0 0.2rem;
+
+    &--active {
+        color: #f00;
+    }
 }

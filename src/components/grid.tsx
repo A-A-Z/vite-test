@@ -7,10 +7,8 @@ import {
     SortingState,
     getSortedRowModel,
     Header,
-    SortDirection
 } from '@tanstack/react-table'
-import classnames from 'classnames'
-import { CaretUpIcon, CaretDownIcon, CaretSortIcon } from '@radix-ui/react-icons';
+import SortingIcon from './sortingIcon'
 
 interface GridProps {
     columns: ColumnDef<any, any>[]
@@ -21,29 +19,6 @@ interface GridCellHeaderProps {
     header: Header<any, any>
 }
 
-interface SortingIconProps {
-    type: SortDirection | false
-}
-
-const SortingIcon = ({ type }: SortingIconProps) => {
-    let content
-    console.log('sort', type)
-    switch(type) {
-        case('asc'):
-            content = <CaretUpIcon className="sorting-icon" />
-            break
-
-        case('desc'):
-            content = <CaretDownIcon className="sorting-icon" />
-            break
-        
-        default:
-            content = <CaretSortIcon className="sorting-icon" />
-    }
-
-    return content
-}
-
 const GridCellHeader = ({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps) => (
     <th className="grid__cell-head">{isPlaceholder ? '&nbsp;' : flexRender(column.columnDef.header, getContext())}</th>
 )
@@ -51,18 +26,7 @@ const GridCellHeader = ({ header: { isPlaceholder, column, getContext } }: GridC
 const GridCellHeaderSortable = ({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps) => (
     isPlaceholder 
         ? <th className="grid__cell-head">&nbsp;</th>
-        : <th 
-            className={classnames(
-                'grid__cell-head',
-                'grid__cell-head--sortable',
-                { 
-                    'grid__cell-head--no-sort': (column.getIsSorted() === false), 
-                    'grid__cell-head--asc': (column.getIsSorted() === 'asc'), 
-                    'grid__cell-head--desc': (column.getIsSorted() === 'desc')
-                }
-            )}
-            onClick={column.getToggleSortingHandler()}
-        >
+        : <th className="grid__cell-head grid__cell-head--sortable" onClick={column.getToggleSortingHandler()}>
             <div className="grid__cell-head-content">{flexRender(column.columnDef.header, getContext())}<SortingIcon type={column.getIsSorted()} /></div>
         </th>
 )
