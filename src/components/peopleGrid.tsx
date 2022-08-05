@@ -33,9 +33,6 @@ const columns = [
     }),
 ]
 
-const Loading = () => <div>Loading...</div>
-const Error = () => <div>Error!</div>
-
 export const PeopleGrid = () => {
     const {
         data: people,
@@ -44,17 +41,11 @@ export const PeopleGrid = () => {
         isError
     } = useGetPeopleQuery()
 
-    if (isLoading) {
-        return <Loading />
-    }
-
-    if (isError) {
-        return <Error />
-    }
-
-    if (isSuccess && people !== undefined) {
-        return <Grid columns={columns} data={people.results} />
-    }
-
-    return <div>Grid here</div>
+    return <Grid 
+        columns={columns}
+        data={people?.results || []}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
+        isError={isError}
+    />
 }

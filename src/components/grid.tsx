@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
     flexRender,
     getCoreRowModel,
@@ -13,6 +13,9 @@ import SortingIcon from './sortingIcon'
 interface GridProps {
     columns: ColumnDef<any, any>[]
     data: object[]
+    isLoading: boolean
+    isSuccess: boolean
+    isError: boolean
 }
 
 interface GridCellHeaderProps {
@@ -31,50 +34,61 @@ const GridCellHeaderSortable = ({ header: { isPlaceholder, column, getContext } 
         </th>
 )
 
-export const Grid = ({ columns, data }: GridProps) => {
-    const columnsMemo = useMemo(() => columns, [])
-    const dataMemo = useMemo(() => data, [])
+export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps) => {
+    const hasResults = data.length > 0
 
     const [sorting, setSorting] = React.useState<SortingState>([])
 
     const table = useReactTable({
-        data: dataMemo,
-        columns: columnsMemo,
+        data,
+        columns,
         state: {
             sorting,
         },
         onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(),
+        getSortedRowModel: getSortedRowModel()
     })
 
     return (
-        <table className="grid">
-          <thead>
-            {table.getHeaderGroups().map(headerGroup => (
-                <tr key={headerGroup.id}>
-                    {headerGroup.headers.map(header => (
-                        header.column.getCanSort() 
-                            ? <GridCellHeaderSortable key={header.id} header={header} />
-                            : <GridCellHeader key={header.id} header={header} />
+        <div className="grid">
+            <table className="grid__table">
+                <thead>
+                    {table.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map(header => (
+                                header.column.getCanSort() 
+                                    ? <GridCellHeaderSortable key={header.id} header={header} />
+                                    : <GridCellHeader key={header.id} header={header} />
+                            ))}
+                        </tr>
                     ))}
-                </tr>
-            ))}
-        </thead>
-        <tbody>
-            {table
-                .getRowModel()
-                .rows.map(row => (
-                    <tr key={row.id}>
-                        {row.getVisibleCells().map(cell => (
-                            <td key={cell.id} className="grid__cell">
-                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                            </td>
-                        ))}
-                    </tr>
-                ))
+                </thead>
+                <tbody>
+                    {isSuccess && hasResults &&
+                        table
+                            .getRowModel()
+                            .rows.map(row => (
+                                <tr key={row.id}>
+                                    {row.getVisibleCells().map(cell => (
+                                        <td key={cell.id} className="grid__cell">
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))
+                    }
+                </tbody>
+            </table>
+            {isSuccess && !hasResults &&
+                <div className="grid__msg">No Data</div>
             }
-        </tbody>
-      </table>
+            {isLoading &&
+                <div className="grid__msg">Loading...</div>
+            }
+            {isError &&
+                <div className="grid__msg">Error!</div>
+            }
+        </div>
     )
 }
