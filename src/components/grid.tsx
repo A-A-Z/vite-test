@@ -61,7 +61,11 @@ export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps
         getFilteredRowModel: getFilteredRowModel(),
         onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel()
+        getSortedRowModel: getSortedRowModel(),
+        defaultColumn: {
+            size: 0,
+            minSize: 0,
+        }
     })
 
     return (
@@ -70,7 +74,10 @@ export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps
                 {table.getHeaderGroups().map(headerGroup => (
                     <colgroup key={`colgroup-${headerGroup.id}`}>
                         {headerGroup.headers.map(header => (
-                            <col key={`col-${header.id}`} width={header.getSize()} />
+                            <col 
+                                key={`col-${header.id}`} 
+                                width={header.getSize() === 0 ? 'auto' : `${header.getSize()}px`} 
+                            />
                         ))}
                     </colgroup>
                 ))}

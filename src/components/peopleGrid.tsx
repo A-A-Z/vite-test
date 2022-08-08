@@ -14,7 +14,8 @@ const columns = [
             const { value } = info.getValue()
             return value || '-----'
         },
-        enableSorting: false
+        enableSorting: false,
+        size: 120,
     }),
     columnHelper.accessor(({ name: { first, last} }) => `${first} ${last}`, {
         header: 'Full Name',
@@ -31,7 +32,7 @@ const columns = [
             return dayjs(date).format('DD/MM/YYYY')
         },
         enableColumnFilter: false,
-        size: 20,
+        size: 80,
     }),
 ]
 
