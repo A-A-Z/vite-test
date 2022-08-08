@@ -9,8 +9,18 @@ import {
     ColumnFiltersState,
     getFilteredRowModel,
     Header,
+    RowData,
 } from '@tanstack/react-table'
 import SortingIcon from './sortingIcon'
+import { Filter } from './filter'
+import { selectOption } from '../global/types'
+
+declare module '@tanstack/table-core' {
+    interface ColumnMeta<TData extends RowData, TValue> {
+        filterType: 'text' | 'select',
+        selectOptions: selectOption[]
+    }
+  }
 
 interface GridProps {
     columns: ColumnDef<any, any>[]
@@ -40,7 +50,11 @@ const GridCellHeaderFilter = ({ header: { isPlaceholder, column } }: GridCellHea
     isPlaceholder 
         ? <th className="grid__cell-filter">&nbsp;</th>
         : <th className="grid__cell-filter">
-            <input type="text" className="grid__cell-filter-input" onChange={value => column.setFilterValue(value.target.value)} />
+            <Filter 
+                type={column.columnDef.meta?.filterType}
+                options={column.columnDef.meta?.selectOptions}
+                onChangeFn={(value:any) => column.setFilterValue(value)} 
+            />
         </th>
 )
 

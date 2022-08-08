@@ -3,9 +3,16 @@ import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
 import dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
-import { Person } from '../global/types'
+import { Person, selectOption } from '../global/types'
 
 const columnHelper = createColumnHelper<Person>()
+
+const stateOptions:selectOption[] = [
+    { id: '', name: 'Any' },
+    { id: 'Tasmania', name: 'Tasmania' },
+    { id: 'Victoria', name: 'Victoria' },
+    { id: 'New South Wales', name: 'New South Wales' }
+]
 
 const columns = [
     columnHelper.accessor('id', {
@@ -38,6 +45,10 @@ const columns = [
         header: 'State',
         cell: info => info.getValue(),
         size: 170,
+        meta: {
+            filterType: 'select',
+            selectOptions: stateOptions
+        }
     }),
 ]
 

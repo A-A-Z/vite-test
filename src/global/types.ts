@@ -54,12 +54,8 @@ export type Person = {
     location: PersonLocation
 }
 
-export type Invoice = {
-    id: number
-    status: StatusEnum
-    cycle: CycleEnum
-    description: string
-    clientId: number
-    clientName: string
-    divisionId: number
-} 
+export type selectOption = {
+    name: string
+    id?: number | string
+    unavailable?: boolean
+}
