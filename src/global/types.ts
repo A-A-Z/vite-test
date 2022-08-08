@@ -36,11 +36,22 @@ export type PersonDob = {
     date: string
 }
 
+export type PersonLocation = {
+    city: string
+    coordinates: object
+    country: string
+    postcode: number
+    state: string
+    street: object
+    timezone: object
+}
+
 export type Person = {
     id: PersonId
     name: PersonName
     email: string
     dob: PersonDob
+    location: PersonLocation
 }
 
 export type Invoice = {

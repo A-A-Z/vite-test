@@ -15,7 +15,7 @@ const columns = [
             return value || '-----'
         },
         enableSorting: false,
-        size: 120,
+        size: 110,
     }),
     columnHelper.accessor(({ name: { first, last} }) => `${first} ${last}`, {
         header: 'Full Name',
@@ -33,6 +33,11 @@ const columns = [
         },
         enableColumnFilter: false,
         size: 80,
+    }),
+    columnHelper.accessor(({ location }) => location.state, {
+        header: 'State',
+        cell: info => info.getValue(),
+        size: 170,
     }),
 ]
 
