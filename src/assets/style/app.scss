@@ -1,6 +1,7 @@
 
-@import './blocks/grid.scss';
-@import './blocks/sorting-icon';
+@use  'blocks/filter';
+@use  'blocks/grid';
+@use  'blocks/sorting-icon';
 
 #root {
     width: 100%;

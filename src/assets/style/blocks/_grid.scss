@@ -24,24 +24,6 @@
         padding: 0.1rem 1rem 0.5rem 1rem;
     }
 
-    &__cell-filter-input {
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        font-size: 1rem;
-        padding: 3px 6px;
-        outline: none;
-        transition: border-color 0.2s ease;
-        width: 100%;
-
-        &:hover {
-            border-color: #666;
-        }
-
-        &:focus {
-            border-color: #f00;
-        }
-    }
-
     &__cell-head-content {
         align-items: center;
         display: flex;

@@ -11,7 +11,8 @@ const stateOptions:selectOption[] = [
     { id: '', name: 'Any' },
     { id: 'Tasmania', name: 'Tasmania' },
     { id: 'Victoria', name: 'Victoria' },
-    { id: 'New South Wales', name: 'New South Wales' }
+    { id: 'New South Wales', name: 'New South Wales' },
+    { id: 'Queensland', name: 'Queensland' },
 ]
 
 const columns = [
@@ -44,7 +45,7 @@ const columns = [
     columnHelper.accessor(({ location }) => location.state, {
         header: 'State',
         cell: info => info.getValue(),
-        size: 170,
+        size: 240,
         meta: {
             filterType: 'select',
             selectOptions: stateOptions

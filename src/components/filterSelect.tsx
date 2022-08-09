@@ -1,11 +1,8 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
+import classNames from 'classnames'
 import { selectOption } from '../global/types'
-
-// const people:selectOption[] = [
-//     { id: 'Tasmania', name: 'Tasmania' },
-//     { id: 'Victoria', name: 'Victoria' },
-// ]
+import { CaretUpIcon, CaretDownIcon, CheckIcon } from '@radix-ui/react-icons';
 
 interface FilterSelectProps {
     onChangeFn: Function
@@ -26,9 +23,10 @@ export const FilterSelect = ({ options, onChangeFn }: FilterSelectProps) => {
 
     return (
       <Listbox value={selected} onChange={onChangeCall}>
-        <div>
-          <Listbox.Button>
+        <div className="filter filter--select">
+          <Listbox.Button className="filter__input">
             <span>{selected.name}</span>
+            <CaretDownIcon />
           </Listbox.Button>
           <Transition
             as={Fragment}
@@ -36,31 +34,16 @@ export const FilterSelect = ({ options, onChangeFn }: FilterSelectProps) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options>
+            <Listbox.Options className="filter__list">
               {options.map((option, index) => (
                 <Listbox.Option
-                  key={`option-${option.id || index}`}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
-                    }`
-                  }
-                  value={option}
+                    key={`option-${option.id || index}`}
+                    className={({ selected }) => classNames('filter__option', { 'filter__option--selected': selected })}
+                    value={option}
                 >
                   {({ selected }) => (
                     <>
-                      <span
-                        className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
-                      >
                         {option.name}
-                      </span>
-                      {selected ? (
-                        <span>
-                            X
-                        </span>
-                      ) : null}
                     </>
                   )}
                 </Listbox.Option>
