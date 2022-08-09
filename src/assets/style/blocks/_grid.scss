@@ -1,11 +1,12 @@
 
 .grid {
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1100px;
     table-layout: fixed;
     width: 100%;
 
     &__table {
+        border-collapse: collapse;
         text-align: left;
         width: 100%;
     }
@@ -39,5 +40,22 @@
         justify-content: center;
         min-height: 200px;
         width: 100%;
+    }
+
+    &__row {
+        background-color: #fff;
+        // transition: background-color 0.1s ease;
+
+        .btn--row-action {
+            opacity: 0.1;
+        }
+
+        &:hover {
+            background-color: rgb(242, 248, 248);
+
+            .btn--row-action {
+                opacity: 1;
+            }
+        }
     }
 }

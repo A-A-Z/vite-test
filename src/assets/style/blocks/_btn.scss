@@ -1,0 +1,21 @@
+
+.btn {
+    // background-color: rgb(212, 211, 255);
+    // border: 0;
+    // border-radius: 3px;
+    // padding: 0.1rem 0.8rem;
+    border: 0;
+    cursor: pointer;
+
+    &--row-action {
+        align-items: center;
+        background-color: transparent;
+        color: #f00;
+        display: flex;
+        padding: 0 0.5rem;
+    }
+
+    &__icon {
+        margin: 0 0.3rem 0 0;
+    }
+}

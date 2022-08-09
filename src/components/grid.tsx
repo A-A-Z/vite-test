@@ -120,7 +120,7 @@ export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps
                         table
                             .getRowModel()
                             .rows.map(row => (
-                                <tr key={row.id}>
+                                <tr key={row.id} className="grid__row">
                                     {row.getVisibleCells().map(cell => (
                                         <td key={cell.id} className="grid__cell">
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}

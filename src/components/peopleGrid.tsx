@@ -5,6 +5,7 @@ import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
 import { Person } from '../global/types'
 import { stateOptions } from '../global/constants'
+import { RowAction } from './rowAction'
 
 const columnHelper = createColumnHelper<Person>()
 
@@ -42,6 +43,12 @@ const columns = [
         meta: {
             filterType: 'select',
             selectOptions: stateOptions
+        }
+    }),
+    columnHelper.display({
+        id: 'actions',
+        cell: (props) => {
+            return <RowAction name="Action" onClickFn={(event) => { console.log('click', event) }} />
         }
     }),
 ]
