@@ -1,19 +1,12 @@
 import React from 'react'
-import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
+import { createColumnHelper } from '@tanstack/react-table'
 import dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
-import { Person, selectOption } from '../global/types'
+import { Person } from '../global/types'
+import { stateOptions } from '../global/constants'
 
 const columnHelper = createColumnHelper<Person>()
-
-const stateOptions:selectOption[] = [
-    { id: '', name: 'Any' },
-    { id: 'Tasmania', name: 'Tasmania' },
-    { id: 'Victoria', name: 'Victoria' },
-    { id: 'New South Wales', name: 'New South Wales' },
-    { id: 'Queensland', name: 'Queensland' },
-]
 
 const columns = [
     columnHelper.accessor('id', {
@@ -23,7 +16,7 @@ const columns = [
             return value || '-----'
         },
         enableSorting: false,
-        size: 110,
+        size: 90,
     }),
     columnHelper.accessor(({ name: { first, last} }) => `${first} ${last}`, {
         header: 'Full Name',
@@ -45,7 +38,7 @@ const columns = [
     columnHelper.accessor(({ location }) => location.state, {
         header: 'State',
         cell: info => info.getValue(),
-        size: 240,
+        size: 260,
         meta: {
             filterType: 'select',
             selectOptions: stateOptions
