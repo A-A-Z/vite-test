@@ -17,7 +17,7 @@ const ListPeople = () => {
   return (
     <>
         <div className="page">
-        <PeopleGrid />
+            <PeopleGrid />
         </div>
         <ActionModal isOpen={isModalOpen} closeFn={closeModal} data={activePerson} />
     </>

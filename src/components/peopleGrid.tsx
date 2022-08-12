@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
 import { createColumnHelper, Row } from '@tanstack/react-table'
 import { useDispatch } from 'react-redux';
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit'
+import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
@@ -17,7 +18,7 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
         header: 'ID',
         cell: info => {
             const { value } = info.getValue()
-            return value || '-----'
+            return <Link to={`person/${value}`}>{value}</Link> || '-----'
         },
         enableSorting: false,
         size: 90,
