@@ -1,15 +1,18 @@
-import React from 'react'
-import { createColumnHelper } from '@tanstack/react-table'
+import React, { useMemo } from 'react'
+import { createColumnHelper, Row } from '@tanstack/react-table'
+import { useDispatch } from 'react-redux';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid } from './grid'
 import { Person } from '../global/types'
 import { stateOptions } from '../global/constants'
 import { RowAction } from './rowAction'
+import { openActionModal } from '../redux/peopleSlice'
 
 const columnHelper = createColumnHelper<Person>()
 
-const columns = [
+const getColumns = (dispatch: Dispatch<AnyAction>) => [
     columnHelper.accessor('id', {
         header: 'ID',
         cell: info => {
@@ -47,19 +50,21 @@ const columns = [
     }),
     columnHelper.display({
         id: 'actions',
-        cell: (props) => {
-            return <RowAction name="Action" onClickFn={(event) => { console.log('click', event) }} />
-        }
+        cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => { dispatch(openActionModal(thisRow.original)) }} />
     }),
 ]
 
 export const PeopleGrid = () => {
+    const dispatch = useDispatch()
+
     const {
         data: people,
         isLoading,
         isSuccess,
         isError
     } = useGetPeopleQuery()
+
+    const columns = useMemo(() => getColumns(dispatch), [])
 
     return <Grid 
         columns={columns}

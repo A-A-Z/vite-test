@@ -1,29 +1,40 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Row } from '@tanstack/react-table'
+import { Person } from '../global/types'
 
-interface CounterState {
-  value: number;
+interface PeopleState {
+  value: number
+  activePerson: Person | null
 }
 
-const initialState: CounterState = {
+const initialState: PeopleState = {
   value: 0,
-};
+  activePerson: null
+}
 
 const peopleSlice = createSlice({
   name: 'people',
   initialState,
   reducers: {
-    incremented(state) {
-      // it's okay to do this because immer makes it immutable
-      // under the hood
-      state.value++;
-    },
-    amountAdded(state, action: PayloadAction<number>) {
-      state.value += action.payload;
-    },
+    // incremented(state) {
+    //   // it's okay to do this because immer makes it immutable
+    //   // under the hood
+    //   state.value++;
+    // },
+    // amountAdded(state, action: PayloadAction<number>) {
+    //   state.value += action.payload;
+      openActionModal(state, action: PayloadAction<Person>) {
+        state.activePerson = action.payload
+      },
+
+      closeActionModal(state) {
+        state.activePerson = null
+      }
+    //},
     // decrement
     // reset
   },
-});
+})
 
-export const { incremented, amountAdded } = peopleSlice.actions;
-export default peopleSlice.reducer;
+export const { openActionModal, closeActionModal } = peopleSlice.actions
+export default peopleSlice.reducer

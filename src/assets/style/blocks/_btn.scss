@@ -9,13 +9,31 @@
 
     &--row-action {
         align-items: center;
-        background-color: transparent;
-        color: #f00;
+        background-color: #f00;
+        border: 0;
+        border-radius: 4px;
+        color: #fff;
         display: flex;
-        padding: 0 0.5rem;
+        ///padding: 0 0.5rem;
+        padding: 2px;
+
+        .btn__label {
+            //color: rgba(255, 0, 0, 0);
+            //transition: color 0.2s ease;
+            
+            display: none;
+        }
+
+        &:hover {
+            .btn__label {
+                //color: rgba(255, 0, 0, 1);
+            }
+        }
     }
 
     &__icon {
-        margin: 0 0.3rem 0 0;
+        height: 20px;
+        //margin: 0 0.3rem 0 0;
+        width: 20px;
     }
 }

@@ -46,12 +46,19 @@ export type PersonLocation = {
     timezone: object
 }
 
+export type PersonPicture = {
+    large: string
+    medium: string
+    thumbnail: string
+}
+
 export type Person = {
     id: PersonId
     name: PersonName
     email: string
     dob: PersonDob
     location: PersonLocation
+    picture: PersonPicture
 }
 
 export type selectOption = {
