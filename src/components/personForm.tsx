@@ -30,8 +30,8 @@ export const PersonForm = ({ id }: PersonFormProps) => {
     return (
       <FormProvider {...methods} >
         <form onSubmit={onSubmit}>
-          <Input name="firstName" />
-          <Input name="lastName" />
+          <Input id="firstName" name="firstName" label="First Name" />
+          <Input id="lastName" name="lastName" label="Last Name" />
           <button type="submit">Save</button> {isValid ? 'Valid' : 'Invalid'}
         </form>
       </FormProvider>
