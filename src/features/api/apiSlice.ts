@@ -12,7 +12,7 @@ export const apiSlice = createApi({
     tagTypes: ['People'],
     endpoints: (builder) => ({
         getPeople: builder.query<PeopleResponse, void>({
-            query: () => '/api/?results=20&nat=au',
+            query: () => '/api/?results=20&nat=au&seed=wilsonvitedemo22',
             providesTags: ['People']
         })
     })
