@@ -1,37 +1,47 @@
 import { useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Input } from './input'
+import { Field } from './field'
 import { Person } from '../global/types'
 
 type FormValues = {
-    firstName: string;
-    lastName: string;
+    firstName: string
+    lastName: string
+    email: string
 }
 
 interface PersonFormProps {
-    id: string,
     initData: Person
 }
 
 const validationSchema = yup
   .object()
   .shape({
-    firstName: yup.string().required('Needs a first name'),
-    lastName: yup.string().required('Needs a last name'),
+    firstName: yup.string().required('Needs a first name').max(64, 'Max 64 characters'),
+    lastName: yup.string().required('Needs a last name').max(64, 'Max 64 characters'),
+    email: yup.string().required().email('Must be a valid email address').max(128, 'Max 128 characters'),
   })
   .required()
 
-export const PersonForm = ({ id }: PersonFormProps) => {
-    const methods = useForm<FormValues>({ mode: 'onChange', resolver: yupResolver(validationSchema) })
+export const PersonForm = ({ initData }: PersonFormProps) => {
+    const methods = useForm<FormValues>({ 
+      mode: 'onBlur', 
+      defaultValues: {
+        firstName: initData.name.first,
+        lastName: initData.name.last,
+        email: initData.email
+      },
+      resolver: yupResolver(validationSchema) 
+    })
     const { handleSubmit, formState: { isValid, errors } } = methods
     const onSubmit = handleSubmit(data => console.log(data, isValid, errors))
 
     return (
       <FormProvider {...methods} >
         <form onSubmit={onSubmit}>
-          <Input id="firstName" name="firstName" label="First Name" />
-          <Input id="lastName" name="lastName" label="Last Name" />
+          <Field id="firstName" name="firstName" label="First Name"/>
+          <Field id="lastName" name="lastName" label="Last Name" />
+          <Field id="email" name="email" label="Email" />
           <button type="submit">Save</button> {isValid ? 'Valid' : 'Invalid'}
         </form>
       </FormProvider>
