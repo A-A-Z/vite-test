@@ -8,7 +8,9 @@ import PersonDetail from './pages/personDetail'
 function App() {
   return (
     <div className="App">
-      <h1>Paul's Vite Test</h1>
+      <header className="page-header">
+        <h1 className="page-header__title">Paul's Vite Test</h1>
+      </header>
       <Routes>
         <Route path="/" element={<ListPeople />} />
         <Route path="person/:id" element={<PersonDetail />} />
