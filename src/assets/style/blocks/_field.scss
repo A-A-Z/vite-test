@@ -1,0 +1,51 @@
+
+.field {
+    align-items: baseline;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0.8rem 0;
+
+    &__label {
+        color: #888;
+        font-size: 0.8rem;
+    }
+
+    &__input {
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        display: flex;
+        font-size: 1rem;
+        justify-content: space-between;
+        padding: 3px 10px;
+        outline: none;
+        transition: border-color 0.2s ease;
+        width: 300px;
+
+        &:hover {
+            border-color: #666;
+        }
+
+        &:focus {
+            border-color: #9597ff;
+        }
+    }
+
+    &__error {
+        align-items: center;
+        color: #f00;
+        display: flex;
+        font-size: 0.8rem;
+
+        svg {
+            margin: 0 0.3rem 0;
+        }
+    }
+
+    &--error {
+        .field__input {
+            border-color: #f00
+        }
+    }
+}

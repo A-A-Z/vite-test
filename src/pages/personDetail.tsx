@@ -11,17 +11,23 @@ const PersonDetail = () => {
     const {
         data: people,
         isLoading,
-        isSuccess,
         isError
     } = useGetPeopleQuery()
 
     useEffect(() => {
         if (id !== undefined && people !== undefined) {
-            let search = people.results.find(person => person.id.value === id)
+            const search = people.results.find(person => person.id.value === id)
             setPerson(search)
         }
     }, [id, people])
 
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
+    if (isError) {
+        return <div>ERROR!</div>
+    }
 
     if (id === undefined || person === undefined) {
         return <div>No Data</div>
@@ -31,10 +37,7 @@ const PersonDetail = () => {
         <div className="page">
             <Link to="/">Back</Link>
 
-            <p>Detail page here</p>
-
             <PersonForm initData={person} />
-
         </div>
     )
 }

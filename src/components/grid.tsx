@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment, useState } from 'react'
 import {
     flexRender,
     getCoreRowModel,
@@ -61,8 +61,8 @@ const GridCellHeaderFilter = ({ header: { isPlaceholder, column } }: GridCellHea
 export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps) => {
     const hasResults = data.length > 0
 
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-    const [sorting, setSorting] = React.useState<SortingState>([])
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+    const [sorting, setSorting] = useState<SortingState>([])
 
     const table = useReactTable({
         data,
@@ -97,7 +97,7 @@ export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps
                 ))}
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
-                        <React.Fragment key={headerGroup.id}>
+                        <Fragment key={headerGroup.id}>
                             <tr>
                                 {headerGroup.headers.map(header => (
                                     header.column.getCanSort() 
@@ -112,7 +112,7 @@ export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps
                                         : <th key={`h1-${header.id}`}>&nbsp;</th>
                                 ))}
                             </tr>
-                        </React.Fragment>
+                        </Fragment>
                     ))}
                 </thead>
                 <tbody>

@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { SortDirection } from '@tanstack/react-table'
 import { CaretUpIcon, CaretDownIcon, CaretSortIcon } from '@radix-ui/react-icons';
 

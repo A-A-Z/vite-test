@@ -1,9 +1,10 @@
-
-@use  'blocks/btn';
-@use  'blocks/filter';
-@use  'blocks/grid';
-@use  'blocks/modal';
-@use  'blocks/sorting-icon';
+@use 'blocks/btn';
+@use 'blocks/field';
+@use 'blocks/filter';
+@use 'blocks/form';
+@use 'blocks/grid';
+@use 'blocks/modal';
+@use 'blocks/sorting-icon';
 
 #root {
     width: 100%;
