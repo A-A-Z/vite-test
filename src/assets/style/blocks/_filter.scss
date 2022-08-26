@@ -14,9 +14,6 @@
     &__list {
         @include common.list;
         @include common.block;
-        // background-color: #fff;
-        // border: 1px solid #ddd;
-        // border-radius: 3px;
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
         left: 0;
         position: absolute;
