@@ -1,24 +1,36 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 import classNames from 'classnames'
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
+import { InputProps } from '../global/types'
+import { InputText } from './inputText'
+import { InputSelect } from './inputSelect'
 
-interface FieldProps {
-    id: string
-    name: string
+interface FieldProps extends InputProps {
     label: string
+    type?: 'text' | 'select'
 }
 
-const Field = ({ id, name, label }: FieldProps) => {
-    const { register, formState: { errors } } = useFormContext()
+type InputFunction = (props: InputProps) => JSX.Element
+
+const InputTypesMap = {
+    text: InputText,
+    select: InputSelect
+}
+
+const Field = ({ id, name, label, type = 'text', options = [] }: FieldProps) => {
+    const { formState: { errors } } = useFormContext()
     const hasError: boolean = !!errors?.[name]
+    const Input: InputFunction = useMemo(() => InputTypesMap[type], [type])
     
     return (
         <div className={classNames('field', { 'field--error': hasError })}>
             <label className="field__label" htmlFor={id}>{label}</label>
-            <input id={id} className="field__input field__input--text" {...register(name)} />
-            <ErrorMessage name={name} render={({ message }) => <span className="field__error"><ExclamationTriangleIcon />{message}</span>} />
+            <Input id={id} name={name} options={options} />
+            <ErrorMessage name={name} render={
+                ({ message }) => <span className="field__error"><ExclamationTriangleIcon />{message}</span>
+            } />
         </div>
     )
 }

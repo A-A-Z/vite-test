@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import classNames from 'classnames'
+import { CaretDownIcon } from '@radix-ui/react-icons'
 import { selectOption } from '../global/types'
-import { CaretUpIcon, CaretDownIcon, CheckIcon } from '@radix-ui/react-icons';
 
 interface FilterSelectProps {
     onChangeFn: Function
@@ -10,7 +10,7 @@ interface FilterSelectProps {
 }
 
 export const FilterSelect = ({ options, onChangeFn }: FilterSelectProps) => {
-    if (options === undefined) {
+    if (options === undefined || options.length === 0) {
         return null
     }
 

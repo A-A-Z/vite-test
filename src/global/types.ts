@@ -66,3 +66,10 @@ export type selectOption = {
     id?: number | string
     unavailable?: boolean
 }
+
+export interface InputProps {
+    id: string
+    name: string
+    options?: selectOption[]
+}
+
