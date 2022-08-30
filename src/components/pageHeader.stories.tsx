@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { PageHeader, PageHeaderProps } from './pageHeader';
+import { PageHeader } from './pageHeader';
 
 export default {
     title: 'Components/PageHeader',
