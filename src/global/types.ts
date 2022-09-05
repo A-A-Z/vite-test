@@ -71,4 +71,3 @@ export interface InputProps {
     name: string
     options?: selectOption[]
 }
-

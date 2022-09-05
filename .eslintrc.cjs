@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 module.exports = {
     "env": {
         "node": true,
@@ -6,10 +5,16 @@ module.exports = {
         "es2021": true
     },
     "extends": [
+        "standard",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
     ],
+    "settings": {
+        "react": {
+            "version": 'detect'
+        }
+    },
     "overrides": [
         {
             "files": [ "src/**/*.ts", "src/**/*.tsx" ]
@@ -24,7 +29,20 @@ module.exports = {
         "react",
         "@typescript-eslint"
     ],
+    "ignorePatterns": [ "*.cjs" ],
     "rules": {
         "react/react-in-jsx-scope": "off"
+    },
+    "globals": {
+        "React": true,
+        "google": true,
+        "mount": true,
+        "mountWithRouter": true,
+        "shallow": true,
+        "shallowWithRouter": true,
+        "context": true,
+        "expect": true,
+        "jsdom": true,
+        "JSX": true
     }
 }

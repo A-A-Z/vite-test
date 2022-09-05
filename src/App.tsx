@@ -6,7 +6,7 @@ import { PageHeader } from './components/pageHeader'
 import ListPeople from './pages/listPeople'
 import PersonDetail from './pages/personDetail'
 
-function App() {
+function App () {
   return (
     <div className="App">
       <PageHeader title="Vite Test" />

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Person } from '../global/types'
 
 interface PeopleState {
@@ -22,17 +22,16 @@ const peopleSlice = createSlice({
     // },
     // amountAdded(state, action: PayloadAction<number>) {
     //   state.value += action.payload;
-      openActionModal(state, action: PayloadAction<Person>) {
-        state.activePerson = action.payload
-      },
+    openActionModal (state, action: PayloadAction<Person>) {
+      state.activePerson = action.payload
+    },
 
-      closeActionModal(state) {
-        state.activePerson = null
-      }
-    //},
+    closeActionModal (state) {
+      state.activePerson = null
+    }
     // decrement
     // reset
-  },
+  }
 })
 
 export const { openActionModal, closeActionModal } = peopleSlice.actions

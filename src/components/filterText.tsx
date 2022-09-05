@@ -1,8 +1,8 @@
 interface FilterTextProps {
-    onChangeFn: (selectedValue: string | number | undefined) => void
+  onChangeFn: (selectedValue: string | number | undefined) => void
 }
 
 export const FilterText = ({ onChangeFn }: FilterTextProps) => {
-    const onChangeCall = (e: React.ChangeEvent<HTMLInputElement>) => onChangeFn(e.target.value)
-    return <input type="text" className="filter__input" onChange={onChangeCall} data-lpignore="true" />
+  const onChangeCall = (e: React.ChangeEvent<HTMLInputElement>) => onChangeFn(e.target.value)
+  return <input type="text" className="filter__input" onChange={onChangeCall} data-lpignore="true" />
 }

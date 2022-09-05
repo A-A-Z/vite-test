@@ -2,22 +2,22 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Person } from '../../global/types'
 
 type PeopleResponse = {
-    info: object
-    results: Person[]
+  info: object
+  results: Person[]
 }
 
 export const apiSlice = createApi({
-    reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://randomuser.me' }),
-    tagTypes: ['People'],
-    endpoints: (builder) => ({
-        getPeople: builder.query<PeopleResponse, void>({
-            query: () => '/api/?results=20&nat=au&seed=wilsonvitedemo22',
-            providesTags: ['People']
-        })
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://randomuser.me' }),
+  tagTypes: ['People'],
+  endpoints: (builder) => ({
+    getPeople: builder.query<PeopleResponse, void>({
+      query: () => '/api/?results=20&nat=au&seed=wilsonvitedemo22',
+      providesTags: ['People']
     })
+  })
 })
 
 export const {
-    useGetPeopleQuery
+  useGetPeopleQuery
 } = apiSlice
