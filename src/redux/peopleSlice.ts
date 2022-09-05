@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Row } from '@tanstack/react-table'
 import { Person } from '../global/types'
 
 interface PeopleState {

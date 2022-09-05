@@ -1,5 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 module.exports = {
     "env": {
+        "node": true,
         "browser": true,
         "es2021": true
     },
@@ -9,6 +11,9 @@ module.exports = {
         "plugin:@typescript-eslint/recommended"
     ],
     "overrides": [
+        {
+            "files": [ "src/**/*.ts", "src/**/*.tsx" ]
+        }
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
