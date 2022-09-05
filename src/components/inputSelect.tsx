@@ -36,7 +36,7 @@ export const InputSelect = ({ id, name, options }: InputProps) => {
                                     className={({ selected }) => classNames('select__option', { 'select__option--selected': selected })}
                                     value={option.id}
                                 >
-                                {({ selected }) => (
+                                {() => (
                                     <>
                                         {option.name}
                                     </>
