@@ -3,7 +3,7 @@ import { Person } from '../global/types'
 
 interface RowActionProps {
     isOpen: boolean
-    closeFn: Function
+    closeFn: () => void
     data: Person | null
 }
 

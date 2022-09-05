@@ -21,7 +21,7 @@ const InputTypesMap = {
 
 const Field = ({ id, name, label, type = 'text', options = [] }: FieldProps) => {
     const { formState: { errors } } = useFormContext()
-    const hasError: boolean = !!errors?.[name]
+    const hasError = !!errors?.[name]
     const Input: InputFunction = useMemo(() => InputTypesMap[type], [type])
     
     return (

@@ -14,45 +14,42 @@ import { openActionModal } from '../redux/peopleSlice'
 const columnHelper = createColumnHelper<Person>()
 
 const getColumns = (dispatch: Dispatch<AnyAction>) => [
-    columnHelper.accessor('id', {
-        header: 'ID',
-        cell: info => {
-            const { value } = info.getValue()
-            return <Link to={`person/${value}`}>{value}</Link> || '-----'
-        },
-        enableSorting: false,
-        size: 90,
-    }),
-    columnHelper.accessor(({ name: { first, last} }) => `${first} ${last}`, {
-        header: 'Full Name',
-        cell: info => info.getValue(),
-    }),
-    columnHelper.accessor('email', {
-        header: 'Email',
-        cell: info => info.getValue()
-    }),
-    columnHelper.accessor('dob', {
-        header: 'DoB',
-        cell: info => {
-            const { date } = info.getValue()
-            return dayjs(date).format('DD/MM/YYYY')
-        },
-        enableColumnFilter: false,
-        size: 80,
-    }),
-    columnHelper.accessor(({ location }) => location.state, {
-        header: 'State',
-        cell: info => info.getValue(),
-        size: 260,
-        meta: {
-            filterType: 'select',
-            selectOptions: stateOptions
-        }
-    }),
-    columnHelper.display({
-        id: 'actions',
-        cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => { dispatch(openActionModal(thisRow.original)) }} />
-    }),
+  columnHelper.accessor(({ id }) => `${id.value}` as unknown, {
+    header: 'ID',
+    cell: info => {
+        const personId = info.getValue()
+        return typeof personId === 'string' ? <Link to={`person/${personId}`}>{personId}</Link> : '-----'
+    },
+    enableSorting: false,
+    size: 90,
+  }),
+  columnHelper.accessor(({ name: { first, last} }) => `${first} ${last}` as unknown, {
+      header: 'Full Name',
+  }),
+  columnHelper.accessor(({ email }) => email as unknown, {
+      header: 'Email',
+  }),
+  columnHelper.accessor(({ dob }) => dob.date as unknown, {
+      header: 'DoB',
+      cell: info => {
+          const date = info.getValue()
+          return typeof date === 'string' ? dayjs(date).format('DD/MM/YYYY') : ''
+      },
+      enableColumnFilter: false,
+      size: 80,
+  }),
+  columnHelper.accessor(({ location }) => location.state as unknown, {
+      header: 'State',
+      size: 260,
+      meta: {
+          filterType: 'select',
+          selectOptions: stateOptions
+      }
+  }),
+  columnHelper.display({
+      id: 'actions',
+      cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => { dispatch(openActionModal(thisRow.original)) }} />
+  }),
 ]
 
 export const PeopleGrid = () => {
@@ -67,7 +64,7 @@ export const PeopleGrid = () => {
 
     const columns = useMemo(() => getColumns(dispatch), [])
 
-    return <Grid 
+    return <Grid<Person, unknown> 
         columns={columns}
         data={people?.results || []}
         isLoading={isLoading}

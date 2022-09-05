@@ -15,30 +15,34 @@ import SortingIcon from './sortingIcon'
 import { Filter } from './filter'
 import { selectOption } from '../global/types'
 
+// https://codesandbox.io/s/beautiful-currying-ih7vmi?fontsize=14&hidenavigation=1&theme=dark&file=/src/App.tsx
+
 declare module '@tanstack/table-core' {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface ColumnMeta<TData extends RowData, TValue> {
         filterType: 'text' | 'select',
         selectOptions: selectOption[]
     }
-  }
+}
 
-interface GridProps {
-    columns: ColumnDef<any, any>[]
-    data: object[]
+type GridKeys = string | unknown
+interface GridProps<T, K> {
+    columns: ColumnDef<T, K>[]
+    data: T[]
     isLoading: boolean
     isSuccess: boolean
     isError: boolean
 }
 
-interface GridCellHeaderProps {
-    header: Header<any, any>
+interface GridCellHeaderProps<T, K> {
+    header: Header<T, K>
 }
 
-const GridCellHeader = ({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps) => (
+const GridCellHeader = <T extends object, K extends GridKeys>({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps<T, K>) => (
     <th className="grid__cell-head">{isPlaceholder ? '&nbsp;' : flexRender(column.columnDef.header, getContext())}</th>
 )
 
-const GridCellHeaderSortable = ({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps) => (
+const GridCellHeaderSortable = <T extends object, K extends GridKeys>({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps<T, K>) => (
     isPlaceholder 
         ? <th className="grid__cell-head">&nbsp;</th>
         : <th className="grid__cell-head grid__cell-head--sortable">
@@ -46,19 +50,19 @@ const GridCellHeaderSortable = ({ header: { isPlaceholder, column, getContext } 
         </th>
 )
 
-const GridCellHeaderFilter = ({ header: { isPlaceholder, column } }: GridCellHeaderProps) => (
+const GridCellHeaderFilter = <T extends object, K extends GridKeys>({ header: { isPlaceholder, column } }: GridCellHeaderProps<T, K>) => (
     isPlaceholder 
         ? <th className="grid__cell-filter">&nbsp;</th>
         : <th className="grid__cell-filter">
             <Filter 
                 type={column.columnDef.meta?.filterType}
                 options={column.columnDef.meta?.selectOptions}
-                onChangeFn={(value:any) => column.setFilterValue(value)} 
+                onChangeFn={(selectedValue: string | number | undefined) => column.setFilterValue(selectedValue)} 
             />
         </th>
 )
 
-export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps) => {
+export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLoading, isSuccess, isError }: GridProps<T, K>) => {
     const hasResults = data.length > 0
 
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -101,14 +105,14 @@ export const Grid = ({ columns, data, isLoading, isSuccess, isError }: GridProps
                             <tr>
                                 {headerGroup.headers.map(header => (
                                     header.column.getCanSort() 
-                                        ? <GridCellHeaderSortable key={`h1-${header.id}`} header={header} />
+                                        ? <GridCellHeaderSortable<T, unknown> key={`h1-${header.id}`} header={header} />
                                         : <GridCellHeader key={`h1-${header.id}`} header={header} />
                                 ))}
                             </tr>
                             <tr>
                                 {headerGroup.headers.map(header => (
                                     header.column.getCanFilter()
-                                        ? <GridCellHeaderFilter key={`h1-${header.id}`} header={header} />
+                                        ? <GridCellHeaderFilter<T, unknown> key={`h1-${header.id}`} header={header} />
                                         : <th key={`h1-${header.id}`}>&nbsp;</th>
                                 ))}
                             </tr>

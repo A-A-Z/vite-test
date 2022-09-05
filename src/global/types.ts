@@ -51,8 +51,7 @@ export type PersonPicture = {
     medium: string
     thumbnail: string
 }
-
-export type Person = {
+export interface Person {
     id: PersonId
     name: PersonName
     email: string

@@ -1,5 +1,5 @@
 interface FilterTextProps {
-    onChangeFn: Function
+    onChangeFn: (selectedValue: string | number | undefined) => void
 }
 
 export const FilterText = ({ onChangeFn }: FilterTextProps) => {

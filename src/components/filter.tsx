@@ -4,7 +4,7 @@ import { selectOption } from '../global/types'
 
 interface FilterSelectProps {
     type: 'text' | 'select' | undefined,
-    onChangeFn: Function
+    onChangeFn: (selectedValue: string | number | undefined) => void
     options?: selectOption[]
 }
 

@@ -5,7 +5,7 @@ import { CaretDownIcon } from '@radix-ui/react-icons'
 import { selectOption } from '../global/types'
 
 interface FilterSelectProps {
-    onChangeFn: Function
+    onChangeFn: (selectedValue: string | number | undefined) => void
     options?: selectOption[]
 }
 
@@ -41,7 +41,7 @@ export const FilterSelect = ({ options, onChangeFn }: FilterSelectProps) => {
                     className={({ selected }) => classNames('filter__option', { 'filter__option--selected': selected })}
                     value={option}
                 >
-                  {({ selected }) => (
+                  {() => (
                     <>
                         {option.name}
                     </>
