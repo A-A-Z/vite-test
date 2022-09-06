@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { PersonForm } from '../components/personForm'
-import { Person } from '../global/types'
 
 const PersonDetail = () => {
-  const [person, setPerson] = useState<Person | undefined>(undefined)
   const { id } = useParams()
-
-  const {
-    data: people,
-    isLoading,
-    isError
-  } = useGetPeopleQuery()
-
-  useEffect(() => {
-    if (id !== undefined && people !== undefined) {
-      const search = people.results.find(person => person.id.value === id)
-      setPerson(search)
-    }
-  }, [id, people])
+  const { person, isLoading, isError } = useGetPeopleQuery(undefined, {
+    selectFromResult: ({ data, ...context }) => ({
+      ...context,
+      person: data?.results.find(person => person.id.value === id)
+    })
+  })
 
   if (isLoading) {
     return <div>Loading...</div>
