@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import Field from './field'
 import { Person } from '../global/types'
-import { stateOptions } from '../global/constants'
+import { STATE_OPTIONS } from '../global/constants'
 
 type FormValues = {
     firstName: string
@@ -45,7 +45,7 @@ export const PersonForm = ({ initData }: PersonFormProps) => {
         <Field id="firstName" name="firstName" label="First Name"/>
         <Field id="lastName" name="lastName" label="Last Name" />
         <Field id="email" name="email" label="Email" />
-        <Field id="state" name="state" label="State" type="select" options={stateOptions} />
+        <Field id="state" name="state" label="State" type="select" options={STATE_OPTIONS} />
         <button type="submit">Save</button> {isValid ? 'Valid' : 'Invalid'}
       </form>
     </FormProvider>

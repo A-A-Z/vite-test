@@ -1,6 +1,11 @@
 import { selectOption } from './types'
 
-export const stateOptions:selectOption[] = [
+// formats
+export const DATE_DISPLAY = 'DD/MM/YYYY'
+
+// selects
+
+export const STATE_OPTIONS: selectOption[] = [
   { id: '', name: 'Any' },
   { id: 'Australian Capital Territory', name: 'Australian Capital Territory' },
   { id: 'New South Wales', name: 'New South Wales' },

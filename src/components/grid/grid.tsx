@@ -11,9 +11,9 @@ import {
   Header,
   RowData
 } from '@tanstack/react-table'
-import SortingIcon from './sortingIcon'
-import { Filter } from './filter'
-import { selectOption } from '../global/types'
+import SortingIcon from '../sortingIcon'
+import { Filter } from '../filter'
+import { selectOption } from '../../global/types'
 
 // https://codesandbox.io/s/beautiful-currying-ih7vmi?fontsize=14&hidenavigation=1&theme=dark&file=/src/App.tsx
 

@@ -3,11 +3,10 @@ import { createColumnHelper, Row } from '@tanstack/react-table'
 import { useDispatch } from 'react-redux'
 import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
-import dayjs from 'dayjs'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
-import { Grid } from './grid'
+import { Grid, ColumnDate } from './grid'
 import { Person } from '../global/types'
-import { stateOptions } from '../global/constants'
+import { STATE_OPTIONS } from '../global/constants'
 import { RowAction } from './rowAction'
 import { openActionModal } from '../redux/peopleSlice'
 
@@ -31,10 +30,7 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   }),
   columnHelper.accessor(({ dob }) => dob.date as unknown, {
     header: 'DoB',
-    cell: info => {
-      const date = info.getValue()
-      return typeof date === 'string' ? dayjs(date).format('DD/MM/YYYY') : ''
-    },
+    cell: info => ColumnDate<Person>(info),
     enableColumnFilter: false,
     size: 80
   }),
@@ -43,7 +39,7 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
     size: 260,
     meta: {
       filterType: 'select',
-      selectOptions: stateOptions
+      selectOptions: STATE_OPTIONS
     }
   }),
   columnHelper.display({
