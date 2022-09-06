@@ -1,18 +1,24 @@
 import { Dialog } from '@headlessui/react'
-import { Person } from '../global/types'
+import { useGetPeopleQuery } from '../features/api/apiSlice'
 
 interface RowActionProps {
     isOpen: boolean
     closeFn: () => void
-    data: Person | null
+    personId: string | null
 }
 
-export const ActionModal = ({ isOpen, closeFn, data }: RowActionProps) => {
-  if (data === null) {
+export const ActionModal = ({ isOpen, closeFn, personId }: RowActionProps) => {
+  const { person } = useGetPeopleQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      person: data?.results.find(person => person.id.value === personId)
+    })
+  })
+
+  if (person === undefined) {
     return null
   }
 
-  const { name } = data
+  const { name } = person
 
   return (
     <Dialog open={isOpen} onClose={() => { closeFn() }} className="modal">

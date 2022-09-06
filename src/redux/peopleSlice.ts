@@ -1,36 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Person } from '../global/types'
 
 interface PeopleState {
-  value: number
-  activePerson: Person | null
+  activePersonId: string | null
 }
 
 const initialState: PeopleState = {
-  value: 0,
-  activePerson: null
+  activePersonId: null
 }
 
 const peopleSlice = createSlice({
   name: 'people',
   initialState,
   reducers: {
-    // incremented(state) {
-    //   // it's okay to do this because immer makes it immutable
-    //   // under the hood
-    //   state.value++;
-    // },
-    // amountAdded(state, action: PayloadAction<number>) {
-    //   state.value += action.payload;
-    openActionModal (state, action: PayloadAction<Person>) {
-      state.activePerson = action.payload
+    openActionModal (state, action: PayloadAction<string | null>) {
+      state.activePersonId = action.payload
     },
-
     closeActionModal (state) {
-      state.activePerson = null
+      state.activePersonId = null
     }
-    // decrement
-    // reset
   }
 })
 

@@ -8,7 +8,7 @@ import { ActionModal } from '../components/actionModal'
 const ListPeople = () => {
   const dispatch = useDispatch()
   const isModalOpen = useSelector(isActionModalOpen)
-  const activePerson = useSelector(getActiverPerson)
+  const activePersonId = useSelector(getActiverPerson)
 
   const closeModal = useCallback(() => {
     dispatch(closeActionModal())
@@ -19,7 +19,7 @@ const ListPeople = () => {
         <div className="page">
             <PeopleGrid />
         </div>
-        <ActionModal isOpen={isModalOpen} closeFn={closeModal} data={activePerson} />
+        <ActionModal isOpen={isModalOpen} closeFn={closeModal} personId={activePersonId} />
     </>
   )
 }

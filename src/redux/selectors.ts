@@ -1,6 +1,5 @@
 import { RootState } from './store'
-import { Person } from '../global/types'
 
-export const isActionModalOpen = ({ people }: RootState): boolean => people.activePerson !== null
+export const isActionModalOpen = ({ people }: RootState): boolean => people.activePersonId !== null
 
-export const getActiverPerson = ({ people }: RootState): Person | null => people.activePerson
+export const getActiverPerson = ({ people }: RootState): string | null => people.activePersonId

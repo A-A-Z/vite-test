@@ -44,7 +44,7 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   }),
   columnHelper.display({
     id: 'actions',
-    cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => { dispatch(openActionModal(thisRow.original)) }} />
+    cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => { dispatch(openActionModal(thisRow.original.id.value)) }} />
   })
 ]
 
