@@ -64,7 +64,6 @@ const GridCellHeaderFilter = <T extends object, K extends GridKeys>({ header: { 
 
 export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLoading, isSuccess, isError }: GridProps<T, K>) => {
   const hasResults = data.length > 0
-
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [sorting, setSorting] = useState<SortingState>([])
 

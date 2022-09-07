@@ -10,7 +10,7 @@ interface RowActionProps {
 export const ActionModal = ({ isOpen, closeFn, personId }: RowActionProps) => {
   const { person } = useGetPeopleQuery(undefined, {
     selectFromResult: ({ data }) => ({
-      person: data?.results.find(person => person.id.value === personId)
+      person: personId !== null ? data?.results.find(person => person.id.value === personId) : undefined
     })
   })
 

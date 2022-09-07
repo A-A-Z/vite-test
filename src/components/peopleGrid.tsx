@@ -13,7 +13,7 @@ import { openActionModal } from '../redux/peopleSlice'
 const columnHelper = createColumnHelper<Person>()
 
 const getColumns = (dispatch: Dispatch<AnyAction>) => [
-  columnHelper.accessor(({ id }) => `${id.value}` as unknown, {
+  columnHelper.accessor(({ id }) => id.value as unknown, {
     header: 'ID',
     cell: info => {
       const personId = info.getValue()
@@ -44,7 +44,9 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   }),
   columnHelper.display({
     id: 'actions',
-    cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => { dispatch(openActionModal(thisRow.original.id.value)) }} />
+    cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => {
+      dispatch(openActionModal(thisRow.original.id.value))
+    }} />
   })
 ]
 
