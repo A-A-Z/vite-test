@@ -1,21 +1,16 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { createColumnHelper, Row } from '@tanstack/react-table'
+import { createColumnHelper } from '@tanstack/react-table'
+import { HeartFilledIcon as Icon } from '@radix-ui/react-icons'
 import { Grid } from './grid'
-import '../index.css'
-import '../App.css'
-import '../assets/style/app.scss'
+import '../../index.css'
+import '../../App.css'
+import '../../assets/style/app.scss'
+interface ExampleData {
+  name: string,
+  count: number
+}
 
-export type ExampleData = {
-    name: string
-    count: number
-  }
-
-export default {
-  title: 'Components/Grid',
-  component: Grid
-} as ComponentMeta<typeof Grid>
-
-const Template: ComponentStory<typeof Grid> = args => <Grid<ExampleData, unknown> {...args} />
+const columnHelper = createColumnHelper<ExampleData>()
 
 const data: ExampleData[] = [
   {
@@ -32,33 +27,24 @@ const data: ExampleData[] = [
   }
 ]
 
-const columnHelper = createColumnHelper<ExampleData>()
-
 const columns = [
-  // columnHelper.accessor(({ name }) => name as unknown, {
-  //   header: 'Name'
-  // })//,
-//   columnHelper.accessor('name', {
-//     header: 'Name'
-//   }),
-//   columnHelper.accessor('count', {
-//     header: 'Count'
-//   })
-  {
-    accessorKey: 'name' as unknown,
+  columnHelper.accessor(({ name }) => name as unknown, {
     header: 'Name'
-  },
-  {
-    accessorKey: 'count' as unknown,
+  }),
+  columnHelper.accessor(({ count }) => count as unknown, {
     header: 'Count'
-  }
+  }),
+  columnHelper.display({
+    id: 'actions',
+    cell: () => <Icon />
+  })
 ]
 
+export default {
+  title: 'Components/Grid',
+  component: Grid
+} as ComponentMeta<typeof Grid>
+
+const Template: ComponentStory<typeof Grid> = () => <Grid<ExampleData, unknown> columns={columns} data={data} isLoading={false} isSuccess={true} isError={false} />
+
 export const Test = Template.bind({})
-Test.args = {
-  columns,
-  data,
-  isLoading: false,
-  isSuccess: true,
-  isError: false
-}

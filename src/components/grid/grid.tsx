@@ -26,7 +26,7 @@ declare module '@tanstack/table-core' {
 }
 
 type GridKeys = string | unknown
-interface GridProps<T, K> {
+export interface GridProps<T, K> {
   columns: ColumnDef<T, K>[]
   data: T[]
   isLoading: boolean
