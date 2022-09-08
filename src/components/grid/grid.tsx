@@ -11,6 +11,8 @@ import {
   Header,
   RowData
 } from '@tanstack/react-table'
+import classNames from 'classnames'
+import { ToolbarButton } from '.'
 import SortingIcon from '../sortingIcon'
 import { Filter } from '../filter'
 import { selectOption } from '../../global/types'
@@ -85,8 +87,13 @@ export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLo
     }
   })
 
+  const selectedItems = table.getSelectedRowModel()
+
   return (
     <div className="grid">
+      <ul className="grid__toolbar">
+        <ToolbarButton<T> selectedItems={selectedItems} />
+      </ul>
       <table className="grid__table">
         {table.getHeaderGroups().map(headerGroup => (
           <colgroup key={`colgroup-${headerGroup.id}`}>
@@ -123,7 +130,7 @@ export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLo
             table
               .getRowModel()
               .rows.map(row => (
-                <tr key={row.id} className="grid__row">
+                <tr key={row.id} className={classNames('grid__row', { 'grid__row--selected': row.getIsSelected() })}>
                   {row.getVisibleCells().map(cell => (
                     <td key={cell.id} className="grid__cell">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}

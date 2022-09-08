@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
-import { Grid, ColumnDate } from './grid'
+import { Grid, ColumnDate, ColumnSelect, HeaderSelect } from './grid'
 import { Person } from '../global/types'
 import { STATE_OPTIONS } from '../global/constants'
 import { RowAction } from './rowAction'
@@ -13,6 +13,11 @@ import { openActionModal } from '../redux/peopleSlice'
 const columnHelper = createColumnHelper<Person>()
 
 const getColumns = (dispatch: Dispatch<AnyAction>) => [
+  columnHelper.display({
+    id: 'select',
+    header: info => HeaderSelect<Person>(info),
+    cell: info => ColumnSelect<Person>(info)
+  }),
   columnHelper.accessor(({ id }) => id.value as unknown, {
     header: 'ID',
     cell: info => {

@@ -1,5 +1,8 @@
+@use '../mixins/common';
 
 .grid {
+    --cell-height: 28px;
+
     margin: 0 auto;
     max-width: 1100px;
     table-layout: fixed;
@@ -31,7 +34,7 @@
     }
 
     &__cell {
-        height: 28px;
+        height: var(--cell-height);
         padding: 0 1rem;
     }
 
@@ -45,18 +48,28 @@
 
     &__row {
         background-color: #fff;
-        // transition: background-color 0.1s ease;
+        transition: background-color 0.2s ease;
+
+        &--selected {
+            background-color: #b8bfff;
+        }
 
         .btn--row-action {
             opacity: 0;
         }
 
-        &:hover {
+        &:hover:not(.grid__row--selected) {
             background-color: rgb(242, 248, 248);
 
             .btn--row-action {
                 opacity: 1;
             }
         }
+    }
+
+    &__toolbar {
+        @include common.list;
+        padding: 0.8rem 0;
+        text-align: left;
     }
 }

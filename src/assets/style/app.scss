@@ -2,6 +2,7 @@
 
 // blocks
 @use 'blocks/btn';
+@use 'blocks/check-box';
 @use 'blocks/field';
 @use 'blocks/filter';
 @use 'blocks/form';
@@ -15,4 +16,5 @@
     width: 100%;
 }
 
+// TODO move
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
