@@ -4,5 +4,5 @@ export interface PageHeaderProps {
 }
 
 export const PageHeader = ({ title }: PageHeaderProps) => (
-    <header><h1>Title: {title}</h1></header>
+    <header className="page-header"><h1 className="page-header__title">Title: {title}</h1></header>
 )

@@ -52,7 +52,6 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
 
 export const PeopleGrid = () => {
   const dispatch = useDispatch()
-
   const {
     data: people,
     isLoading,

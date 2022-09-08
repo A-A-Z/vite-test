@@ -1,0 +1,11 @@
+@use 'colours';
+
+a {
+  color: var(--colour-link);
+  transition: color 0.2s ease;
+  text-decoration: inherit;
+
+  &:hover {
+    color: var(--colour-active);
+  }
+}
