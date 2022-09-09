@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useMemo } from 'react'
 import {
   flexRender,
   getCoreRowModel,
@@ -9,7 +9,8 @@ import {
   ColumnFiltersState,
   getFilteredRowModel,
   Header,
-  RowData
+  RowData,
+  RowModel
 } from '@tanstack/react-table'
 import classNames from 'classnames'
 import { ToolbarButton } from '.'
@@ -28,12 +29,21 @@ declare module '@tanstack/table-core' {
 }
 
 type GridKeys = string | unknown
+
+export interface ToolbarItemProps<T> {
+  id: string
+  label: string
+  icon?: string
+  minSelected?: number
+  onClick: (selectedItems: RowModel<T>) => void
+}
 export interface GridProps<T, K> {
   columns: ColumnDef<T, K>[]
   data: T[]
   isLoading: boolean
   isSuccess: boolean
   isError: boolean
+  toolbar?: ToolbarItemProps<T>[]
 }
 
 interface GridCellHeaderProps<T, K> {
@@ -64,7 +74,7 @@ const GridCellHeaderFilter = <T extends object, K extends GridKeys>({ header: { 
     </th>
 )
 
-export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLoading, isSuccess, isError }: GridProps<T, K>) => {
+export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLoading, isSuccess, isError, toolbar }: GridProps<T, K>) => {
   const hasResults = data.length > 0
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [sorting, setSorting] = useState<SortingState>([])
@@ -91,9 +101,13 @@ export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLo
 
   return (
     <div className="grid">
-      <ul className="grid__toolbar">
-        <ToolbarButton<T> selectedItems={selectedItems} />
-      </ul>
+      {toolbar !== undefined && toolbar.length > 0 &&
+        <ul className="grid__toolbar">
+          {toolbar.map(({ id, ...toolbarItem }) => (
+            useMemo(() => <ToolbarButton<T> key={`toolbar-item-${id}`} selectedItems={selectedItems} {...toolbarItem} />, [selectedItems])
+          ))}
+        </ul>
+      }
       <table className="grid__table">
         {table.getHeaderGroups().map(headerGroup => (
           <colgroup key={`colgroup-${headerGroup.id}`}>

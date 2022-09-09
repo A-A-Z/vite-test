@@ -1,0 +1,20 @@
+.row-action {
+  align-items: center;
+  background-color: #f00;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  ///padding: 0 0.5rem;
+  padding: 2px;
+
+  &__label {
+      display: none;
+  }
+
+  &__icon {
+    height: 20px;
+    width: 20px;
+  }
+}

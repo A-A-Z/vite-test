@@ -12,6 +12,6 @@ interface RowActionProps {
 export const RowAction = ({ name, row, onClickFn }: RowActionProps) => {
   const onClick = () => onClickFn(row)
   return (
-    <button className="btn btn--row-action" onClick={onClick}><span className="btn__label">{name}</span><Share2Icon className="btn__icon" /></button>
+    <button className="row-action" onClick={onClick}><span className="row-action__label">{name}</span><Share2Icon className="row-action__icon" /></button>
   )
 }

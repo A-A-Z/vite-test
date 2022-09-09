@@ -54,14 +54,14 @@
             background-color: #b8bfff;
         }
 
-        .btn--row-action {
+        .row-action {
             opacity: 0;
         }
 
         &:hover:not(.grid__row--selected) {
             background-color: rgb(242, 248, 248);
 
-            .btn--row-action {
+            .row-action {
                 opacity: 1;
             }
         }
@@ -69,7 +69,12 @@
 
     &__toolbar {
         @include common.list;
+        display: flex;
         padding: 0.8rem 0;
         text-align: left;
+
+        &> li {
+            margin: 0 0.6rem 0 0;
+        }
     }
 }

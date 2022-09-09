@@ -1,3 +1,5 @@
+@use '../colours.scss';
+
 .check-box {
   background-color: transparent;
   border: 0;
@@ -16,6 +18,10 @@
   
     &--check {
         color: #333;
+    }
+
+    &:hover {
+      color: var(--colour-link);
     }
   }
 }

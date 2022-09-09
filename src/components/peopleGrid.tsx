@@ -55,6 +55,23 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   })
 ]
 
+const toolbarItems = [
+  {
+    id: 'delete',
+    label: 'Delete Selected',
+    icon: 'X',
+    minSelected: 1,
+    onClick: (selectedItems: object) => { console.log('Delete these:', selectedItems) }
+  },
+  {
+    id: 'update',
+    label: 'Update Selected',
+    icon: 'X',
+    minSelected: 1,
+    onClick: (selectedItems: object) => { console.log('Update these:', selectedItems) }
+  }
+]
+
 export const PeopleGrid = () => {
   const dispatch = useDispatch()
   const {
@@ -65,6 +82,7 @@ export const PeopleGrid = () => {
   } = useGetPeopleQuery()
 
   const columns = useMemo(() => getColumns(dispatch), [])
+  const toolbar = useMemo(() => toolbarItems, [])
 
   return <Grid<Person, unknown>
     columns={columns}
@@ -72,5 +90,6 @@ export const PeopleGrid = () => {
     isLoading={isLoading}
     isSuccess={isSuccess}
     isError={isError}
+    toolbar={toolbar}
   />
 }
