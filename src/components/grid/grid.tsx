@@ -74,6 +74,22 @@ const GridCellHeaderFilter = <T extends object, K extends GridKeys>({ header: { 
     </th>
 )
 
+export interface GridToolbarProps<T> {
+  items?: ToolbarItemProps<T>[]
+  selected: RowModel<T>
+}
+const GridToolbar = <T extends object>({ items, selected }: GridToolbarProps<T>) => (
+  <>
+    {items !== undefined && items.length > 0 &&
+        <ul className="grid__toolbar">
+          {items.map(({ id, ...toolbarItem }) => (
+            <ToolbarButton<T> key={`toolbar-item-${id}`} selectedItems={selected} {...toolbarItem} />
+          ))}
+        </ul>
+      }
+  </>
+)
+
 export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLoading, isSuccess, isError, toolbar }: GridProps<T, K>) => {
   const hasResults = data.length > 0
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -98,16 +114,11 @@ export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLo
   })
 
   const selectedItems = table.getSelectedRowModel()
+  const ToolbarMemo = useMemo(() => <GridToolbar<T> items={toolbar} selected={selectedItems} />, [selectedItems, toolbar])
 
   return (
     <div className="grid">
-      {toolbar !== undefined && toolbar.length > 0 &&
-        <ul className="grid__toolbar">
-          {toolbar.map(({ id, ...toolbarItem }) => (
-            useMemo(() => <ToolbarButton<T> key={`toolbar-item-${id}`} selectedItems={selectedItems} {...toolbarItem} />, [selectedItems])
-          ))}
-        </ul>
-      }
+      {ToolbarMemo}
       <table className="grid__table">
         {table.getHeaderGroups().map(headerGroup => (
           <colgroup key={`colgroup-${headerGroup.id}`}>
