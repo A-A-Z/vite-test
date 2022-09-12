@@ -1,4 +1,3 @@
-import { BoxIcon, CheckIcon } from '@radix-ui/react-icons'
 import classNames from 'classnames'
 
 export interface CheckBoxProps {
@@ -7,13 +6,12 @@ export interface CheckBoxProps {
   size?: number
 }
 
-export const CheckBox = ({ isSelected, onToggle, size = 16 }: CheckBoxProps) => (
+export const CheckBox = ({ isSelected, onToggle }: CheckBoxProps) => (
   <button
     type="button"
-    className={classNames('check-box', { 'check-box--selected': isSelected })}
+    className={classNames('checkbox', { 'checkbox--selected': isSelected })}
     onClick={onToggle}
   >
-    <BoxIcon width={size} height={size} className="check-box__select-icon" />
-    {isSelected && <CheckIcon width={size} height={size} className="check-box__select-icon check-box__select-icon--check" />}
+    <div className={classNames('checkbox__icon', { 'checkbox__icon--checked': isSelected })} />
   </button>
 )

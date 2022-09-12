@@ -1,4 +1,5 @@
 @use '../mixins/common';
+@use '../colours';
 
 .grid {
     --cell-height: 28px;
@@ -51,7 +52,7 @@
         transition: background-color 0.2s ease;
 
         &--selected {
-            background-color: #b8bfff;
+            background-color: var(--colour-active-light);
         }
 
         .row-action {
@@ -59,7 +60,9 @@
         }
 
         &:hover:not(.grid__row--selected) {
-            background-color: rgb(242, 248, 248);
+            &:not(.grid__row--selected) {
+                background-color: rgb(242, 248, 248);
+            }
 
             .row-action {
                 opacity: 1;

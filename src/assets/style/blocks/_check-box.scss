@@ -1,27 +1,40 @@
 @use '../colours.scss';
 
-.check-box {
+.checkbox {
+  --checkbox-size: 1rem;
+
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  height: 16px;
-  padding: 0 10px;
-  position: relative;
-  width: 16px;
-  vertical-align: middle;
+  display: block;
+  padding: 0;
 
-  &__select-icon {
-    color: #777;
-    left: 2px;
-    position: absolute;
-    top: 0;
-  
-    &--check {
-        color: #333;
+  &__icon {
+    border: 1px solid var(--colour-border);
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: var(--checkbox-size);
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+    width: var(--checkbox-size);
+
+    &:after {
+      background-color: var(--colour-active);
+      content: '';
+      display: block;
+      height: calc(var(--checkbox-size) - 2px);
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s ease-out;
+      width: calc(var(--checkbox-size) - 2px);
     }
-
-    &:hover {
-      color: var(--colour-link);
+    &--checked {
+      border-color: var(--colour-active);
+    }
+    &--checked:after {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }
