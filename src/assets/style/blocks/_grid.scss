@@ -59,7 +59,7 @@
             opacity: 0;
         }
 
-        &:hover:not(.grid__row--selected) {
+        &:hover {
             &:not(.grid__row--selected) {
                 background-color: rgb(242, 248, 248);
             }
