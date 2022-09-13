@@ -16,7 +16,9 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   columnHelper.display({
     id: 'select',
     header: info => HeaderSelect<Person>(info),
-    cell: info => ColumnSelect<Person>(info)
+    cell: info => ColumnSelect<Person>(info, {
+      isHidden: ({ location }) => location.state === 'Victoria'
+    })
   }),
   columnHelper.accessor(({ id }) => id.value as unknown, {
     header: 'ID',

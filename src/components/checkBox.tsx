@@ -3,7 +3,6 @@ import classNames from 'classnames'
 export interface CheckBoxProps {
   isSelected: boolean
   onToggle: (event: unknown) => void
-  size?: number
 }
 
 export const CheckBox = ({ isSelected, onToggle }: CheckBoxProps) => (

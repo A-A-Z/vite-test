@@ -1,8 +1,13 @@
 import { CellFunc } from './utils'
 import { CheckBox } from '../checkBox'
 
-export const ColumnSelect: CellFunc = info => {
-  const { getIsSelected, getToggleSelectedHandler } = info.row
+export const ColumnSelect: CellFunc = (info, config) => {
+  const { getIsSelected, getToggleSelectedHandler, original } = info.row
+
+  if (config?.isHidden === true || (typeof config?.isHidden === 'function' && config.isHidden(original))) {
+    return null
+  }
+
   const isSelected = getIsSelected()
   return <CheckBox isSelected={isSelected} onToggle={getToggleSelectedHandler()} />
 }
