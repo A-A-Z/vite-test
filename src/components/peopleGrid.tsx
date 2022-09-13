@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
-import { Grid, ColumnDate, ColumnSelect, HeaderSelect } from './grid'
+import { Grid, ColumnDate, ColumnSelect, HeaderSelect, ToolbarItemProps } from './grid'
 import { Person } from '../global/types'
 import { STATE_OPTIONS } from '../global/constants'
 import { RowAction } from './rowAction'
@@ -57,18 +57,18 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   })
 ]
 
-const toolbarItems = [
+const toolbarItems: ToolbarItemProps<Person>[] = [
   {
     id: 'delete',
     label: 'Delete Selected',
-    icon: 'X',
+    icon: 'TrashIcon',
     minSelected: 1,
     onClick: (selectedItems: object) => { console.log('Delete these:', selectedItems) }
   },
   {
     id: 'update',
     label: 'Update Selected',
-    icon: 'X',
+    icon: 'UpdateIcon',
     minSelected: 1,
     onClick: (selectedItems: object) => { console.log('Update these:', selectedItems) }
   }

@@ -14,6 +14,7 @@ import {
 } from '@tanstack/react-table'
 import classNames from 'classnames'
 import { ToolbarButton } from '.'
+import { IconKey } from '../icon'
 import SortingIcon from '../sortingIcon'
 import { Filter } from '../filter'
 import { selectOption } from '../../global/types'
@@ -33,7 +34,7 @@ type GridKeys = string | unknown
 export interface ToolbarItemProps<T> {
   id: string
   label: string
-  icon?: string
+  icon?: IconKey
   minSelected?: number
   onClick: (selectedItems: RowModel<T>) => void
 }

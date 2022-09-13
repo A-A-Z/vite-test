@@ -1,8 +1,8 @@
-import { Grid, GridProps } from './grid'
+import { Grid, GridProps, ToolbarItemProps } from './grid'
 import { ColumnDate } from './columnDate'
 import { ColumnSelect } from './columnSelect'
 import { HeaderSelect } from './headerSelect'
-import { ToolbarButton } from './toolbarButton'
+import { ToolbarButton, ToolbarButtonProps } from './toolbarButton'
 
 export {
   Grid,
@@ -13,5 +13,7 @@ export {
 }
 
 export type {
-  GridProps
+  GridProps,
+  ToolbarItemProps,
+  ToolbarButtonProps
 }
