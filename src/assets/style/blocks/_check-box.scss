@@ -16,21 +16,21 @@
     cursor: pointer;
     height: var(--checkbox-size);
     overflow: hidden;
-    transition: border-color 0.3s ease;
     width: var(--checkbox-size);
 
     &:after {
       background-color: var(--colour-active);
+      border-radius: 3px;
       content: '';
       display: block;
-      height: calc(var(--checkbox-size) - 2px);
+      height: var(--checkbox-size);
       opacity: 0;
       transform: scale(0);
       transition: all 0.3s ease-out;
-      width: calc(var(--checkbox-size) - 2px);
+      width: var(--checkbox-size);
     }
     &--checked {
-      border-color: var(--colour-active);
+      border-width: 0;
     }
     &--checked:after {
       opacity: 1;
