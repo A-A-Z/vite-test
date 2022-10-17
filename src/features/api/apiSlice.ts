@@ -6,13 +6,15 @@ type PeopleResponse = {
   results: Person[]
 }
 
+const SEED = 'wilsonvitedemo22'
+
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://randomuser.me' }),
   tagTypes: ['People'],
   endpoints: (builder) => ({
     getPeople: builder.query<PeopleResponse, void>({
-      query: () => '/api/?results=20&nat=au&seed=wilsonvitedemo22',
+      query: () => `/api/?results=20&nat=au&seed=${SEED}`,
       providesTags: ['People']
     })
   })

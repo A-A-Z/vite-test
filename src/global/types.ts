@@ -60,6 +60,11 @@ export interface Person {
     picture: PersonPicture
 }
 
+export interface PersonSimple {
+    id: string
+    name: string
+}
+
 export type selectOption = {
     name: string
     id?: number | string

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { createColumnHelper, Row } from '@tanstack/react-table'
+import { createColumnHelper, Row, RowModel } from '@tanstack/react-table'
 import { useDispatch } from 'react-redux'
 import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { Grid, ColumnDate, ColumnSelect, HeaderSelect, ToolbarItemProps } from '
 import { Person } from '../global/types'
 import { STATE_OPTIONS } from '../global/constants'
 import { RowAction } from './rowAction'
-import { openActionModal } from '../redux/peopleSlice'
+import { openActionModal, deleteConfirm } from '../redux/peopleSlice'
 
 const columnHelper = createColumnHelper<Person>()
 
@@ -57,13 +57,47 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   })
 ]
 
-const toolbarItems: ToolbarItemProps<Person>[] = [
+// const toolbarItems: ToolbarItemProps<Person>[] = [
+//   {
+//     id: 'delete',
+//     label: 'Delete Selected',
+//     icon: 'TrashIcon',
+//     minSelected: 1,
+//     onClick: (selectedItems: RowModel<Person>) => {
+//       // const selectPersonIds = Object.values(selectedItems.flatRows).map(person => person.original.id.value)
+//       const selectPersons = Object.values(selectedItems.flatRows).map(({ original: person }) => ({
+//         id: person.id.value || '',
+//         name: `${person.name.first} ${person.name.last}`
+//       }))
+
+//       // console.log('Delete these:', selectPersons, selectPersonIds)
+//       dispatch(deleteConfirm(selectPersons))
+//     }
+//   },
+//   {
+//     id: 'update',
+//     label: 'Update Selected',
+//     icon: 'UpdateIcon',
+//     minSelected: 1,
+//     onClick: (selectedItems: object) => { console.log('Update these:', selectedItems) }
+//   }
+// ]
+
+const getToolbarItems = (dispatch: Dispatch<AnyAction>): ToolbarItemProps<Person>[] => [
   {
     id: 'delete',
     label: 'Delete Selected',
     icon: 'TrashIcon',
     minSelected: 1,
-    onClick: (selectedItems: object) => { console.log('Delete these:', selectedItems) }
+    onClick: (selectedItems: RowModel<Person>) => {
+      // const selectPersonIds = Object.values(selectedItems.flatRows).map(person => person.original.id.value)
+      const selectPersons = Object.values(selectedItems.flatRows).map(({ original: person }) => ({
+        id: person.id.value || '',
+        name: `${person.name.first} ${person.name.last}`
+      }))
+
+      dispatch(deleteConfirm(selectPersons))
+    }
   },
   {
     id: 'update',
@@ -84,7 +118,8 @@ export const PeopleGrid = () => {
   } = useGetPeopleQuery()
 
   const columns = useMemo(() => getColumns(dispatch), [])
-  const toolbar = useMemo(() => toolbarItems, [])
+  // const toolbar = useMemo(() => toolbarItems, [])
+  const toolbar = useMemo(() => getToolbarItems(dispatch), [])
 
   return <Grid<Person, unknown>
     columns={columns}

@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { PersonSimple } from '../global/types'
 
 interface PeopleState {
   activePersonId: string | null
+  deleteSelected: PersonSimple[]
 }
 
 const initialState: PeopleState = {
-  activePersonId: null
+  activePersonId: null,
+  deleteSelected: []
 }
 
 const peopleSlice = createSlice({
@@ -17,9 +20,26 @@ const peopleSlice = createSlice({
     },
     closeActionModal (state) {
       state.activePersonId = null
+    },
+    deleteConfirm (state, action: PayloadAction<PersonSimple[]>) {
+      state.deleteSelected = action.payload
+    },
+    deleteCancel (state) {
+      state.deleteSelected = []
     }
   }
 })
 
-export const { openActionModal, closeActionModal } = peopleSlice.actions
+// selectors
+// export const selectIsDeleteConfirmOpen = (state: PeopleState) => {
+//   console.log('test', state.deleteSelected)
+//   return true
+// }
+
+export const {
+  openActionModal,
+  closeActionModal,
+  deleteConfirm,
+  deleteCancel
+} = peopleSlice.actions
 export default peopleSlice.reducer
