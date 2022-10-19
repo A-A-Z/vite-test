@@ -18,6 +18,7 @@ import { IconKey } from '../icon'
 import SortingIcon from '../sortingIcon'
 import { Filter } from '../filter'
 import { selectOption } from '../../global/types'
+import { Loader } from '../loader'
 
 // https://codesandbox.io/s/beautiful-currying-ih7vmi?fontsize=14&hidenavigation=1&theme=dark&file=/src/App.tsx
 
@@ -126,59 +127,63 @@ export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLo
 
   return (
     <div className="grid">
-      {ToolbarMemo}
-      <table className="grid__table">
-        {table.getHeaderGroups().map(headerGroup => (
-          <colgroup key={`colgroup-${headerGroup.id}`}>
-            {headerGroup.headers.map(header => (
-              <col
-                key={`col-${header.id}`}
-                width={header.getSize() === 0 ? 'auto' : `${header.getSize()}px`}
-              />
+      {!isLoading &&
+        <>
+          {ToolbarMemo}
+          <table className="grid__table">
+            {table.getHeaderGroups().map(headerGroup => (
+              <colgroup key={`colgroup-${headerGroup.id}`}>
+                {headerGroup.headers.map(header => (
+                  <col
+                    key={`col-${header.id}`}
+                    width={header.getSize() === 0 ? 'auto' : `${header.getSize()}px`}
+                  />
+                ))}
+              </colgroup>
             ))}
-          </colgroup>
-        ))}
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <Fragment key={headerGroup.id}>
-              <tr>
-                {headerGroup.headers.map(header => (
-                  header.column.getCanSort()
-                    ? <GridCellHeaderSortable<T, unknown> key={`h1-${header.id}`} header={header} />
-                    : <GridCellHeader key={`h1-${header.id}`} header={header} />
-                ))}
-              </tr>
-              <tr>
-                {headerGroup.headers.map(header => (
-                  header.column.getCanFilter()
-                    ? <GridCellHeaderFilter<T, unknown> key={`h1-${header.id}`} header={header} />
-                    : <th key={`h1-${header.id}`}>&nbsp;</th>
-                ))}
-              </tr>
-            </Fragment>
-          ))}
-        </thead>
-        <tbody>
-          {isSuccess && hasResults &&
-            table
-              .getRowModel()
-              .rows.map(row => (
-                <tr key={row.id} className={classNames('grid__row', { 'grid__row--selected': row.getIsSelected() })}>
-                  {row.getVisibleCells().map(cell => (
-                    <td key={cell.id} className="grid__cell">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
-                  ))}
-                </tr>
-              ))
-          }
-        </tbody>
-      </table>
+            <thead>
+              {table.getHeaderGroups().map(headerGroup => (
+                <Fragment key={headerGroup.id}>
+                  <tr>
+                    {headerGroup.headers.map(header => (
+                      header.column.getCanSort()
+                        ? <GridCellHeaderSortable<T, unknown> key={`h1-${header.id}`} header={header} />
+                        : <GridCellHeader key={`h1-${header.id}`} header={header} />
+                    ))}
+                  </tr>
+                  <tr>
+                    {headerGroup.headers.map(header => (
+                      header.column.getCanFilter()
+                        ? <GridCellHeaderFilter<T, unknown> key={`h1-${header.id}`} header={header} />
+                        : <th key={`h1-${header.id}`}>&nbsp;</th>
+                    ))}
+                  </tr>
+                </Fragment>
+              ))}
+            </thead>
+            <tbody>
+              {isSuccess && hasResults &&
+                table
+                  .getRowModel()
+                  .rows.map(row => (
+                    <tr key={row.id} className={classNames('grid__row', { 'grid__row--selected': row.getIsSelected() })}>
+                      {row.getVisibleCells().map(cell => (
+                        <td key={cell.id} className="grid__cell">
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      ))}
+                    </tr>
+                  ))
+              }
+            </tbody>
+          </table>
+        </>
+      }
       {isSuccess && !hasResults &&
         <div className="grid__msg">No Data</div>
       }
       {isLoading &&
-        <div className="grid__msg">Loading...</div>
+        <div className="grid__msg"><Loader label="Fetching results" /></div>
       }
       {isError &&
         <div className="grid__msg">Error!</div>

@@ -1,14 +1,19 @@
 .loader {
   margin: 0 auto;
-  max-width: 120px;
+  max-width: 150px;
   padding: 30px;
   text-align: center;
 
   &__label {
-    color: #f00;
-    font-size: 1rem;
-    font-weight: 800;
+    color: #444;
+    font-size: 0.8rem;
+    font-weight: 400;
     margin: 0;
     text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  svg {
+    max-height: 80px;
   }
 }
