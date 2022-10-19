@@ -57,32 +57,6 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   })
 ]
 
-// const toolbarItems: ToolbarItemProps<Person>[] = [
-//   {
-//     id: 'delete',
-//     label: 'Delete Selected',
-//     icon: 'TrashIcon',
-//     minSelected: 1,
-//     onClick: (selectedItems: RowModel<Person>) => {
-//       // const selectPersonIds = Object.values(selectedItems.flatRows).map(person => person.original.id.value)
-//       const selectPersons = Object.values(selectedItems.flatRows).map(({ original: person }) => ({
-//         id: person.id.value || '',
-//         name: `${person.name.first} ${person.name.last}`
-//       }))
-
-//       // console.log('Delete these:', selectPersons, selectPersonIds)
-//       dispatch(deleteConfirm(selectPersons))
-//     }
-//   },
-//   {
-//     id: 'update',
-//     label: 'Update Selected',
-//     icon: 'UpdateIcon',
-//     minSelected: 1,
-//     onClick: (selectedItems: object) => { console.log('Update these:', selectedItems) }
-//   }
-// ]
-
 const getToolbarItems = (dispatch: Dispatch<AnyAction>): ToolbarItemProps<Person>[] => [
   {
     id: 'delete',
@@ -90,7 +64,6 @@ const getToolbarItems = (dispatch: Dispatch<AnyAction>): ToolbarItemProps<Person
     icon: 'TrashIcon',
     minSelected: 1,
     onClick: (selectedItems: RowModel<Person>) => {
-      // const selectPersonIds = Object.values(selectedItems.flatRows).map(person => person.original.id.value)
       const selectPersons = Object.values(selectedItems.flatRows).map(({ original: person }) => ({
         id: person.id.value || '',
         name: `${person.name.first} ${person.name.last}`
@@ -112,19 +85,18 @@ export const PeopleGrid = () => {
   const dispatch = useDispatch()
   const {
     data: people,
-    isLoading,
     isSuccess,
-    isError
+    isError,
+    isFetching
   } = useGetPeopleQuery()
 
   const columns = useMemo(() => getColumns(dispatch), [])
-  // const toolbar = useMemo(() => toolbarItems, [])
   const toolbar = useMemo(() => getToolbarItems(dispatch), [])
 
   return <Grid<Person, unknown>
     columns={columns}
     data={people?.results || []}
-    isLoading={isLoading}
+    isLoading={isFetching}
     isSuccess={isSuccess}
     isError={isError}
     toolbar={toolbar}

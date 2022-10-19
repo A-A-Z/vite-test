@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { deleteClose, deleteError } from '../../redux/peopleSlice'
 import { Person } from '../../global/types'
 
 type PeopleResponse = {
@@ -7,19 +8,39 @@ type PeopleResponse = {
 }
 
 const SEED = 'wilsonvitedemo22'
+const USE_SEED = true
+
+const fakeDeleteRequest = () => new Promise(resolve => setTimeout(resolve, 2000))
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://randomuser.me' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://randomuser.me/api/' }),
   tagTypes: ['People'],
-  endpoints: (builder) => ({
-    getPeople: builder.query<PeopleResponse, void>({
-      query: () => `/api/?results=20&nat=au&seed=${SEED}`,
+  endpoints: (build) => ({
+    getPeople: build.query<PeopleResponse, void>({
+      query: () => USE_SEED ? `?results=20&nat=au&seed=${SEED}` : '?results=20&nat=au',
       providesTags: ['People']
+    }),
+    deletePeople: build.mutation<string, string[]>({
+      async queryFn (ids) {
+        console.log('Deleting: ', ids)
+        await fakeDeleteRequest()
+        return { data: 'success' }
+      },
+      invalidatesTags: ['People'],
+      async onQueryStarted (_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled
+          dispatch(deleteClose())
+        } catch (err) {
+          dispatch(deleteError())
+        }
+      }
     })
   })
 })
 
 export const {
-  useGetPeopleQuery
+  useGetPeopleQuery,
+  useDeletePeopleMutation
 } = apiSlice

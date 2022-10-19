@@ -24,22 +24,21 @@ const peopleSlice = createSlice({
     deleteConfirm (state, action: PayloadAction<PersonSimple[]>) {
       state.deleteSelected = action.payload
     },
-    deleteCancel (state) {
+    deleteError (state) {
+      // TODO some error handling
+      state.deleteSelected = []
+    },
+    deleteClose (state) {
       state.deleteSelected = []
     }
   }
 })
 
-// selectors
-// export const selectIsDeleteConfirmOpen = (state: PeopleState) => {
-//   console.log('test', state.deleteSelected)
-//   return true
-// }
-
 export const {
   openActionModal,
   closeActionModal,
   deleteConfirm,
-  deleteCancel
+  deleteError,
+  deleteClose
 } = peopleSlice.actions
 export default peopleSlice.reducer

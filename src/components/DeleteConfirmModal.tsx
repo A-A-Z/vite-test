@@ -1,16 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteCancel } from '../redux/peopleSlice'
+import { deleteClose } from '../redux/peopleSlice'
 import { selectIsDeleteConfirmOpen, selectDeleteSelected } from '../redux/selectors'
-import { ConfirmModal } from '../components/confirmModal'
+import { ConfirmModal } from './confirmModal'
+import { useDeletePeopleMutation } from '../features/api/apiSlice'
 
 export const DeleteConfirmModal = () => {
+  const MAX_LINES = 7
   const dispatch = useDispatch()
   const isOpen = useSelector(selectIsDeleteConfirmOpen)
   const selected = useSelector(selectDeleteSelected)
-  const handleClose = () => { dispatch(deleteCancel()) }
-  const MAX_LINES = 7
+  const handleClose = () => { dispatch(deleteClose()) }
   const underCapCount = MAX_LINES - 1
   const overCapCount = selected.length - underCapCount
+
+  const selectedIds = selected.map(({ id }) => id)
+  const [deletePeople, { isLoading }] = useDeletePeopleMutation()
+  const handleConfirm = () => { deletePeople(selectedIds) }
 
   let descBody
 
@@ -30,8 +35,11 @@ export const DeleteConfirmModal = () => {
   return <ConfirmModal
     isOpen={isOpen}
     closeFn={handleClose}
+    confirmFn={handleConfirm}
     confirmLabel={'Delete'}
-    titleTxt={selected.length === 1 ? 'Delete person' : `Delete ${selected.length} people`}
+    titleTxt={selected.length === 1 ? 'Delete this person?' : `Delete ${selected.length} people?`}
     description={descBody}
+    isLoading={isLoading}
+    loadingTxt="Deleting"
   />
 }

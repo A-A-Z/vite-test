@@ -1,4 +1,4 @@
-import { Fragment, useState, useMemo } from 'react'
+import { Fragment, useState, useMemo, useEffect } from 'react'
 import {
   flexRender,
   getCoreRowModel,
@@ -116,6 +116,13 @@ export const Grid = <T extends object, K extends GridKeys>({ columns, data, isLo
 
   const selectedItems = table.getSelectedRowModel()
   const ToolbarMemo = useMemo(() => <GridToolbar<T> items={toolbar} selected={selectedItems} />, [selectedItems, toolbar])
+
+  useEffect(() => {
+    if (isLoading === false && Object.values(selectedItems.flatRows).length > 0) {
+      // if the table has reloaded then reset selected
+      table.resetRowSelection()
+    }
+  }, [isLoading])
 
   return (
     <div className="grid">
