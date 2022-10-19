@@ -1,0 +1,14 @@
+.loader {
+  margin: 0 auto;
+  max-width: 120px;
+  padding: 30px;
+  text-align: center;
+
+  &__label {
+    color: #f00;
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 0;
+    text-transform: uppercase;
+  }
+}

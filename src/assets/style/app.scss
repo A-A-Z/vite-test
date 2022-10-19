@@ -9,11 +9,13 @@
 @use 'blocks/form';
 @use 'blocks/grid';
 @use 'blocks/icon';
+@use 'blocks/loader';
 @use 'blocks/modal';
 @use 'blocks/page-header';
 @use 'blocks/row-action';
 @use 'blocks/select';
 @use 'blocks/sorting-icon';
+@use 'blocks/wilson-loader';
 
 #root {
     width: 100%;

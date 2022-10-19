@@ -1,0 +1,51 @@
+.wilson-loader {
+  $colour-wilson-red: #f00;
+  $time: 1.2s;
+  $fill-on: rgba($colour-wilson-red, 1);
+  $fill-off: rgba($colour-wilson-red, 0);
+  $move-in: translate(0, 0);
+  $move-out: translate(10%, 15%);
+
+  @keyframes fadeInRed1 {
+      0% { fill: $fill-off; transform: $move-out; }
+      20% { fill: $fill-on; transform: $move-in; }
+      40% { fill: $fill-on; }
+      100% { fill: $fill-off;  }
+  }
+
+  @keyframes fadeInRed2 {
+      0% { fill: $fill-off; transform: $move-out; }
+      10% { fill: $fill-off; transform: $move-out; }
+      30% { fill: $fill-on; transform: $move-in; }
+      50% { fill: $fill-on; }
+      100% { fill: $fill-off;  }
+  }
+
+  @keyframes fadeInRed3 {
+      0% { fill: $fill-off; transform: $move-out; }
+      20% { fill: $fill-off; transform: $move-out; }
+      40% { fill: $fill-on; transform: $move-in; }
+      60% { fill: $fill-on; }
+      100% { fill: $fill-off;  }
+  }
+  
+  width: 100%;
+
+  &__bar {
+      animation-duration: $time;
+      animation-iteration-count: infinite;
+      fill: rgba($colour-wilson-red, 0);
+      
+      &:nth-child(1) {
+          animation-delay: 0;
+          animation-name: fadeInRed1;
+
+      }
+      &:nth-child(2) {
+          animation-name: fadeInRed2;
+      }
+      &:nth-child(3) {
+          animation-name: fadeInRed3;
+      }
+  }
+}

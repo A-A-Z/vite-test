@@ -1,5 +1,6 @@
 import { Dialog } from '@headlessui/react'
 import { Icon } from './icon'
+import { Loader } from './loader'
 
 interface ConfirmModalProps {
   isOpen: boolean
@@ -37,7 +38,7 @@ export const ConfirmModal = ({
                   <button type="button" className="btn btn--large btn--alt" onClick={() => { closeFn() }}>{cancelLabel}</button>
                 </div>
               </>
-            : <div>{loadingTxt}</div>}
+            : <div><Loader label={loadingTxt} /></div>}
           </Dialog.Panel>
       </div>
     </Dialog>
