@@ -34,6 +34,16 @@ const peopleSlice = createSlice({
   }
 })
 
+// const toasts = [
+//   {
+//     id: 1,
+//     title: 'x',
+//     body: 'xx',
+//     actions: [],
+//     expires: '2022-10-19 4:31:00'
+//   }
+// ]
+
 export const {
   openActionModal,
   closeActionModal,
