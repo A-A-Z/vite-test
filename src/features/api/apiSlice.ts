@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { deleteClose, deleteError } from '../../redux/peopleSlice'
+import { addNotice } from '../../redux/noticesSlice'
 import { Person } from '../../global/types'
 
 type PeopleResponse = {
@@ -32,6 +33,8 @@ export const apiSlice = createApi({
         try {
           await queryFulfilled
           dispatch(deleteClose())
+          dispatch(addNotice({ id: '1', title: 'Deleted people' }))
+          // dispatch(addNotice())
         } catch (err) {
           dispatch(deleteError())
         }
