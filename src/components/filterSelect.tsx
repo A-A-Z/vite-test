@@ -7,9 +7,10 @@ import { selectOption } from '../global/types'
 interface FilterSelectProps {
   onChangeFn: (selectedValue: string | number | undefined) => void
   options?: selectOption[]
+  isReadOnly?: boolean
 }
 
-export const FilterSelect = ({ options, onChangeFn }: FilterSelectProps) => {
+export const FilterSelect = ({ options, onChangeFn, isReadOnly }: FilterSelectProps) => {
   if (options === undefined || options.length === 0) {
     return null
   }
@@ -22,35 +23,35 @@ export const FilterSelect = ({ options, onChangeFn }: FilterSelectProps) => {
   }
 
   return (
-    <Listbox value={selected} onChange={onChangeCall}>
-    <div className="filter filter--select">
-      <Listbox.Button className="filter__input">
-      <span>{selected.name}</span>
-      <CaretDownIcon />
-      </Listbox.Button>
-      <Transition
-      as={Fragment}
-      leave="transition ease-in duration-100"
-      leaveFrom="opacity-100"
-      leaveTo="opacity-0"
-      >
-      <Listbox.Options className="filter__list">
-        {options.map((option, index) => (
-        <Listbox.Option
-          key={`option-${option.id || index}`}
-          className={({ selected }) => classNames('filter__option', { 'filter__option--selected': selected })}
-          value={option}
+    <Listbox value={selected} onChange={onChangeCall} disabled={isReadOnly}>
+      <div className="filter filter--select">
+        <Listbox.Button className="filter__input">
+          <span>{selected.name}</span>
+          <CaretDownIcon />
+        </Listbox.Button>
+        <Transition
+          as={Fragment}
+          leave="transition ease-in duration-100"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
         >
-          {() => (
-          <>
-            {option.name}
-          </>
-          )}
-        </Listbox.Option>
-        ))}
-      </Listbox.Options>
-      </Transition>
-    </div>
+        <Listbox.Options className="filter__list">
+          {options.map((option, index) => (
+          <Listbox.Option
+            key={`option-${option.id || index}`}
+            className={({ selected }) => classNames('filter__option', { 'filter__option--selected': selected })}
+            value={option}
+          >
+            {() => (
+            <>
+              {option.name}
+            </>
+            )}
+          </Listbox.Option>
+          ))}
+        </Listbox.Options>
+        </Transition>
+      </div>
     </Listbox>
   )
 }

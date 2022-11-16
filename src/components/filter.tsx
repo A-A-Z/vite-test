@@ -5,6 +5,7 @@ import { selectOption } from '../global/types'
 interface FilterSelectProps {
   type: 'text' | 'select' | undefined,
   onChangeFn: (selectedValue: string | number | undefined) => void
+  isReadOnly?: boolean
   options?: selectOption[]
 }
 

@@ -9,6 +9,12 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+
+        &[type=text]:read-only {
+            border: 1px solid #eee;
+            color: #999;
+            cursor: default;
+        }
     }
 
     &__list {
