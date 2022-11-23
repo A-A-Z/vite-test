@@ -7,3 +7,5 @@ export const getActiverPerson = ({ people }: RootState): string | null => people
 export const selectIsDeleteConfirmOpen = ({ people }: RootState) => people.deleteSelected.length > 0
 
 export const selectDeleteSelected = ({ people }: RootState) => people.deleteSelected
+
+export const selectNotices = ({ notices }: RootState) => notices.notices

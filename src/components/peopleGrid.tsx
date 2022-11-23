@@ -3,12 +3,14 @@ import { createColumnHelper, Row, RowModel } from '@tanstack/react-table'
 import { useDispatch } from 'react-redux'
 import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
+import { AppDispatch } from '../redux/store'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid, ColumnDate, ColumnSelect, HeaderSelect, ToolbarItemProps } from './grid'
 import { Person } from '../global/types'
 import { STATE_OPTIONS } from '../global/constants'
 import { RowAction } from './rowAction'
 import { openActionModal, deleteConfirm } from '../redux/peopleSlice'
+import { addNotice } from '../redux/noticesSlice'
 
 const columnHelper = createColumnHelper<Person>()
 
@@ -57,7 +59,7 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
   })
 ]
 
-const getToolbarItems = (dispatch: Dispatch<AnyAction>): ToolbarItemProps<Person>[] => [
+const getToolbarItems = (dispatch: AppDispatch): ToolbarItemProps<Person>[] => [
   {
     id: 'delete',
     label: 'Delete Selected',
@@ -78,11 +80,20 @@ const getToolbarItems = (dispatch: Dispatch<AnyAction>): ToolbarItemProps<Person
     icon: 'UpdateIcon',
     minSelected: 1,
     onClick: (selectedItems: object) => { console.log('Update these:', selectedItems) }
+  },
+  {
+    id: 'notice',
+    label: 'Create Notice',
+    icon: 'FilePlusIcon',
+    minSelected: 0,
+    onClick: () => {
+      dispatch(addNotice({ title: 'Test Notice', body: 'This is just a test', type: 'info' }))
+    }
   }
 ]
 
 export const PeopleGrid = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const {
     data: people,
     isSuccess,

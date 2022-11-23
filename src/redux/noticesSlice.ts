@@ -1,8 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
-interface notice {
-  id: string
+export type NoticeType = 'info' | 'warning' | 'success'
+export interface notice {
+  id?: string
   title: string
+  body?: string
+  type: NoticeType
 }
 
 interface NoticesState {
@@ -14,10 +17,10 @@ const initialState: NoticesState = {
 }
 
 export const addNotice = createAsyncThunk(
-  'notices/fetchByIdStatus',
+  'notices/addNotice',
   async (notice: notice) => {
     await noticeTimeout()
-    return notice.id
+    return notice
   }
 )
 
@@ -25,27 +28,22 @@ const noticesSlice = createSlice({
   name: 'notices',
   initialState,
   reducers: {
-    // addNotice (state, action: PayloadAction<notice>) {
-    //   state.notices = [...state.notices, action.payload]
-    // },
     removeNotice (state, action: PayloadAction<string>) {
-      state.notices = state.notices.filter(({ id }) => id === action.payload)
+      state.notices = state.notices.filter(({ id }) => id !== action.payload)
     }
   },
   extraReducers: builder => {
     builder.addCase(addNotice.pending, (state, action) => {
-      console.log('pending', action.meta.arg)
+      const newNotice = { ...action.meta.arg, id: action.meta.requestId }
+      state.notices.push(newNotice)
     })
     builder.addCase(addNotice.fulfilled, (state, action) => {
-      console.log('fulfilled', action)
+      state.notices = state.notices.filter(notice => notice.id !== action.meta.requestId)
     })
   }
 })
 
-const noticeTimeout = () => new Promise(resolve => setTimeout(resolve, 2000))
+const noticeTimeout = () => new Promise(resolve => setTimeout(resolve, 15_1000))
 
-export const {
-  // addNotice,
-  removeNotice
-} = noticesSlice.actions
+export const { removeNotice } = noticesSlice.actions
 export default noticesSlice.reducer

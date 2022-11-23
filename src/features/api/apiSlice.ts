@@ -29,12 +29,11 @@ export const apiSlice = createApi({
         return { data: 'success' }
       },
       invalidatesTags: ['People'],
-      async onQueryStarted (_, { dispatch, queryFulfilled }) {
+      async onQueryStarted (ids, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
           dispatch(deleteClose())
-          dispatch(addNotice({ id: '1', title: 'Deleted people' }))
-          // dispatch(addNotice())
+          dispatch(addNotice({ title: 'Delete Successful', body: `Successfully deleted ${ids.length} ${ids.length === 1 ? 'person' : 'people'}.`, type: 'success' }))
         } catch (err) {
           dispatch(deleteError())
         }
