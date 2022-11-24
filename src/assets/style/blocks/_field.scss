@@ -1,3 +1,4 @@
+@use '../colours.scss';
 @use '../mixins/common';
 
 .field {
@@ -8,47 +9,34 @@
     margin: 0 0 0.8rem 0;
 
     &__label {
-        color: #888;
-        font-size: 0.8rem;
+        color: var(--colour-text-light);
+        font-size: 0.9rem;
     }
 
     &__input {
         @include common.input;
+
         align-items: center;
-        // background-color: #fff;
-        // border: 1px solid #ddd;
-        // border-radius: 3px;
         display: flex;
-        // font-size: 1rem;
         justify-content: space-between;
-        // padding: 3px 10px;
-        // outline: none;
-        // transition: border-color 0.2s ease;
+        min-height: 30px;
         width: 300px;
-
-        &:hover {
-            border-color: #666;
-        }
-
-        &:focus {
-            border-color: #9597ff;
-        }
     }
 
     &__error {
         align-items: center;
-        color: #f00;
+        color: var(--colour-error);
         display: flex;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
 
         svg {
-            margin: 0 0.3rem 0;
+            margin: 0 0.3rem 0 0;
         }
     }
 
     &--error {
         .field__input {
-            border-color: #f00;
+            border-color: var(--colour-error);
         }
     }
 }

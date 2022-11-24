@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { PersonForm } from '../components/personForm'
+import { Loader } from '../components/loader'
 
 const PersonDetail = () => {
   const { id } = useParams()
@@ -13,7 +14,7 @@ const PersonDetail = () => {
   })
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loader label="Loading person" />
   }
 
   if (isError) {

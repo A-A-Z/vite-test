@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 :root {
+  --colour-text-normal: #000;
+  --colour-text-light: #888;
+
   --colour-link: #7b7ccf;
   --colour-active: #9597ff;
   --colour-active-light: #d4d5ff;
   --colour-disabled: #bbb;
 
   --colour-border: #bbb;
+  --colour-border-dark: #666;
 
   --colour-info: #e9c10e;
   --colour-success: #a2d147;
   --colour-warning: #ff7c5a;
+  --colour-error: #f00;
 }

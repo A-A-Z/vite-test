@@ -2,8 +2,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { createColumnHelper } from '@tanstack/react-table'
 import { HeartFilledIcon as Icon } from '@radix-ui/react-icons'
 import { Grid } from './grid'
-import '../../index.css'
-import '../../App.css'
 import '../../assets/style/app.scss'
 interface ExampleData {
   name: string,

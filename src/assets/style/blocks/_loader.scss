@@ -2,12 +2,17 @@
   margin: 0 auto;
   max-width: 150px;
   padding: 30px;
-  text-align: center;
+
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
 
   &__label {
-    color: #444;
+    color: #f00;
     font-size: 0.8rem;
-    font-weight: 400;
+    font-weight: 600;
     margin: 0;
     text-transform: uppercase;
     white-space: nowrap;

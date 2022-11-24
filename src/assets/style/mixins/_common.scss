@@ -1,7 +1,8 @@
+@use '../colours.scss';
 
 @mixin block {
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid var(--colour-border);
     border-radius: 3px;
     box-sizing: border-box;
     font-size: 1rem;
@@ -10,15 +11,17 @@
 
 @mixin input {
     @include block;
+
+    color: var(--colour-text-normal);
     outline: none;
     transition: border-color 0.2s ease;
 
     &:hover {
-        border-color: #666;
+        border-color: var(--colour-border-dark);
     }
 
     &:focus {
-        border-color: #9597ff;
+        border-color: var(--colour-active);
     }
 }
 
