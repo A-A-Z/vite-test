@@ -20,7 +20,7 @@
     background-color: #e9c10e;
   }
   &--warning {
-    background-color: #e92f0e;
+    background-color: #ff7c5a;
   }
   &--success {
     background-color: #a2d147;
@@ -44,6 +44,7 @@
 
   &__body {
     font-size: 0.9rem;
-    line-height: 1;
+    line-height: 1.2;
+    opacity: 0.9;
   }
 }

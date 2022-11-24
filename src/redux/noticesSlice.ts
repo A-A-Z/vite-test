@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
 export type NoticeType = 'info' | 'warning' | 'success'
-export interface notice {
+export interface Notice {
   id?: string
   title: string
   body?: string
@@ -9,7 +9,7 @@ export interface notice {
 }
 
 interface NoticesState {
-  notices: notice[]
+  notices: Notice[]
 }
 
 const initialState: NoticesState = {
@@ -18,7 +18,7 @@ const initialState: NoticesState = {
 
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
-  async (notice: notice) => {
+  async (notice: Notice) => {
     await noticeTimeout()
     return notice
   }
