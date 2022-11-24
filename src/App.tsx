@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 import './assets/style/app.scss'
 import { Routes, Route } from 'react-router-dom'
 import { PageHeader } from './components/pageHeader'

@@ -2,8 +2,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Provider } from 'react-redux'
 import { store } from '../redux/store'
 import { NoticeItem } from './noticeItem'
-import '../index.css'
-import '../App.css'
 import '../assets/style/app.scss'
 
 export default {

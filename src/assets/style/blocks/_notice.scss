@@ -1,3 +1,5 @@
+@use '../colours.scss';
+
 .notice {
   --icon-size: 1.7rem;
 
@@ -17,13 +19,13 @@
   }
 
   &--info {
-    background-color: #e9c10e;
+    background-color: var(--colour-info);
   }
   &--warning {
-    background-color: #ff7c5a;
+    background-color: var(--colour-warning);
   }
   &--success {
-    background-color: #a2d147;
+    background-color: var(--colour-success);
   }
 
   &__icon {

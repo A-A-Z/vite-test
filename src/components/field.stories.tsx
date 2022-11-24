@@ -1,8 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { useForm, FormProvider } from 'react-hook-form'
 import Field from './field'
-import '../index.css'
-import '../App.css'
 import '../assets/style/app.scss'
 
 export default {
