@@ -2,15 +2,11 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import Field from './field'
-import { Person } from '../global/types'
+import { SubmitBtn } from './submitBtn'
+import { Person, PersonFormData } from '../global/types'
 import { STATE_OPTIONS } from '../global/constants'
-
-type FormValues = {
-    firstName: string
-    lastName: string
-    email: string
-    state: string
-}
+import { Icon } from './icon'
+import { useEditPersonMutation } from '../features/api/apiSlice'
 
 interface PersonFormProps {
     initData: Person
@@ -26,7 +22,8 @@ const validationSchema = yup
   .required()
 
 export const PersonForm = ({ initData }: PersonFormProps) => {
-  const methods = useForm<FormValues>({
+  const [editPerson] = useEditPersonMutation()
+  const methods = useForm<PersonFormData>({
     mode: 'onBlur',
     defaultValues: {
       firstName: initData.name.first,
@@ -37,7 +34,11 @@ export const PersonForm = ({ initData }: PersonFormProps) => {
     resolver: yupResolver(validationSchema)
   })
   const { handleSubmit, formState: { isValid } } = methods
-  const onSubmit = handleSubmit(data => console.log(data, isValid))
+  const onSubmit = handleSubmit(async formData => {
+    if (isValid) {
+      await editPerson(formData)
+    }
+  })
 
   return (
     <FormProvider {...methods}>
@@ -46,7 +47,7 @@ export const PersonForm = ({ initData }: PersonFormProps) => {
         <Field id="lastName" name="lastName" label="Last Name" />
         <Field id="email" name="email" label="Email" />
         <Field id="state" name="state" label="State" type="select" options={STATE_OPTIONS} />
-        <button type="submit">Save</button> {isValid ? 'Valid' : 'Invalid'}
+        <SubmitBtn submittingTxt="Saving"><Icon icon={'Pencil2Icon'}>Save</Icon></SubmitBtn>
       </form>
     </FormProvider>
   )

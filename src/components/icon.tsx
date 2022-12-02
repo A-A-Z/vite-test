@@ -1,5 +1,7 @@
 import * as Icons from '@radix-ui/react-icons'
 
+// https://icons.radix-ui.com/
+
 export type IconKey = keyof typeof Icons
 
 export interface IconProps {

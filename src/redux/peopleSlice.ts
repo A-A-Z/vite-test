@@ -4,11 +4,13 @@ import { PersonSimple } from '../global/types'
 interface PeopleState {
   activePersonId: string | null
   deleteSelected: PersonSimple[]
+  isFormLoading: boolean
 }
 
 const initialState: PeopleState = {
   activePersonId: null,
-  deleteSelected: []
+  deleteSelected: [],
+  isFormLoading: false
 }
 
 const peopleSlice = createSlice({
@@ -25,7 +27,6 @@ const peopleSlice = createSlice({
       state.deleteSelected = action.payload
     },
     deleteError (state) {
-      // TODO some error handling
       state.deleteSelected = []
     },
     deleteClose (state) {
@@ -33,16 +34,6 @@ const peopleSlice = createSlice({
     }
   }
 })
-
-// const toasts = [
-//   {
-//     id: 1,
-//     title: 'x',
-//     body: 'xx',
-//     actions: [],
-//     expires: '2022-10-19 4:31:00'
-//   }
-// ]
 
 export const {
   openActionModal,

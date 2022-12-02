@@ -6,7 +6,7 @@ import { CaretDownIcon } from '@radix-ui/react-icons'
 import classNames from 'classnames'
 
 export const InputSelect = ({ id, name, options }: InputProps) => {
-  const { control } = useFormContext()
+  const { control, formState: { isSubmitting } } = useFormContext()
 
   if (options === undefined || options.length === 0) {
     return <div />
@@ -17,7 +17,7 @@ export const InputSelect = ({ id, name, options }: InputProps) => {
       control={control}
       name={name}
       render={({ field: { onChange, value } }) => (
-        <Listbox value={value} onChange={onChange}>
+        <Listbox value={value} onChange={onChange} disabled={isSubmitting}>
           <div className="select">
             <Listbox.Button id={id} className="select__input field__input">
               <span>{value}</span>

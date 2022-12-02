@@ -43,7 +43,7 @@ const noticesSlice = createSlice({
   }
 })
 
-const noticeTimeout = () => new Promise(resolve => setTimeout(resolve, 15_1000))
+const noticeTimeout = (): Promise<void> => new Promise(resolve => setTimeout(resolve, 15_1000))
 
 export const { removeNotice } = noticesSlice.actions
 export default noticesSlice.reducer

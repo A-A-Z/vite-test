@@ -75,13 +75,6 @@ const getToolbarItems = (dispatch: AppDispatch): ToolbarItemProps<Person>[] => [
     }
   },
   {
-    id: 'update',
-    label: 'Update Selected',
-    icon: 'UpdateIcon',
-    minSelected: 1,
-    onClick: (selectedItems: object) => { console.log('Update these:', selectedItems) }
-  },
-  {
     id: 'notice',
     label: 'Create Notice',
     icon: 'FilePlusIcon',

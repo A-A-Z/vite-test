@@ -23,6 +23,10 @@
     &:focus {
         border-color: var(--colour-active);
     }
+
+    &:disabled {
+        color: var(--colour-text-light);
+    }
 }
 
 @mixin list {

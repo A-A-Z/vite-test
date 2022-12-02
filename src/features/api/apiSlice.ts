@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { deleteClose, deleteError } from '../../redux/peopleSlice'
 import { addNotice } from '../../redux/noticesSlice'
-import { Person } from '../../global/types'
+import { Person, PersonFormData } from '../../global/types'
+import { fakeApiCall } from '../../global/utils'
 
 type PeopleResponse = {
   info: object
@@ -10,8 +11,6 @@ type PeopleResponse = {
 
 const SEED = 'wilsonvitedemo22'
 const USE_SEED = true
-
-const fakeDeleteRequest = () => new Promise(resolve => setTimeout(resolve, 2000))
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -25,7 +24,7 @@ export const apiSlice = createApi({
     deletePeople: build.mutation<string, string[]>({
       async queryFn (ids) {
         console.log('Deleting: ', ids)
-        await fakeDeleteRequest()
+        await fakeApiCall(2)
         return { data: 'success' }
       },
       invalidatesTags: ['People'],
@@ -38,11 +37,28 @@ export const apiSlice = createApi({
           dispatch(deleteError())
         }
       }
+    }),
+    editPerson: build.mutation<string, PersonFormData>({
+      async queryFn (formData) {
+        console.log('Saving: ', formData)
+        await fakeApiCall(2)
+        return { data: 'success' }
+      },
+      invalidatesTags: ['People'],
+      async onQueryStarted (formData, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled
+          dispatch(addNotice({ title: 'Save Successful', body: 'Successfully saved changes to person.', type: 'success' }))
+        } catch (err) {
+          dispatch(addNotice({ title: 'Failed to save', body: 'Something went wrong, try again later.', type: 'warning' }))
+        }
+      }
     })
   })
 })
 
 export const {
   useGetPeopleQuery,
-  useDeletePeopleMutation
+  useDeletePeopleMutation,
+  useEditPersonMutation
 } = apiSlice

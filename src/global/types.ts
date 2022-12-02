@@ -50,6 +50,13 @@ export interface PersonSimple {
     name: string
 }
 
+export interface PersonFormData {
+    firstName: string
+    lastName: string
+    email: string
+    state: string
+}
+
 export type selectOption = {
     name: string
     id?: number | string
