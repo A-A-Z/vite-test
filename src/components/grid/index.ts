@@ -1,4 +1,5 @@
-import { Grid, GridProps, ToolbarItemProps } from './grid'
+import { Grid, GridProps } from './grid'
+import { ToolbarItemProps } from './types'
 import { ColumnDate } from './columnDate'
 import { ColumnSelect } from './columnSelect'
 import { HeaderSelect } from './headerSelect'
