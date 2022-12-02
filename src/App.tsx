@@ -9,7 +9,7 @@ import PersonDetail from './pages/personDetail'
 function App () {
   return (
     <div className="App">
-      <PageHeader title="Vite POC" />
+      <PageHeader title="Vite POC Test" />
       <Routes>
         <Route path="/" element={<ListPeople />} />
         <Route path="person/:id" element={<PersonDetail />} />
