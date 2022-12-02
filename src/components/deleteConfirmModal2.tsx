@@ -16,7 +16,7 @@ export const DeleteConfirmModal = () => {
   const selectedIds = selected.map(({ id }) => id)
   const [deletePeople, { isLoading }] = useDeletePeopleMutation()
   const handleConfirm = () => { deletePeople(selectedIds) }
-
+  // test
   let descBody
 
   if (selected.length === 1) {

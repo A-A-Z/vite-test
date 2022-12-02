@@ -6,17 +6,19 @@ import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 import { InputProps } from '../global/types'
 import { InputText } from './inputText'
 import { InputSelect } from './inputSelect'
+import { InputRadio } from './inputRadio'
 
 interface FieldProps extends InputProps {
   label: string
-  type?: 'text' | 'select'
+  type?: 'text' | 'select' | 'radio'
 }
 
 type InputFunction = (props: InputProps) => JSX.Element
 
 const InputTypesMap = {
   text: InputText,
-  select: InputSelect
+  select: InputSelect,
+  radio: InputRadio
 }
 
 const Field = ({ id, name, label, type = 'text', options = [] }: FieldProps) => {

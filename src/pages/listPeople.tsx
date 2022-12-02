@@ -4,7 +4,7 @@ import { closeActionModal } from '../redux/peopleSlice'
 import { isActionModalOpen, getActiverPerson } from '../redux/selectors'
 import { PeopleGrid } from '../components/peopleGrid'
 import { ActionModal } from '../components/actionModal'
-import { DeleteConfirmModal } from '../components/deleteConfirmModal'
+import { DeleteConfirmModal } from '../components/deleteConfirmModal2'
 
 const ListPeople = () => {
   const dispatch = useDispatch()
