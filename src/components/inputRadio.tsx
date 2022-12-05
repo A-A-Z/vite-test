@@ -1,13 +1,7 @@
-// import { Fragment } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { useFormContext, Controller } from 'react-hook-form'
 import { InputProps } from '../global/types'
-
-// interface InputRadioProps {
-//   onChangeFn: (selectedValue: string | number | undefined) => void
-//   options?: selectOption[]
-//   isReadOnly?: boolean
-// }
+import { Icon } from './icon'
 
 export const InputRadio = ({ id, name, options }: InputProps) => {
   const { control, formState: { isSubmitting } } = useFormContext()
@@ -16,23 +10,19 @@ export const InputRadio = ({ id, name, options }: InputProps) => {
     return <div />
   }
 
-  // const onChangeCall = (option: selectOption) => {
-  //   setSelected(option)
-  //   onChangeFn(option.id)
-  // }
-
   return (
     <Controller
       control={control}
       name={name}
       render={({ field: { onChange, value } }) => (
-        <RadioGroup id={id} value={value} onChange={onChange} disabled={isSubmitting}>
-          <RadioGroup.Label>Test</RadioGroup.Label>
+        <RadioGroup id={id} value={value} onChange={onChange} disabled={isSubmitting} className="radio">
           {options.map((option, index) => (
-            <RadioGroup.Option key={`option-${option.id || index}`} value={option}>
-              {({ checked }) => (
-                <span className={checked ? 'bg-blue-200' : ''}>{option.name}</span>
-              )}
+            <RadioGroup.Option
+              key={`option-${option.id || index}`}
+              value={option.id}
+              className="radio__option"
+            >
+              {({ checked }) => (<Icon icon={checked ? 'RadiobuttonIcon' : 'CircleIcon'}>{option.name}</Icon>)}
             </RadioGroup.Option>
           ))}
         </RadioGroup>

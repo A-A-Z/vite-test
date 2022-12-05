@@ -5,6 +5,8 @@
 
 // interfaces
 
+export type gender = 'male' | 'female' | 'other'
+
 export type PersonId = {
     name: string,
     value: string | null
@@ -39,6 +41,7 @@ export type PersonPicture = {
 export interface Person {
     id: PersonId
     name: PersonName
+    gender: gender
     email: string
     dob: PersonDob
     location: PersonLocation
@@ -55,9 +58,10 @@ export interface PersonFormData {
     lastName: string
     email: string
     state: string
+    gender: gender
 }
 
-export type selectOption = {
+export type SelectOption = {
     name: string
     id?: number | string
     unavailable?: boolean
@@ -66,5 +70,5 @@ export type selectOption = {
 export interface InputProps {
     id: string
     name: string
-    options?: selectOption[]
+    options?: SelectOption[]
 }

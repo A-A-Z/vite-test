@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import Field from './field'
 import { SubmitBtn } from './submitBtn'
 import { Person, PersonFormData } from '../global/types'
-import { STATE_OPTIONS } from '../global/constants'
+import { STATE_OPTIONS, GENDER_OPTIONS } from '../global/constants'
 import { Icon } from './icon'
 import { useEditPersonMutation } from '../features/api/apiSlice'
 
@@ -29,7 +29,8 @@ export const PersonForm = ({ initData }: PersonFormProps) => {
       firstName: initData.name.first,
       lastName: initData.name.last,
       email: initData.email,
-      state: initData.location.state
+      state: initData.location.state,
+      gender: initData.gender
     },
     resolver: yupResolver(validationSchema)
   })
@@ -47,6 +48,7 @@ export const PersonForm = ({ initData }: PersonFormProps) => {
         <Field id="lastName" name="lastName" label="Last Name" />
         <Field id="email" name="email" label="Email" />
         <Field id="state" name="state" label="State" type="select" options={STATE_OPTIONS} />
+        <Field id="gender" name="gender" label="Gender" type="radio" options={GENDER_OPTIONS} />
         <SubmitBtn submittingTxt="Saving"><Icon icon={'Pencil2Icon'}>Save</Icon></SubmitBtn>
       </form>
     </FormProvider>

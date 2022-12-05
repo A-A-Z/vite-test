@@ -1,0 +1,13 @@
+@use '../colours';
+
+.radio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+
+  &__option {
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+  }
+}

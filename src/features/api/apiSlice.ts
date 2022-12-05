@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { deleteClose, deleteError } from '../../redux/peopleSlice'
 import { addNotice } from '../../redux/noticesSlice'
 import { Person, PersonFormData } from '../../global/types'
-import { fakeApiCall } from '../../global/utils'
+import { fakeApiCall } from '../../utils/api'
 
 type PeopleResponse = {
   info: object

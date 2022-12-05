@@ -2,11 +2,11 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import classNames from 'classnames'
 import { CaretDownIcon } from '@radix-ui/react-icons'
-import { selectOption } from '../global/types'
+import { SelectOption } from '../global/types'
 
 interface FilterSelectProps {
   onChangeFn: (selectedValue: string | number | undefined) => void
-  options?: selectOption[]
+  options?: SelectOption[]
   isReadOnly?: boolean
 }
 
@@ -17,7 +17,7 @@ export const FilterSelect = ({ options, onChangeFn, isReadOnly }: FilterSelectPr
 
   const [selected, setSelected] = useState(options[0])
 
-  const onChangeCall = (option: selectOption) => {
+  const onChangeCall = (option: SelectOption) => {
     setSelected(option)
     onChangeFn(option.id)
   }

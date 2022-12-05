@@ -1,12 +1,12 @@
 import { FilterText } from './filterText'
 import { FilterSelect } from './filterSelect'
-import { selectOption } from '../global/types'
+import { SelectOption } from '../global/types'
 
 interface FilterSelectProps {
   type: 'text' | 'select' | undefined,
   onChangeFn: (selectedValue: string | number | undefined) => void
   isReadOnly?: boolean
-  options?: selectOption[]
+  options?: SelectOption[]
 }
 
 export const Filter = ({ type, ...filterProps }: FilterSelectProps) => {

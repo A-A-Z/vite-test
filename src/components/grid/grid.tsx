@@ -11,7 +11,7 @@ import {
   RowData
 } from '@tanstack/react-table'
 import classNames from 'classnames'
-import { selectOption } from '../../global/types'
+import { SelectOption } from '../../global/types'
 import { Loader } from '../loader'
 import { GridKeys, ToolbarItemProps } from './types'
 import { GridCellHeader, GridCellHeaderSortable } from './gridCellHeader'
@@ -24,7 +24,7 @@ declare module '@tanstack/table-core' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
     filterType: 'text' | 'select',
-    selectOptions: selectOption[]
+    selectOptions: SelectOption[]
   }
 }
 

@@ -1,9 +1,10 @@
 import { Fragment } from 'react'
-import { InputProps } from '../global/types'
 import { useFormContext, Controller } from 'react-hook-form'
 import { Listbox, Transition } from '@headlessui/react'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import classNames from 'classnames'
+import { InputProps } from '../global/types'
+import { getOptionName } from '../utils/form'
 
 export const InputSelect = ({ id, name, options }: InputProps) => {
   const { control, formState: { isSubmitting } } = useFormContext()
@@ -20,7 +21,7 @@ export const InputSelect = ({ id, name, options }: InputProps) => {
         <Listbox value={value} onChange={onChange} disabled={isSubmitting}>
           <div className="select">
             <Listbox.Button id={id} className="select__input field__input">
-              <span>{value}</span>
+              <span>{getOptionName(value, options)}</span>
               <CaretDownIcon />
             </Listbox.Button>
             <Transition
@@ -36,11 +37,7 @@ export const InputSelect = ({ id, name, options }: InputProps) => {
                     className={({ selected }) => classNames('select__option', { 'select__option--selected': selected })}
                     value={option.id}
                   >
-                    {() => (
-                      <>
-                        {option.name}
-                      </>
-                    )}
+                    {() => (<>{option.name}</>)}
                   </Listbox.Option>
                 ))}
               </Listbox.Options>
