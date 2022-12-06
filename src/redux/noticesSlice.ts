@@ -8,7 +8,7 @@ export interface Notice {
   type: NoticeType
 }
 
-interface NoticesState {
+export interface NoticesState {
   notices: Notice[]
 }
 
