@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { PersonSimple } from '../global/types'
 
-interface PeopleState {
+export interface PeopleState {
   activePersonId: string | null
   deleteSelected: PersonSimple[]
   isFormLoading: boolean
