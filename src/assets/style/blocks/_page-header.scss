@@ -1,10 +1,12 @@
+@use '../colours';
+
 .page-header {
-    border-bottom: 1px solid #ddd;
-    margin: 0 0 1rem 0;
-    padding: 18px 1rem;
+    border-bottom: 1px solid var(--colour-border);
+    margin: 0;
+    padding: 1rem;
 
     &__title {
-        font-size: 2rem;
+        font-size: 1rem;
         margin: 0;
         padding: 0;
     }

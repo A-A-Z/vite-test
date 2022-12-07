@@ -1,0 +1,23 @@
+@use '../mixins/common';
+@use '../colours';
+
+.page-nav {
+  --nav-height: 2.5rem;
+
+  border-bottom: 1px solid var(--colour-border);
+  padding: 0 0.5rem;
+
+  &__list {
+    @include common.list;
+
+    display: flex;
+    height: var(--nav-height);
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    height: var(--nav-height);
+    padding: 0 0.5rem;
+  }
+}

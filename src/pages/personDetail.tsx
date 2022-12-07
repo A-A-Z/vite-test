@@ -26,10 +26,16 @@ const PersonDetail = () => {
   }
 
   return (
-    <div className="page">
-      <Link to="/">Back</Link>
-      <PersonForm initData={person} />
-    </div>
+    <>
+      <nav className="page-nav">
+        <ul className="page-nav__list">
+          <li className="page-nav__item"><Link to="/">Back to list</Link></li>
+        </ul>
+      </nav>
+      <main className="page-main">
+        <PersonForm initData={person} />
+      </main>
+    </>
   )
 }
 

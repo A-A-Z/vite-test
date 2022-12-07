@@ -16,6 +16,8 @@
 @use 'blocks/notice';
 @use 'blocks/notices';
 @use 'blocks/page-header';
+@use 'blocks/page_main.scss';
+@use 'blocks/page-nav';
 @use 'blocks/radio';
 @use 'blocks/row-action';
 @use 'blocks/select';
@@ -25,6 +27,3 @@
 #root {
     width: 100%;
 }
-
-// TODO move
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
