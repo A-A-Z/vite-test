@@ -19,5 +19,10 @@
     display: flex;
     height: var(--nav-height);
     padding: 0 0.5rem;
+
+    a {
+      align-items: inherit;
+      display: flex;
+    }
   }
 }

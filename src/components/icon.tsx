@@ -18,5 +18,5 @@ export const Icon = ({ icon, children }: IconProps) => {
 
   return children === undefined
     ? <IconElem className="icon" width="16" height="16" />
-    : <><IconElem className="icon icon--with-text" width="16" height="16" />{children}</>
+    : <><IconElem className="icon icon--with-text" width="16" height="16" /><span>{children}</span></>
 }
