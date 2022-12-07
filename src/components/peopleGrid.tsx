@@ -1,20 +1,23 @@
 import React, { useMemo } from 'react'
-import { createColumnHelper, Row, RowModel } from '@tanstack/react-table'
+// import { createColumnHelper, Row, RowModel } from '@tanstack/react-table'
+import { createColumnHelper, RowModel } from '@tanstack/react-table'
 import { useDispatch } from 'react-redux'
-import { AnyAction, Dispatch } from '@reduxjs/toolkit'
+// import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
 import { AppDispatch } from '../redux/store'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid, ColumnDate, ColumnSelect, HeaderSelect, ToolbarItemProps } from './grid'
 import { Person } from '../global/types'
 import { STATE_OPTIONS } from '../global/constants'
-import { RowAction } from './rowAction'
-import { openActionModal, deleteConfirm } from '../redux/peopleSlice'
+// import { RowAction } from './rowAction'
+// import { openActionModal, deleteConfirm } from '../redux/peopleSlice'
+import { deleteConfirm } from '../redux/peopleSlice'
 import { addNotice } from '../redux/noticesSlice'
 
 const columnHelper = createColumnHelper<Person>()
 
-const getColumns = (dispatch: Dispatch<AnyAction>) => [
+// const getColumns = (dispatch: Dispatch<AnyAction>) => [
+const getColumns = () => [
   columnHelper.display({
     id: 'select',
     header: info => HeaderSelect<Person>(info),
@@ -50,13 +53,13 @@ const getColumns = (dispatch: Dispatch<AnyAction>) => [
       filterType: 'select',
       selectOptions: STATE_OPTIONS
     }
-  }),
-  columnHelper.display({
-    id: 'actions',
-    cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => {
-      dispatch(openActionModal(thisRow.original.id.value))
-    }} />
-  })
+  })// ,
+  // columnHelper.display({
+  //   id: 'actions',
+  //   cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => {
+  //     dispatch(openActionModal(thisRow.original.id.value))
+  //   }} />
+  // })
 ]
 
 const getToolbarItems = (dispatch: AppDispatch): ToolbarItemProps<Person>[] => [
@@ -94,7 +97,8 @@ export const PeopleGrid = () => {
     isFetching
   } = useGetPeopleQuery()
 
-  const columns = useMemo(() => getColumns(dispatch), [])
+  // const columns = useMemo(() => getColumns(dispatch), [])
+  const columns = useMemo(() => getColumns(), [])
   const toolbar = useMemo(() => getToolbarItems(dispatch), [])
 
   return <Grid<Person, unknown>
