@@ -1,17 +1,22 @@
 import React, { useMemo } from 'react'
+// import { createColumnHelper, Row, RowModel } from '@tanstack/react-table'
 import { createColumnHelper, RowModel } from '@tanstack/react-table'
 import { useDispatch } from 'react-redux'
+// import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
 import { AppDispatch } from '../redux/store'
 import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { Grid, ColumnDate, ColumnSelect, HeaderSelect, ToolbarItemProps } from './grid'
 import { Person } from '../global/types'
 import { STATE_OPTIONS } from '../global/constants'
+// import { RowAction } from './rowAction'
+// import { openActionModal, deleteConfirm } from '../redux/peopleSlice'
 import { deleteConfirm } from '../redux/peopleSlice'
 import { addNotice } from '../redux/noticesSlice'
 
 const columnHelper = createColumnHelper<Person>()
 
+// const getColumns = (dispatch: Dispatch<AnyAction>) => [
 const getColumns = () => [
   columnHelper.display({
     id: 'select',
@@ -48,7 +53,13 @@ const getColumns = () => [
       filterType: 'select',
       selectOptions: STATE_OPTIONS
     }
-  })
+  })// ,
+  // columnHelper.display({
+  //   id: 'actions',
+  //   cell: ({ row }) => <RowAction name="Action" row={row} onClickFn={(thisRow: Row<Person>) => {
+  //     dispatch(openActionModal(thisRow.original.id.value))
+  //   }} />
+  // })
 ]
 
 const getToolbarItems = (dispatch: AppDispatch): ToolbarItemProps<Person>[] => [
@@ -62,6 +73,7 @@ const getToolbarItems = (dispatch: AppDispatch): ToolbarItemProps<Person>[] => [
         id: person.id.value || '',
         name: `${person.name.first} ${person.name.last}`
       }))
+
       dispatch(deleteConfirm(selectPersons))
     }
   },
@@ -85,6 +97,7 @@ export const PeopleGrid = () => {
     isFetching
   } = useGetPeopleQuery()
 
+  // const columns = useMemo(() => getColumns(dispatch), [])
   const columns = useMemo(() => getColumns(), [])
   const toolbar = useMemo(() => getToolbarItems(dispatch), [])
 

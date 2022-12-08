@@ -18,7 +18,7 @@ export const apiSlice = createApi({
   tagTypes: ['People'],
   endpoints: (build) => ({
     getPeople: build.query<PeopleResponse, void>({
-      query: () => USE_SEED ? `?results=20&nat=au&seed=${SEED}` : '?results=20&nat=au',
+      query: () => USE_SEED ? `?results=40&nat=au&seed=${SEED}` : '?results=20&nat=au',
       providesTags: ['People']
     }),
     deletePeople: build.mutation<string, string[]>({
