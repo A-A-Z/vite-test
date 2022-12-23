@@ -5,6 +5,7 @@ import { PageHeader } from './components/pageHeader'
 import { NoticeList } from './components/noticeList'
 import ListPeople from './pages/listPeople'
 import PersonDetail from './pages/personDetail'
+import WeekView from './pages/weekView'
 
 function App () {
   return (
@@ -12,6 +13,7 @@ function App () {
       <PageHeader title="Vite POC Test" />
       <Routes>
         <Route path="/" element={<ListPeople />} />
+        <Route path="/week" element={<WeekView />} />
         <Route path="person/:id" element={<PersonDetail />} />
       </Routes>
       <NoticeList />
