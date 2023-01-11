@@ -5,6 +5,18 @@ import { Provider } from 'react-redux'
 import { store } from './redux/store'
 import App from './App'
 
+import { worker } from './mocks/handlers'
+
+worker.start({
+  onUnhandledRequest (req, print) {
+    if (req.url.host === 'randomuser.me' || req.url.pathname.startsWith('/vite-test/')) {
+      return
+    }
+
+    print.warning()
+  }
+})
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>

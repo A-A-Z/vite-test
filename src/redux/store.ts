@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from '../features/api/apiSlice'
+import { divisionsSlice } from '../features/divisions/divisionsSlice'
 import peopleReducer, { PeopleState } from './peopleSlice'
 import noticeReducer, { NoticesState } from './noticesSlice'
 
@@ -13,10 +14,11 @@ export const createStore = (state: createStoreState = {}) => {
     reducer: {
       people: peopleReducer,
       notices: noticeReducer,
-      [apiSlice.reducerPath]: apiSlice.reducer
+      [apiSlice.reducerPath]: apiSlice.reducer,
+      [divisionsSlice.reducerPath]: divisionsSlice.reducer
     },
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(apiSlice.middleware)
+      return getDefaultMiddleware().concat(apiSlice.middleware).concat(divisionsSlice.middleware)
     },
     preloadedState: {
       ...state

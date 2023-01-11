@@ -61,5 +61,8 @@
     "vite": "^3.0.0",
     "vite-plugin-eslint": "^1.8.1",
     "vitest": "^0.25.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
