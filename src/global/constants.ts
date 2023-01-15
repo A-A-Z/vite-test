@@ -1,4 +1,4 @@
-import { SelectOption } from './types'
+import { SelectOption, DivisionLevels } from './types'
 
 // formats
 export const DATE_DISPLAY = 'DD/MM/YYYY'
@@ -21,4 +21,10 @@ export const GENDER_OPTIONS: SelectOption[] = [
   { id: 'male', name: 'Male' },
   { id: 'female', name: 'Female' },
   { id: 'other', name: 'Other' }
+]
+
+// divisions
+
+export const DIVISION_ORDER: DivisionLevels[] = [
+  'root', 'state', 'client', 'location'
 ]

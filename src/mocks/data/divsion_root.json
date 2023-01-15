@@ -1,0 +1,89 @@
+{
+  "data": {
+      "1": {
+          "id": 1,
+          "name": "Wilson",
+          "level": "root",
+          "breadcrumb": "Wilson",
+          "status": "active",
+          "ancestor": {
+              "location": {
+                  "id": "",
+                  "name": "",
+                  "entityCode": "",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "client": {
+                  "id": "",
+                  "name": "",
+                  "entityCode": "",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "state": {
+                  "id": "",
+                  "name": ""
+              },
+              "root": {
+                  "id": 1,
+                  "name": "Wilson"
+              }
+          },
+          "address": {
+              "state": ""
+          },
+          "geo": {
+              "longitude": 0,
+              "latitude": 0
+          },
+          "date": {
+              "start": null,
+              "end": null
+          }
+      },
+      "3472": {
+          "id": 3472,
+          "name": "Offshore",
+          "level": "root",
+          "breadcrumb": "Offshore",
+          "status": "active",
+          "ancestor": {
+              "location": {
+                  "id": "",
+                  "name": "",
+                  "entityCode": "",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "client": {
+                  "id": "",
+                  "name": "",
+                  "entityCode": "",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "state": {
+                  "id": "",
+                  "name": ""
+              },
+              "root": {
+                  "id": 3472,
+                  "name": "Offshore"
+              }
+          },
+          "address": {
+              "state": ""
+          },
+          "geo": {
+              "longitude": 0,
+              "latitude": 0
+          },
+          "date": {
+              "start": null,
+              "end": null
+          }
+      }
+  },
+  "debug": {}
+}

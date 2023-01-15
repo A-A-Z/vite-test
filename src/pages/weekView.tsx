@@ -1,10 +1,14 @@
-import { WeekGrid } from '../components/weekGrid'
+// import { WeekGrid } from '../components/weekGrid'
+import { Breadcrumbs } from '../components/breadcrumbs'
 
 const WeekView = () => {
   return (
     <>
-      <main className="page-main">
-        <WeekGrid />
+      <nav>
+        <Breadcrumbs />
+      </nav>
+      <main className="page-main">Week View
+        {/* <WeekGrid /> */}
       </main>
     </>
   )
