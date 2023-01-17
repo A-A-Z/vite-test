@@ -1,0 +1,218 @@
+{
+  "limit": 5,
+  "offset": 0,
+  "total": 103,
+  "data": {
+      "52115": {
+          "id": 52115,
+          "name": "T1Location 19596836",
+          "level": "location",
+          "breadcrumb": "Wilson > VIC > T1Client 100106239 > T1Location 19596836",
+          "status": "active",
+          "ancestor": {
+              "location": {
+                  "id": 52115,
+                  "name": "T1Location 19596836",
+                  "entityCode": "t1Location 19596",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "client": {
+                  "id": 52114,
+                  "name": "T1Client 100106239",
+                  "entityCode": "1",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "state": {
+                  "id": 3,
+                  "name": "VIC"
+              },
+              "root": {
+                  "id": 1,
+                  "name": "Wilson"
+              }
+          },
+          "address": {
+              "state": "VIC"
+          },
+          "geo": {
+              "longitude": 0,
+              "latitude": 0
+          },
+          "date": {
+              "start": null,
+              "end": null
+          }
+      },
+      "52117": {
+          "id": 52117,
+          "name": "T1Location 1164306639",
+          "level": "location",
+          "breadcrumb": "Wilson > VIC > T1Client 1288627445 > T1Location 1164306639",
+          "status": "active",
+          "ancestor": {
+              "location": {
+                  "id": 52117,
+                  "name": "T1Location 1164306639",
+                  "entityCode": "t1Location 11643",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "client": {
+                  "id": 52116,
+                  "name": "T1Client 1288627445",
+                  "entityCode": "2",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "state": {
+                  "id": 3,
+                  "name": "VIC"
+              },
+              "root": {
+                  "id": 1,
+                  "name": "Wilson"
+              }
+          },
+          "address": {
+              "state": "VIC"
+          },
+          "geo": {
+              "longitude": 0,
+              "latitude": 0
+          },
+          "date": {
+              "start": null,
+              "end": null
+          }
+      },
+      "52119": {
+          "id": 52119,
+          "name": "T1Location 1881138554",
+          "level": "location",
+          "breadcrumb": "Wilson > VIC > T1Client 1374198447 > T1Location 1881138554",
+          "status": "active",
+          "ancestor": {
+              "location": {
+                  "id": 52119,
+                  "name": "T1Location 1881138554",
+                  "entityCode": "t1Location 18811",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "client": {
+                  "id": 52118,
+                  "name": "T1Client 1374198447",
+                  "entityCode": "3",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "state": {
+                  "id": 3,
+                  "name": "VIC"
+              },
+              "root": {
+                  "id": 1,
+                  "name": "Wilson"
+              }
+          },
+          "address": {
+              "state": "VIC"
+          },
+          "geo": {
+              "longitude": 0,
+              "latitude": 0
+          },
+          "date": {
+              "start": null,
+              "end": null
+          }
+      },
+      "52121": {
+          "id": 52121,
+          "name": "T1Location 381095551",
+          "level": "location",
+          "breadcrumb": "Wilson > VIC > T1Client 1415129987 > T1Location 381095551",
+          "status": "active",
+          "ancestor": {
+              "location": {
+                  "id": 52121,
+                  "name": "T1Location 381095551",
+                  "entityCode": "t1Location 38109",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "client": {
+                  "id": 52120,
+                  "name": "T1Client 1415129987",
+                  "entityCode": "4",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "state": {
+                  "id": 3,
+                  "name": "VIC"
+              },
+              "root": {
+                  "id": 1,
+                  "name": "Wilson"
+              }
+          },
+          "address": {
+              "state": "VIC"
+          },
+          "geo": {
+              "longitude": 0,
+              "latitude": 0
+          },
+          "date": {
+              "start": null,
+              "end": null
+          }
+      },
+      "52123": {
+          "id": 52123,
+          "name": "T1Location 766532420",
+          "level": "location",
+          "breadcrumb": "Wilson > VIC > T1Client 1371055678 > T1Location 766532420",
+          "status": "active",
+          "ancestor": {
+              "location": {
+                  "id": 52123,
+                  "name": "T1Location 766532420",
+                  "entityCode": "t1Location 76653",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "client": {
+                  "id": 52122,
+                  "name": "T1Client 1371055678",
+                  "entityCode": "5",
+                  "startDate": null,
+                  "endDate": null
+              },
+              "state": {
+                  "id": 3,
+                  "name": "VIC"
+              },
+              "root": {
+                  "id": 1,
+                  "name": "Wilson"
+              }
+          },
+          "address": {
+              "state": "VIC"
+          },
+          "geo": {
+              "longitude": 0,
+              "latitude": 0
+          },
+          "date": {
+              "start": null,
+              "end": null
+          }
+      }
+  },
+  "debug": {}
+}

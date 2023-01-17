@@ -3,9 +3,12 @@
 @use 'fonts';
 
 // blocks
+@use 'blocks/breadcrumbs';
 @use 'blocks/btn';
 @use 'blocks/check-box';
 @use 'blocks/confirm-modal';
+@use 'blocks/crumb';
+@use 'blocks/crumb-listing';
 @use 'blocks/field';
 @use 'blocks/filter';
 @use 'blocks/form';

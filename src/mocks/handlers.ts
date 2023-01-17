@@ -3,6 +3,8 @@ import { InfoResponse } from '../features/divisions/divisionsSlice'
 import divisionMiscData from './data/divisions1.json'
 import divisionRootData from './data/divsion_root.json'
 import divisionStateData from './data/division_state.json'
+import divisionClientData from './data/division_client.json'
+import divisionLocationData from './data/division_location.json'
 
 interface InfoBody {
   test: string
@@ -31,6 +33,14 @@ export const worker = setupWorker(
 
       case 'state':
         data = divisionStateData
+        break
+
+      case 'client':
+        data = divisionClientData
+        break
+
+      case 'location':
+        data = divisionLocationData
         break
 
       default:
