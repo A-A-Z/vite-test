@@ -1,7 +1,7 @@
 import { RootState } from './store'
 import { DIVISION_ORDER } from '../global/constants'
 // import { BreadcrumbsState } from './breadcrumbsSlice'
-import { DivisionLevels } from '../global/types'
+import { Divsion, DivisionLevels } from '../global/types'
 
 export const isActionModalOpen = ({ people }: RootState): boolean => people.activePersonId !== null
 
@@ -43,9 +43,7 @@ export const selectDivisionParentId = ({ breadcrumbs }: RootState) => {
 
 export const selectActiveDivisionLevel = ({ breadcrumbs }: RootState): DivisionLevels | undefined => breadcrumbs.activeLevel
 
-// export const selectCurrentDivision = ({ breadcrumbs }: RootState) => {
-//   const foo = ['a', 'b', 'a', 'b'].findLastIndex(item => item === 'a')
-//   // const currentLevel = DIVISION_ORDER.findLastIndex(level => {
-//   //   return true
-//   // })
-// }
+export const selectActiveDivision = (state: RootState): Divsion | undefined => {
+  const activeLevel = selectActiveDivisionLevel(state)
+  return activeLevel !== undefined ? state.breadcrumbs[activeLevel] : undefined
+}

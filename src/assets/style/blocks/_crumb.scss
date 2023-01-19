@@ -10,4 +10,19 @@
   &--unset {
     border-color: #ccc;
   }
+
+  &__value {
+    font-size: 1.2rem;
+  }
+
+  &__clear {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+
+    &:not(:disabled) {
+      color: rgb(42, 42, 155);
+    }
+  }
 }

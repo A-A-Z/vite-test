@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import { AppDispatch } from '../../redux/store'
@@ -6,14 +7,48 @@ import { DivisionDataObject } from '../../features/divisions/divisionsSlice'
 import { Divsion, DivisionLevels } from '../../global/types'
 
 const formatDivisionAncestor = (data: DivisionDataObject, level: DivisionLevels): Divsion | undefined => {
-  const ancestor = data.ancestor[level]
+  const { ancestor, breadcrumb } = data
+  const levelAncestor = ancestor[level]
 
-  if (ancestor.id === '') {
+  if (levelAncestor === undefined || levelAncestor.id === '') {
     return undefined
   }
 
-  return { ...ancestor, level: data.level, breadcrumb: data.breadcrumb } as Divsion
+  return { ...levelAncestor, level, breadcrumb } as Divsion
 }
+
+interface CrumbResultsItemProps {
+  division: DivisionDataObject
+  selected: number | undefined
+}
+
+const CrumbResultsItem = ({ division, selected }: CrumbResultsItemProps) => {
+  const dispatch = useDispatch<AppDispatch>()
+  const { id, name, level, breadcrumb } = division
+
+  const onClick = () => {
+    dispatch(setCrumbs({
+      root: formatDivisionAncestor(division, 'root'),
+      state: formatDivisionAncestor(division, 'state'),
+      client: formatDivisionAncestor(division, 'client'),
+      location: formatDivisionAncestor(division, 'location'),
+      activeLevel: level
+    }))
+  }
+
+  return (
+    <li
+      key={id}
+      className={classNames('crumb-listing__result', { 'crumb-listing__result--selected': (id === selected) })}
+      onClick={onClick}
+    >
+      <div className="crumb-listing__name">{name}</div>
+      <div className="crumb-listing__breadcrumb">{breadcrumb}</div>
+    </li>
+  )
+}
+
+const CrumbResultsItemMemo = memo(CrumbResultsItem)
 
 interface CrumbResultsProps {
   results: DivisionDataObject[]
@@ -23,8 +58,6 @@ interface CrumbResultsProps {
 }
 
 export const CrumbResults = ({ results, isLoading, selected, isHidden = false }: CrumbResultsProps) => {
-  const dispatch = useDispatch<AppDispatch>()
-
   if (isHidden) {
     return null
   }
@@ -34,23 +67,6 @@ export const CrumbResults = ({ results, isLoading, selected, isHidden = false }:
   }
 
   return <ul className="crumb-listing__results">
-    {results.map(division => {
-      const onClick = () => {
-        dispatch(setCrumbs({
-          root: formatDivisionAncestor(division, 'root'),
-          state: formatDivisionAncestor(division, 'state'),
-          client: formatDivisionAncestor(division, 'client'),
-          location: formatDivisionAncestor(division, 'location'),
-          activeLevel: division.level
-        }))
-      }
-      return <li
-        key={division.id}
-        className={classNames('crumb-listing__result', { 'crumb-listing__result--selected': (division.id === selected) })}
-        onClick={onClick}>
-          <div className="crumb-listing__name">{division.name}</div>
-          <div className="crumb-listing__breadcrumb">{division.breadcrumb}</div>
-        </li>
-    })}
+    {results.map(division => <CrumbResultsItemMemo key={division.id} division={division} selected={selected} />)}
   </ul>
 }
