@@ -1,9 +1,6 @@
-import { useState, useEffect, FormEvent } from 'react'
+import { useState, useEffect, useRef, FormEvent } from 'react'
 import { useSelector } from 'react-redux'
 import { selectActiveDivision } from '../../redux/selectors'
-
-// for debouncing the search input
-let fuse: NodeJS.Timeout | undefined
 
 interface CrumbSearchFieldProps {
   setDebouncedValue: (value: string) => void
@@ -13,6 +10,8 @@ export const CrumbSearchField = ({ setDebouncedValue }: CrumbSearchFieldProps) =
   const [inputValue, setInputValue] = useState('')
   const { id: activeDivisionId } = useSelector(selectActiveDivision) || { id: 0 }
   const delay = 500
+  // for debouncing the search input
+  const fuse = useRef<NodeJS.Timeout | undefined>(undefined)
 
   // debounce input change values
   const onChange = (e: FormEvent<HTMLInputElement>) => {
@@ -21,10 +20,10 @@ export const CrumbSearchField = ({ setDebouncedValue }: CrumbSearchFieldProps) =
     setInputValue(value)
 
     if (fuse !== undefined) {
-      clearTimeout(fuse)
+      clearTimeout(fuse.current)
     }
 
-    fuse = setTimeout(() => {
+    fuse.current = setTimeout(() => {
       setDebouncedValue(value)
     }, delay)
   }
@@ -35,5 +34,5 @@ export const CrumbSearchField = ({ setDebouncedValue }: CrumbSearchFieldProps) =
     setDebouncedValue('')
   }, [activeDivisionId])
 
-  return <input type="text" value={inputValue} onChange={onChange} />
+  return <input type="text" value={inputValue} onChange={onChange} aria-label="Search" autoFocus />
 }

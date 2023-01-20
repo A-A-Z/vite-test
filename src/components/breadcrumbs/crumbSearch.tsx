@@ -8,7 +8,7 @@ const isSearchValue = (input: unknown, validLength = 3): boolean => typeof input
 
 const CrumbSearchFieldMemo = memo(CrumbSearchField)
 
-export const CrumbSearch = ({ level, parentId, selected }: CrumbListingProps) => {
+export const CrumbSearch = ({ level, parentId, selected, isOpen }: CrumbListingProps) => {
   const [search, setSearch] = useState('')
 
   const { results, isFetching } = useGetSearchQuery({ level, parentId, search }, {
@@ -18,6 +18,10 @@ export const CrumbSearch = ({ level, parentId, selected }: CrumbListingProps) =>
     }),
     skip: !isSearchValue(search)
   })
+
+  if (!isOpen) {
+    return null
+  }
 
   return (
     <div className="crumb-listing">
