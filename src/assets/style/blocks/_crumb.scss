@@ -1,0 +1,38 @@
+.crumb {
+  border: 1px solid #444;
+  cursor: pointer;
+  min-width: 200px;
+  padding: 10px;
+
+  &--active {
+    border-color: rgb(0, 212, 0);
+  }
+
+  &--unset {
+    border-color: #ccc;
+  }
+
+  &:not(.crumb--unset) .crumb__value {
+    font-weight: 400;
+  }
+
+  &__label {
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+
+  &__value {
+    font-size: 1.2rem;
+  }
+
+  &__clear {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+
+    &:not(:disabled) {
+      color: rgb(42, 42, 155);
+    }
+  }
+}

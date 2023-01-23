@@ -9,7 +9,7 @@ import { worker } from './mocks/handlers'
 
 worker.start({
   onUnhandledRequest (req, print) {
-    if (req.url.host === 'randomuser.me' || req.url.pathname.startsWith('/vite-test/')) {
+    if (req.url.host === 'randomuser.me' || req.url.host === 'fonts.gstatic.com' || req.url.pathname.startsWith('/vite-test/')) {
       return
     }
 

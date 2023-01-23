@@ -1,0 +1,25 @@
+@use '../mixins/common';
+
+.crumb-listing {
+  border-top: 1px solid #999;
+  padding: 5px 0 0 0;
+  
+  &__results {
+    @include common.list;
+  }
+
+  &__result {
+    cursor: pointer;
+    padding: 4px 0;
+    
+    &--selected {
+      font-weight: 800;
+    }
+  }
+
+  &__breadcrumb {
+    color: #999;
+    font-size: 0.7rem;
+    line-height: 1;
+  }
+}
