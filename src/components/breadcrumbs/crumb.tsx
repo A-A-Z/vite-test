@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import classNames from 'classnames'
 import { Divsion, DivisionLevels } from '../../global/types'
 import { CrumbSelect } from './crumbSelect'
 import { CrumbSearch } from './crumbSearch'
 import { ClearCrumbButton } from './clearCrumbButton'
-
 import { useClickOutside } from '../../hooks/useClickOutside'
 
 export interface CrumbProps {
@@ -22,13 +21,13 @@ export const Crumb = ({ name, label, value, type, parentId, isActive }: CrumbPro
   const selected = value?.id
   const wrapperRef = useRef(null)
 
-  const onClickOutside = () => {
+  const onClickOutside = useCallback(() => {
     setIsOpen(false)
-  }
+  }, [])
 
-  const onClickInside = () => {
+  const onClickInside = useCallback(() => {
     setIsOpen(true)
-  }
+  }, [])
 
   useClickOutside(wrapperRef, onClickOutside)
 
