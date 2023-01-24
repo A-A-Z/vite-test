@@ -1,0 +1,19 @@
+.date-control {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+
+  &__nav-btn {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+
+    .icon {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+}

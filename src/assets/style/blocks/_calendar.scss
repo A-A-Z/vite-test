@@ -1,0 +1,52 @@
+@use '../mixins/common';
+
+.calendar {
+  @include common.list;
+
+  --date-box: 2.5rem;
+  --colour-dark: #333;
+  --colour-light: #fff;
+  --colour-faded: #ccc;
+  --colour-hover: #e7e7f1;
+  --colour-selected: #00f;
+
+  display: grid;
+  grid-template-columns: repeat(7, var(--date-box));
+  margin: 15px;
+
+  &__date {
+    align-items: center;
+    border-radius: 3px;
+    color: var(--colour-dark);
+    display: flex;
+    height: var(--date-box);
+    justify-content: center;
+    transition: background-color 0.2s ease;
+
+    &--header {
+      font-weight: 400;
+    }
+    
+    &--outside-month {
+      color: var(--colour-faded);
+    }
+
+    &--today {
+      background-color: var(--colour-dark);
+      color: var(--colour-light);
+    }
+
+    &--selected {
+      background-color: var(--colour-selected);
+      color: var(--colour-light);
+    }
+
+    &:not(.calendar__date--today, .calendar__date--selected) {
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--colour-hover);
+      }
+    }
+  }
+}
