@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface DateRangeState {
-  activeDate?: Date
+  activeDate?: string
   weekRange: number
 }
 
@@ -14,7 +14,7 @@ const dateRangeSlice = createSlice({
   name: 'dateRange',
   initialState,
   reducers: {
-    setDateRange (state, action: PayloadAction<Date>) {
+    setDateRange (state, action: PayloadAction<string | undefined>) {
       state.activeDate = action.payload
     },
     setWeekRange (state, action: PayloadAction<number>) {

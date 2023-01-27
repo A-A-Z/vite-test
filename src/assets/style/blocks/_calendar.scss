@@ -16,11 +16,11 @@
 
   &__date {
     align-items: center;
-    // border-radius: 3px;
     color: var(--colour-dark);
     display: flex;
     height: var(--date-box);
     justify-content: center;
+    margin: 1px 0;
     transition: background-color 0.2s ease;
 
     &--header {
@@ -38,15 +38,20 @@
     }
 
     &--selected {
-      background-color: var(--colour-selected);
+      background-color: var(--colour-link);
       color: var(--colour-light);
+      cursor: pointer;
 
-      // &:nth-of-type(1n) {
-      //   background-color: #f00 !important;
-      // }
+      &:nth-of-type(7n) {
+        border-radius: 0 3px 3px 0;
+      }
+
+      &:nth-of-type(7n - 6) {
+        border-radius: 3px 0 0 3px;
+      }
     }
 
-    &:not(.calendar__date--today, .calendar__date--selected) {
+    &:not(.calendar__date--today, .calendar__date--selected, .calendar__date--header) {
       cursor: pointer;
 
       &:hover {

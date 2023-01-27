@@ -47,3 +47,10 @@ export const selectActiveDivision = (state: RootState): Divsion | undefined => {
   const activeLevel = selectActiveDivisionLevel(state)
   return activeLevel !== undefined ? state.breadcrumbs[activeLevel] : undefined
 }
+
+// DateRange
+
+export const selectActiveDate = ({ dateRange: { activeDate } }: RootState): Date | undefined =>
+  activeDate !== undefined ? new Date(activeDate) : undefined
+
+export const selectWeekRange = ({ dateRange }: RootState): number => dateRange.weekRange

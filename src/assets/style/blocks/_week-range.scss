@@ -1,0 +1,19 @@
+@use '../mixins/common';
+
+.week-range {
+  @include common.list;
+
+  display: flex;
+  gap: 1rem;
+
+  &__option {
+
+    &:not(.week-range__option--selected) {
+      cursor: pointer;
+    }
+
+    &--selected {
+      font-weight: 800;
+    }
+  }
+}
