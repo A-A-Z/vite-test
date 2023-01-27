@@ -1,37 +1,7 @@
-import { useDatePickerContext, CalendarMonth } from '@rehookify/datepicker'
-import { Listbox } from '@headlessui/react'
+import { useDatePickerContext } from '@rehookify/datepicker'
 import { Icon } from '../icon'
-
-interface SelectMonthProps {
-  months: CalendarMonth[]
-  setMonth: (d: Date) => void
-}
-
-const SelectMonth = ({ months, setMonth }: SelectMonthProps) => {
-  // const onMonthChange = (date: Date) => { setMonth(date) }
-  const onMonthChange = (date: CalendarMonth) => {
-    setMonth(date.$date)
-  }
-  // const value = months.find(month => month.selected)
-  const value = months.find(({ active }) => active)
-  // console.log('value', value)
-  return (
-    <Listbox value={value} onChange={onMonthChange}>
-      <Listbox.Button>{value?.name}</Listbox.Button>
-      <Listbox.Options>
-        {months.map((month) => (
-          <Listbox.Option
-            key={month.name}
-            value={month}
-            disabled={month.disabled}
-          >
-            {month.name}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </Listbox>
-  )
-}
+import { SelectMonth } from './selectMonth'
+import { RangeSelect } from './rangeSelect'
 
 export const DateControls = () => {
   const {
@@ -58,6 +28,7 @@ export const DateControls = () => {
         <SelectMonth months={months} setMonth={setMonth} />
         <button className="date-control__nav-btn" {...nextMonthButton()}><Icon icon="CaretRightIcon" /></button>
       </div>
+      <RangeSelect />
     </>
   )
 }

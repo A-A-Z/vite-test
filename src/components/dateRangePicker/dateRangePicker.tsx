@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { DatePickerProvider } from '@rehookify/datepicker'
 import { Calender } from './calender'
-import { DateControls } from './date-controls'
+import { DateControls } from './dateControls'
 
 export const DateRangePicker = () => {
   const [selectedDates, onDatesChange] = useState<Date[]>([])
+
+  // useEffect(() => {
+  //   console.log('update', selectedDates)
+  // }, selectedDates)
 
   return (
     <DatePickerProvider

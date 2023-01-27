@@ -16,7 +16,7 @@
 
   &__date {
     align-items: center;
-    border-radius: 3px;
+    // border-radius: 3px;
     color: var(--colour-dark);
     display: flex;
     height: var(--date-box);
@@ -33,12 +33,17 @@
 
     &--today {
       background-color: var(--colour-dark);
+      border-radius: 3px;
       color: var(--colour-light);
     }
 
     &--selected {
       background-color: var(--colour-selected);
       color: var(--colour-light);
+
+      // &:nth-of-type(1n) {
+      //   background-color: #f00 !important;
+      // }
     }
 
     &:not(.calendar__date--today, .calendar__date--selected) {

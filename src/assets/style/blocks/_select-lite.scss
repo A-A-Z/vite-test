@@ -1,0 +1,65 @@
+@use '../mixins/common';
+@use '../colours';
+
+.select-lite {
+  --list-min-with: 8rem;
+
+  position: relative;
+  
+  &__btn {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    min-width: var(--list-min-with);
+    text-align: center;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--colour-link);
+    }
+  }
+
+  &__btn-text {
+    justify-content: center;
+    width: calc(100% - 1.6rem);
+  }
+
+  &__list {
+    @include common.list;
+
+    background-color: var(--colour-background);
+    border-radius: 0 0 3px 3px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
+    padding: 0 3px 3px 3px;
+    position: absolute;
+  }
+
+  &__option {
+    align-items: center;
+    background-color: var(--colour-background);
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    min-width: var(--list-min-with);
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    transition: background-color 0.1s ease;
+
+    &--selected {
+      font-weight: 400;
+    }
+
+    &:hover {
+      background-color: var(--colour-active-light);
+    }
+  }
+
+  &__value {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 1.6rem);
+  }
+}
