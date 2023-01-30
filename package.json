@@ -19,7 +19,7 @@
     "@hookform/resolvers": "^2.9.7",
     "@radix-ui/react-icons": "^1.1.1",
     "@reduxjs/toolkit": "^1.8.3",
-    "@rehookify/datepicker": "^3.1.1",
+    "@rehookify/datepicker": "^3.2.0",
     "@tanstack/react-table": "^8.5.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.4",
