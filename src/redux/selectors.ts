@@ -1,6 +1,6 @@
+import dayjs from 'dayjs'
 import { RootState } from './store'
 import { DIVISION_ORDER } from '../global/constants'
-// import { BreadcrumbsState } from './breadcrumbsSlice'
 import { Divsion, DivisionLevels } from '../global/types'
 
 export const isActionModalOpen = ({ people }: RootState): boolean => people.activePersonId !== null
@@ -54,3 +54,9 @@ export const selectActiveDate = ({ dateRange: { activeDate } }: RootState): Date
   activeDate !== undefined ? new Date(activeDate) : undefined
 
 export const selectWeekRange = ({ dateRange }: RootState): number => dateRange.weekRange
+
+export const selectFromToDate = ({ dateRange: { activeDate, weekRange } }: RootState): [Date, Date, number] => {
+  const start = dayjs(activeDate).weekday(0).toDate()
+  const end = dayjs(activeDate).weekday((7 * weekRange) - 1).toDate()
+  return [start, end, weekRange]
+}
