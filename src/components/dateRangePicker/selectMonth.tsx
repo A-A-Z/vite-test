@@ -1,14 +1,14 @@
-import { CalendarMonth } from '@rehookify/datepicker'
+import { useDatePickerContext, CalendarMonth } from '@rehookify/datepicker'
 import { Listbox } from '@headlessui/react'
 import classNames from 'classnames'
 import { Icon } from '../icon'
 
-interface SelectMonthProps {
-  months: CalendarMonth[]
-  setMonth: (d: Date) => void
-}
+export const SelectMonth = () => {
+  const {
+    data: { months },
+    actions: { setMonth }
+  } = useDatePickerContext()
 
-export const SelectMonth = ({ months, setMonth }: SelectMonthProps) => {
   const onMonthChange = (date: CalendarMonth) => {
     setMonth(date.$date)
   }

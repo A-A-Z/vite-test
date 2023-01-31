@@ -35,6 +35,10 @@ export const DateRangePicker = () => {
         },
         calendar: {
           startDay: 1
+        },
+        years: {
+          mode: 'fluid',
+          numberOfYears: 30
         }
       }}
     >
