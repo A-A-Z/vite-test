@@ -8,11 +8,10 @@
   --colour-light: #fff;
   --colour-faded: #ccc;
   --colour-hover: #e7e7f1;
-  --colour-selected: #00f;
 
   display: grid;
+  grid-area: calendar;
   grid-template-columns: repeat(7, var(--date-box));
-  margin: 15px;
 
   &__date {
     align-items: center;
@@ -21,7 +20,6 @@
     height: var(--date-box);
     justify-content: center;
     margin: 1px 0;
-    transition: background-color 0.2s ease;
 
     &--header {
       font-weight: 400;
@@ -31,7 +29,7 @@
       color: var(--colour-faded);
     }
 
-    &--today {
+    &--today:not(.calendar__date--selected) {
       background-color: var(--colour-dark);
       border-radius: 3px;
       color: var(--colour-light);
@@ -56,6 +54,7 @@
 
       &:hover {
         background-color: var(--colour-hover);
+        border-radius: 3px;
       }
     }
   }

@@ -8,9 +8,10 @@ import { DateNav } from './dateNav'
 import { Calender } from './calender'
 import { DateControls } from './dateControls'
 import { getTodayAsString } from '../../utils/dates'
+import { RangeSelect } from './rangeSelect'
 
 export const DateRangePicker = () => {
-  const [isControlsOpen, setIsControlsOpen] = useState(true)
+  const [isControlsOpen, setIsControlsOpen] = useState(false)
   const dispatch = useDispatch<AppDispatch>()
   const activeDate = useSelector(selectActiveDate)
   const updateActiveDate = (selectedDates: Date[]) => {
@@ -42,13 +43,18 @@ export const DateRangePicker = () => {
         }
       }}
     >
-      <DateNav isControlsOpen={isControlsOpen} setIsControlsOpen={setIsControlsOpen} />
-      {isControlsOpen &&
-        <div>
-          <DateControls />
-          <Calender />
+      <div className="date-range-picker">
+        <div className="date-range-picker__nav">
+          <DateNav isControlsOpen={isControlsOpen} setIsControlsOpen={setIsControlsOpen} />
         </div>
-      }
+        {isControlsOpen &&
+          <div className="date-range-picker__control-panel">
+            <DateControls />
+            <Calender />
+            <RangeSelect />
+          </div>
+        }
+      </div>
     </DatePickerProvider>
   )
 }

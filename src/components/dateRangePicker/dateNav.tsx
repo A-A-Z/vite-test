@@ -1,9 +1,10 @@
+import { useCallback } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { AppDispatch } from '../../redux/store'
 import { selectFromToDate } from '../../redux/selectors'
 import { navRangeForward, navRangeBack } from '../../redux/dateRangeSlice'
 import { formatDateText } from '../../utils/dates'
-import { useCallback } from 'react'
+import { Icon } from '../icon'
 
 interface DateNavProps {
   isControlsOpen: boolean
@@ -25,10 +26,11 @@ export const DateNav = ({ isControlsOpen, setIsControlsOpen }: DateNavProps) => 
     setIsControlsOpen(!isControlsOpen)
   }, [isControlsOpen])
 
-  return <nav>
-    <button onClick={onClickBack}>Back</button>
-    <span>{formatDateText(fromDate)} - {formatDateText(toDate)}</span>
-    <button onClick={onClickForward}>Forward</button>
-    <button onClick={toggleControls}>{isControlsOpen ? 'close' : 'open'}</button>
-  </nav>
+  return (
+    <nav className="date-nav">
+      <button onClick={onClickBack} className="date-nav__nav-btn"><Icon icon="TriangleLeftIcon" /></button>
+      <button onClick={toggleControls} className="date-nav__main">{formatDateText(fromDate)} - {formatDateText(toDate)}</button>
+      <button onClick={onClickForward} className="date-nav__nav-btn"><Icon icon="TriangleRightIcon" /></button>
+    </nav>
+  )
 }

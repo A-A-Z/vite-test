@@ -1,0 +1,32 @@
+@use '../colours';
+
+.date-range-picker {
+  position: relative;
+
+  // &__nav {
+  //   // border: 1px solid #0f0;
+  // }
+
+  &__control-panel {
+    border: 1px solid #00f;
+
+    // align-items: center;
+    // background-color: var(--colour-background);
+    // display: flex;
+    // flex-direction: column;
+    // gap: 0.5rem;
+    // padding: 0.5rem;
+    // position: absolute;
+
+    align-items: start;
+    background-color: var(--colour-background);
+    display: grid;
+    gap: 0.5rem;
+    grid-template-areas: 
+      "control control"
+      "calendar range";
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem;
+    position: absolute;
+  }
+}

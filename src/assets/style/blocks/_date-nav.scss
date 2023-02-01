@@ -1,0 +1,19 @@
+@use '../mixins/common';
+
+.date-nav {
+
+  &__nav-btn {
+    @include common.reset-btn;
+
+    .icon {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  &__main {
+    @include common.reset-btn;
+
+    font-size: 1.2rem;
+  }
+}
