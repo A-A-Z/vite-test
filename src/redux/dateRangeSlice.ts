@@ -15,7 +15,7 @@ const dateRangeSlice = createSlice({
   name: 'dateRange',
   initialState,
   reducers: {
-    setDateRange (state, action: PayloadAction<string>) {
+    setActiveDate (state, action: PayloadAction<string>) {
       state.activeDate = action.payload
     },
     setWeekRange (state, action: PayloadAction<number>) {
@@ -41,7 +41,7 @@ const dateRangeSlice = createSlice({
 })
 
 export const {
-  setDateRange,
+  setActiveDate,
   setWeekRange,
   navRangeForward,
   navRangeBack

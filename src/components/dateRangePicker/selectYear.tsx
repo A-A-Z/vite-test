@@ -25,7 +25,7 @@ export const SelectYear = () => {
   const value = years.find(({ active }) => active) || years[0]
 
   return (
-    <div className="select-lite">
+    <div className="select-lite select-lite--small">
       <Listbox value={value} onChange={onYearChange}>
         <Listbox.Button className="select-lite__btn">
           <div className="select-lite__btn-text">{value.value}</div>

@@ -13,10 +13,10 @@ export const DateControls = () => {
 
   return (
       <div className="date-control">
-        <button className="date-control__nav-btn" {...previousMonthButton()}><Icon icon="CaretLeftIcon" /></button>
+        <button className="date-control__nav-btn" {...previousMonthButton()}><Icon icon="TriangleLeftIcon" /></button>
         <SelectMonth />
         <SelectYear />
-        <button className="date-control__nav-btn" {...nextMonthButton()}><Icon icon="CaretRightIcon" /></button>
+        <button className="date-control__nav-btn" {...nextMonthButton()}><Icon icon="TriangleRightIcon" /></button>
       </div>
   )
 }

@@ -13,7 +13,7 @@ interface DateNavProps {
 
 export const DateNav = ({ isControlsOpen, setIsControlsOpen }: DateNavProps) => {
   const dispatch = useDispatch<AppDispatch>()
-  const [fromDate, toDate] = useSelector(selectFromToDate, shallowEqual)
+  const [fromDate, toDate, range] = useSelector(selectFromToDate, shallowEqual)
 
   const onClickForward = () => {
     dispatch(navRangeForward())
@@ -28,9 +28,12 @@ export const DateNav = ({ isControlsOpen, setIsControlsOpen }: DateNavProps) => 
 
   return (
     <nav className="date-nav">
-      <button onClick={onClickBack} className="date-nav__nav-btn"><Icon icon="TriangleLeftIcon" /></button>
-      <button onClick={toggleControls} className="date-nav__main">{formatDateText(fromDate)} - {formatDateText(toDate)}</button>
-      <button onClick={onClickForward} className="date-nav__nav-btn"><Icon icon="TriangleRightIcon" /></button>
+      <button onClick={onClickBack} className="date-nav__btn date-nav__nav"><Icon icon="TriangleLeftIcon" /></button>
+      <button onClick={toggleControls} className="date-nav__btn date-nav__main">
+        <span>{formatDateText(fromDate)} <Icon icon="CaretRightIcon" /> {formatDateText(toDate)}</span>
+        <span>({range} weeks)</span>
+      </button>
+      <button onClick={onClickForward} className="date-nav__btn date-nav__nav"><Icon icon="TriangleRightIcon" /></button>
     </nav>
   )
 }

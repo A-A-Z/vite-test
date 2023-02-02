@@ -1,32 +1,27 @@
 @use '../colours';
 
 .date-range-picker {
+  margin: 15px; // TEMP
+
+  --sidebar-width: 12rem;
+
   position: relative;
 
-  // &__nav {
-  //   // border: 1px solid #0f0;
-  // }
-
   &__control-panel {
-    border: 1px solid #00f;
-
-    // align-items: center;
-    // background-color: var(--colour-background);
-    // display: flex;
-    // flex-direction: column;
-    // gap: 0.5rem;
-    // padding: 0.5rem;
-    // position: absolute;
+    --spacing: 1.4rem;
 
     align-items: start;
     background-color: var(--colour-background);
+    border: 1px solid var(--colour-border);
+    border-radius: 3px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
     display: grid;
-    gap: 0.5rem;
+    gap: var(--spacing);
     grid-template-areas: 
-      "control control"
+      "control input"
       "calendar range";
-    grid-template-columns: 1fr 1fr;
-    padding: 0.5rem;
+    grid-template-columns: 1fr var(--sidebar-width);
+    padding: var(--spacing);
     position: absolute;
   }
 }

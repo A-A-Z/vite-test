@@ -7,7 +7,6 @@
   --colour-dark: #333;
   --colour-light: #fff;
   --colour-faded: #ccc;
-  --colour-hover: #e7e7f1;
 
   display: grid;
   grid-area: calendar;
@@ -53,7 +52,7 @@
       cursor: pointer;
 
       &:hover {
-        background-color: var(--colour-hover);
+        background-color: var(--colour-active-light);
         border-radius: 3px;
       }
     }

@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DatePickerProvider } from '@rehookify/datepicker'
 import { AppDispatch } from '../../redux/store'
-import { setDateRange } from '../../redux/dateRangeSlice'
+import { setActiveDate } from '../../redux/dateRangeSlice'
 import { selectActiveDate } from '../../redux/selectors'
 import { DateNav } from './dateNav'
 import { Calender } from './calender'
 import { DateControls } from './dateControls'
 import { getTodayAsString } from '../../utils/dates'
 import { RangeSelect } from './rangeSelect'
+import { DateInput } from './dateInput'
+import './assets/style/index.scss'
 
 export const DateRangePicker = () => {
   const [isControlsOpen, setIsControlsOpen] = useState(false)
@@ -18,7 +20,7 @@ export const DateRangePicker = () => {
     const dateString = (selectedDates.length > 0 && selectedDates[0] !== undefined)
       ? selectedDates[0].toString()
       : getTodayAsString()
-    dispatch(setDateRange(dateString))
+    dispatch(setActiveDate(dateString))
   }
 
   return (
@@ -51,6 +53,7 @@ export const DateRangePicker = () => {
           <div className="date-range-picker__control-panel">
             <DateControls />
             <Calender />
+            <DateInput />
             <RangeSelect />
           </div>
         }

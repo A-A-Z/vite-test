@@ -1,22 +1,25 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import dayjs from 'dayjs'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
 import { AppDispatch } from '../../redux/store'
 import { RadioGroup } from '@headlessui/react'
 import classNames from 'classnames'
 import { setWeekRange } from '../../redux/dateRangeSlice'
 import { selectFromToDate } from '../../redux/selectors'
 import { Icon } from '../icon'
-import { DATE_DISPLAY_FORMAT, RANGE_OPTIONS } from './constants'
+import { RANGE_OPTIONS } from './constants'
 import { DateRangeOption } from './types'
+
+dayjs.extend(advancedFormat)
 
 const createOptionText = ({ length, label = '' }: DateRangeOption): string => (
   label !== '' ? label : `${length} ${length === 1 ? 'Week' : 'Weeks'}`
 )
 
 const createHintText = (startDate: Date, range: number): JSX.Element => {
-  const fromText = dayjs(startDate).format(DATE_DISPLAY_FORMAT)
-  const toDate = dayjs(startDate).add((7 * range) - 1, 'day').format(DATE_DISPLAY_FORMAT)
+  const fromText = dayjs(startDate).format('Do MMM')
+  const toDate = dayjs(startDate).add((7 * range) - 1, 'day').format('Do MMM')
   return <>{fromText} <Icon icon="CaretRightIcon" /> {toDate}</>
 }
 
