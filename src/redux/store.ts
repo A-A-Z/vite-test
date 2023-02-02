@@ -4,7 +4,7 @@ import { divisionsSlice } from '../features/divisions/divisionsSlice'
 import peopleReducer, { PeopleState } from './peopleSlice'
 import noticeReducer, { NoticesState } from './noticesSlice'
 import breadcrumbsReducer, { BreadcrumbsState } from './breadcrumbsSlice'
-import dateRangeReducer, { DateRangeState } from './dateRangeSlice'
+import { dateRangeReducer, DateRangeState } from '../features/dateRangePicker'
 
 interface createStoreState {
   breadcrumbs?: BreadcrumbsState

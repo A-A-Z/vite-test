@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import { RootState } from './store'
 import { DIVISION_ORDER } from '../global/constants'
 import { Divsion, DivisionLevels } from '../global/types'
@@ -46,17 +45,4 @@ export const selectActiveDivisionLevel = ({ breadcrumbs }: RootState): DivisionL
 export const selectActiveDivision = (state: RootState): Divsion | undefined => {
   const activeLevel = selectActiveDivisionLevel(state)
   return activeLevel !== undefined ? state.breadcrumbs[activeLevel] : undefined
-}
-
-// DateRange
-
-export const selectActiveDate = ({ dateRange: { activeDate } }: RootState): Date | undefined =>
-  activeDate !== undefined ? new Date(activeDate) : undefined
-
-export const selectWeekRange = ({ dateRange }: RootState): number => dateRange.weekRange
-
-export const selectFromToDate = ({ dateRange: { activeDate, weekRange } }: RootState): [Date, Date, number] => {
-  const start = dayjs(activeDate).weekday(0).toDate()
-  const end = dayjs(activeDate).weekday((7 * weekRange) - 1).toDate()
-  return [start, end, weekRange]
 }

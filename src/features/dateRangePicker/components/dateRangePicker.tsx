@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DatePickerProvider } from '@rehookify/datepicker'
-import { AppDispatch } from '../../redux/store'
-import { setActiveDate } from '../../redux/dateRangeSlice'
-import { selectActiveDate } from '../../redux/selectors'
+import { AppDispatch } from '../../../redux/store'
+import { setActiveDate } from '../dateRangeSlice'
+import { selectActiveDate } from '../selectors'
 import { DateNav } from './dateNav'
 import { Calender } from './calender'
 import { DateControls } from './dateControls'
-import { getTodayAsString } from '../../utils/dates'
+import { getTodayAsString } from '../../../utils/dates'
 import { RangeSelect } from './rangeSelect'
 import { DateInput } from './dateInput'
-import './assets/style/index.scss'
+import '../assets/style/index.scss'
 
 export const DateRangePicker = () => {
   const [isControlsOpen, setIsControlsOpen] = useState(false)

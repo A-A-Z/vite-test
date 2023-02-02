@@ -1,4 +1,4 @@
-@use '../mixins/common';
+@use './common';
 
 .calendar {
   @include common.list;

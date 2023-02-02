@@ -1,5 +1,5 @@
 import { useDatePickerContext } from '@rehookify/datepicker'
-import { Icon } from '../icon'
+import { Icon } from '../../../components/icon'
 import { SelectMonth } from './selectMonth'
 import { SelectYear } from './selectYear'
 

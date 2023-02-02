@@ -3,7 +3,7 @@ import { Listbox } from '@headlessui/react'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
-import { Icon } from '../icon'
+import { Icon } from '../../../components/icon'
 
 dayjs.extend(isBetween)
 

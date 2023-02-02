@@ -1,4 +1,4 @@
-import { DATE_FORMAT_PATTERN } from '../components/dateRangePicker/constants'
+import { DATE_FORMAT_PATTERN } from '../features/dateRangePicker'
 
 export const formatDateText = (date: Date): string => date.toLocaleDateString('en-AU')
 

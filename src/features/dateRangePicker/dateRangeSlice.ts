@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getTodayAsString } from '../utils/dates'
+import { getTodayAsString } from '../../utils/dates'
 
 export interface DateRangeState {
   activeDate: string

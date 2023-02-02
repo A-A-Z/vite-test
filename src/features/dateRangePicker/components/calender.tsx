@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import updateLocale from 'dayjs/plugin/updateLocale'
 import weekday from 'dayjs/plugin/weekday'
 import isBetween from 'dayjs/plugin/isBetween'
-import { selectWeekRange } from '../../redux/selectors'
+import { selectWeekRange } from '../selectors'
 
 dayjs.extend(weekday)
 dayjs.extend(isBetween)

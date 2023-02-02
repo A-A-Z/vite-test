@@ -1,6 +1,6 @@
 // import { WeekGrid } from '../components/weekGrid'
 import { Breadcrumbs } from '../components/breadcrumbs'
-import { DateRangePicker } from '../components/dateRangePicker'
+import { DateRangePicker } from '../features/dateRangePicker'
 
 const WeekView = () => {
   return (
