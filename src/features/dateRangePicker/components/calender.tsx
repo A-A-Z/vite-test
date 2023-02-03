@@ -31,7 +31,7 @@ export const Calender = () => {
   } = useDatePickerContext()
   const { days, month, year } = calendars[0]
   const weekDate = useSelector(selectWeekRange)
-  const [activeDate] = selectedDates
+  const [activeDate = new Date()] = selectedDates
   const activeMonth = activeDate.toLocaleString('default', { month: 'long' })
   const activeYear = activeDate.toLocaleString('default', { year: 'numeric' })
 
