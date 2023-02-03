@@ -16,7 +16,7 @@ export const DateRangePicker = () => {
           <DateNav isControlsOpen={isControlsOpen} setIsControlsOpen={setIsControlsOpen} />
         </div>
         {isControlsOpen &&
-          <div className="date-range-picker__control-panel">
+          <div id="date-range-control-panel" className="date-range-picker__control-panel">
             <DateControls />
             <Calender />
             <DateInput />

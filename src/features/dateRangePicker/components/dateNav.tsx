@@ -28,12 +28,32 @@ export const DateNav = ({ isControlsOpen, setIsControlsOpen }: DateNavProps) => 
 
   return (
     <nav className="date-nav">
-      <button onClick={onClickBack} className="date-nav__btn date-nav__nav"><Icon icon="TriangleLeftIcon" /></button>
-      <button onClick={toggleControls} className="date-nav__btn date-nav__main">
+      <button
+        type="button"
+        onClick={onClickBack}
+        className="date-nav__btn date-nav__nav"
+        aria-label="Previous Month"
+      >
+        <Icon icon="TriangleLeftIcon" />
+      </button>
+      <button
+        type="button"
+        onClick={toggleControls}
+        className="date-nav__btn date-nav__main"
+        aria-expanded={isControlsOpen}
+        aria-controls="date-range-control-panel"
+      >
         <span>{formatDateText(fromDate)} <Icon icon="CaretRightIcon" /> {formatDateText(toDate)}</span>
         <span>({range} weeks)</span>
       </button>
-      <button onClick={onClickForward} className="date-nav__btn date-nav__nav"><Icon icon="TriangleRightIcon" /></button>
+      <button
+        type="button"
+        onClick={onClickForward}
+        className="date-nav__btn date-nav__nav"
+        aria-label="Next Month"
+      >
+        <Icon icon="TriangleRightIcon" />
+      </button>
     </nav>
   )
 }
