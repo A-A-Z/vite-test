@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { DatePickerProvider } from '@rehookify/datepicker'
-import { AppDispatch } from '../../../redux/store'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { setActiveDate } from '../dateRangeSlice'
 import { selectActiveDate } from '../selectors'
 import { getTodayAsString } from '../../../utils/dates'
@@ -10,7 +10,7 @@ interface DateRangePickerProviderProps {
 }
 
 export const DateRangePickerProvider = ({ children }: DateRangePickerProviderProps) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const activeDate = useSelector(selectActiveDate)
   const updateActiveDate = (selectedDates: Date[]) => {
     const dateString = (selectedDates.length > 0 && selectedDates[0] !== undefined)

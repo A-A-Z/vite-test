@@ -2,16 +2,8 @@ import { useEffect } from 'react'
 import { useDatePickerContext } from '@rehookify/datepicker'
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
-import dayjs from 'dayjs'
-import updateLocale from 'dayjs/plugin/updateLocale'
-import weekday from 'dayjs/plugin/weekday'
-import isBetween from 'dayjs/plugin/isBetween'
+import dayjs from '../../../lib/day'
 import { selectWeekRange } from '../selectors'
-
-dayjs.extend(weekday)
-dayjs.extend(isBetween)
-dayjs.extend(updateLocale)
-dayjs.updateLocale('en', { weekStart: 1 })
 
 const isActiveWeek = (date: Date, activeDate: Date, range: number): boolean => {
   if (activeDate === undefined) {

@@ -1,17 +1,14 @@
 import { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import dayjs from 'dayjs'
-import advancedFormat from 'dayjs/plugin/advancedFormat'
-import { AppDispatch } from '../../../redux/store'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { RadioGroup } from '@headlessui/react'
 import classNames from 'classnames'
 import { setWeekRange } from '../dateRangeSlice'
 import { selectFromToDate } from '../selectors'
 import { Icon } from '../../../components/icon'
 import { RANGE_OPTIONS } from '../constants'
-import { DateRangeOption } from '../types'
-
-dayjs.extend(advancedFormat)
+import type { DateRangeOption } from '../types'
+import dayjs from '../../../lib/day'
 
 const createOptionText = ({ length, label = '' }: DateRangeOption): string => (
   label !== '' ? label : `${length} ${length === 1 ? 'Week' : 'Weeks'}`
@@ -24,7 +21,7 @@ const createHintText = (startDate: Date, range: number): JSX.Element => {
 }
 
 export const RangeSelect = () => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const [from, , range] = useSelector(selectFromToDate)
   const setRange = useCallback((range: number) => dispatch(setWeekRange(range)), [])
 
@@ -35,8 +32,7 @@ export const RangeSelect = () => {
           <RadioGroup.Option
             key={`range_${option.length}`}
             value={option.length}
-            as='li'
-            role="button"
+            as="li"
             tabIndex={0}
             className="week-range__item"
           >

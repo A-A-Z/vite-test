@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
-import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import { AppDispatch } from '../../../redux/store'
+import { useSelector, shallowEqual } from 'react-redux'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { selectFromToDate } from '../selectors'
 import { navRangeForward, navRangeBack } from '../dateRangeSlice'
 import { formatDateText } from '../../../utils/dates'
@@ -12,7 +12,7 @@ interface DateNavProps {
 }
 
 export const DateNav = ({ isControlsOpen, setIsControlsOpen }: DateNavProps) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const [fromDate, toDate, range] = useSelector(selectFromToDate, shallowEqual)
 
   const onClickForward = () => {
