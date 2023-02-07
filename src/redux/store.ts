@@ -37,3 +37,4 @@ export const createStore = (state: createStoreState = {}) => {
 export const store = createStore()
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
+export type AppStore = ReturnType<typeof createStore>

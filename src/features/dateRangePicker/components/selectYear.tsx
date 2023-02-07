@@ -1,11 +1,8 @@
 import { useDatePickerContext, CalendarYear } from '@rehookify/datepicker'
 import { Listbox } from '@headlessui/react'
 import classNames from 'classnames'
-import dayjs from 'dayjs'
-import isBetween from 'dayjs/plugin/isBetween'
+import dayjs from '../../../lib/day'
 import { Icon } from '../../../components/icon'
-
-dayjs.extend(isBetween)
 
 const filterYears = ({ $date }: CalendarYear): boolean => {
   const start = dayjs().year(2013)
@@ -22,13 +19,14 @@ export const SelectYear = () => {
   const onYearChange = (newYear: CalendarYear) => {
     setYear(newYear.$date)
   }
-  const value = years.find(({ active }) => active) || years[0]
+
+  const value = years.find(({ active }) => active)
 
   return (
     <div className="select-lite select-lite--small">
       <Listbox value={value} onChange={onYearChange}>
         <Listbox.Button className="select-lite__btn">
-          <div className="select-lite__btn-text">{value.value}</div>
+          <div className="select-lite__btn-text">{value?.value}</div>
           <Icon icon="CaretSortIcon" />
         </Listbox.Button>
         <Listbox.Options className="select-lite__list">

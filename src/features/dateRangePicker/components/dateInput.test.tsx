@@ -13,10 +13,7 @@ vi.mock('../../../hooks/useAppDispatch', () => {
 })
 
 vi.mock('../../../utils/dates', async () => {
-  // const actual = await vi.importActual('../../../utils/dates')
-  // console.log(actual)
   return {
-    // ...actual,
     getTodayAsString: () => 'string',
     createDateFromDateString: () => 'string'
   }

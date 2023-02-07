@@ -6,10 +6,6 @@ import dayjs from '../../../lib/day'
 import { selectWeekRange } from '../selectors'
 
 const isActiveWeek = (date: Date, activeDate: Date, range: number): boolean => {
-  if (activeDate === undefined) {
-    return false
-  }
-
   const start = dayjs(activeDate).weekday(-1)
   const end = dayjs(activeDate).weekday(7 * range)
   return dayjs(date).isBetween(start, end, 'hour')
@@ -55,6 +51,7 @@ export const Calender = () => {
           onClick={onClick}
           role="button"
           tabIndex={0}
+          aria-pressed={isInActiveRange}
         >{day}</li>
       })}
     </ul>
