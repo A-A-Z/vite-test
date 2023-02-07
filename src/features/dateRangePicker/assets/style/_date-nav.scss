@@ -1,0 +1,51 @@
+@use './common';
+
+.date-nav {
+  align-items: center;
+  display: flex;
+  line-height: 1;
+
+  &__btn {
+    @include common.reset-btn;
+    border: 1px solid transparent;
+    height: 2.5rem;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--colour-active-light);
+    }
+
+    &:nth-child(1) {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:nth-child(3) {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  &__nav {
+    align-items: center;
+    display: flex;
+
+    .icon {
+      color: var(--colour-link);
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  &__main {
+    align-items: center;
+    display: flex;
+    font-size: 1.2rem;
+    gap: 1rem;
+
+    span {
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+
+}

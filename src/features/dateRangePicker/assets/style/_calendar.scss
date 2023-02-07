@@ -1,0 +1,60 @@
+@use './common';
+
+.calendar {
+  @include common.list;
+
+  --date-box: 2.5rem;
+  --colour-dark: #333;
+  --colour-light: #fff;
+  --colour-faded: #ccc;
+
+  display: grid;
+  grid-area: calendar;
+  grid-template-columns: repeat(7, var(--date-box));
+
+  &__date {
+    align-items: center;
+    color: var(--colour-dark);
+    display: flex;
+    height: var(--date-box);
+    justify-content: center;
+    margin: 1px 0;
+
+    &--header {
+      font-weight: 400;
+    }
+    
+    &--outside-month {
+      color: var(--colour-faded);
+    }
+
+    &--today:not(.calendar__date--selected) {
+      background-color: var(--colour-dark);
+      border-radius: 3px;
+      color: var(--colour-light);
+    }
+
+    &--selected {
+      background-color: var(--colour-link);
+      color: var(--colour-light);
+      cursor: pointer;
+
+      &:nth-of-type(7n) {
+        border-radius: 0 3px 3px 0;
+      }
+
+      &:nth-of-type(7n - 6) {
+        border-radius: 3px 0 0 3px;
+      }
+    }
+
+    &:not(.calendar__date--today, .calendar__date--selected, .calendar__date--header) {
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--colour-active-light);
+        border-radius: 3px;
+      }
+    }
+  }
+}

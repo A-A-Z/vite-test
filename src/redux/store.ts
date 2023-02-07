@@ -4,9 +4,11 @@ import { divisionsSlice } from '../features/divisions/divisionsSlice'
 import peopleReducer, { PeopleState } from './peopleSlice'
 import noticeReducer, { NoticesState } from './noticesSlice'
 import breadcrumbsReducer, { BreadcrumbsState } from './breadcrumbsSlice'
+import { dateRangeReducer, DateRangeState } from '../features/dateRangePicker'
 
 interface createStoreState {
   breadcrumbs?: BreadcrumbsState
+  dateRange?: DateRangeState
   notices?: NoticesState
   people?: PeopleState
 }
@@ -15,6 +17,7 @@ export const createStore = (state: createStoreState = {}) => {
   const store = configureStore({
     reducer: {
       breadcrumbs: breadcrumbsReducer,
+      dateRange: dateRangeReducer,
       notices: noticeReducer,
       people: peopleReducer,
       [apiSlice.reducerPath]: apiSlice.reducer,
@@ -34,3 +37,4 @@ export const createStore = (state: createStoreState = {}) => {
 export const store = createStore()
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
+export type AppStore = ReturnType<typeof createStore>

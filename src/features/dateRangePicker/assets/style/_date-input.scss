@@ -1,0 +1,19 @@
+@use './common';
+
+.date-input {
+  display: flex;
+  gap: 1rem;
+  grid-area: input;
+
+  &__text {
+    @include common.input;
+    width: 7.5rem;
+    text-align: center;
+  }
+
+  &__today {
+    @include common.reset-btn;
+
+    color: var(--colour-link);
+  }
+}

@@ -9,9 +9,9 @@
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "vitest",
+    "test": "vitest --coverage",
     "coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui --coverage"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
@@ -19,6 +19,7 @@
     "@hookform/resolvers": "^2.9.7",
     "@radix-ui/react-icons": "^1.1.1",
     "@reduxjs/toolkit": "^1.8.3",
+    "@rehookify/datepicker": "^3.2.0",
     "@tanstack/react-table": "^8.5.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.4",
@@ -46,7 +47,8 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "@vitejs/plugin-react": "^2.0.0",
-    "@vitest/ui": "^0.25.4",
+    "@vitest/coverage-c8": "^0.28.3",
+    "@vitest/ui": "^0.28.3",
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
     "eslint-config-standard": "^17.0.0",
@@ -60,7 +62,7 @@
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
     "vite-plugin-eslint": "^1.8.1",
-    "vitest": "^0.25.4"
+    "vitest": "^0.28.3"
   },
   "msw": {
     "workerDirectory": "public"

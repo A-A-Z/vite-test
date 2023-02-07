@@ -1,0 +1,54 @@
+@use './common';
+
+.week-range {
+  grid-area: range;
+
+  &__list {
+    @include common.list;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__option {
+    align-items: center;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    display: flex;
+    height: 3.2rem;
+    flex-direction: column;
+    font-weight: 400;
+    gap: 0.2rem;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 0.6rem;
+    width: var(--sidebar-width);
+
+    &:not(.week-range__option--selected) {
+      cursor: pointer;
+
+      &:hover {
+         background-color: var(--colour-active-light);
+      }
+    }
+
+    &--selected {
+      background-color: var(--colour-link);
+      color: var(--colour-background);
+    }
+  }
+
+  &__option-hint {
+    align-items: center;
+    display: inline-flex;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.9;
+
+    .icon {
+      opacity: 0.5;
+    }
+  }
+}

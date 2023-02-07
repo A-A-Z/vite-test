@@ -1,6 +1,5 @@
 import { RootState } from './store'
 import { DIVISION_ORDER } from '../global/constants'
-// import { BreadcrumbsState } from './breadcrumbsSlice'
 import { Divsion, DivisionLevels } from '../global/types'
 
 export const isActionModalOpen = ({ people }: RootState): boolean => people.activePersonId !== null

@@ -1,0 +1,20 @@
+@use './common';
+
+.date-control {
+  align-items: center;
+  display: flex;
+  grid-area: control;
+  justify-content: space-between;
+
+  &__nav-btn {
+    @include common.reset-btn;
+    align-items: center;
+    display: flex;
+
+    .icon {
+      color: var(--colour-link);
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+}

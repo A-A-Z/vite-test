@@ -1,0 +1,23 @@
+.date-range-picker {
+  --sidebar-width: 12rem;
+
+  position: relative;
+
+  &__control-panel {
+    --spacing: 1.4rem;
+
+    align-items: start;
+    background-color: var(--colour-background);
+    border: 1px solid var(--colour-border);
+    border-radius: 3px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
+    display: grid;
+    gap: var(--spacing);
+    grid-template-areas: 
+      "control input"
+      "calendar range";
+    grid-template-columns: 1fr var(--sidebar-width);
+    padding: var(--spacing);
+    position: absolute;
+  }
+}
