@@ -4,6 +4,7 @@ import { AppDispatch } from 'store/store'
 import { Icon } from 'components/icon'
 import { removeNotice } from '../noticesSlice'
 import { Notice } from '../types'
+import '../assets/style/index.scss'
 
 type NoticeIconString = 'InfoCircledIcon' | 'CrossCircledIcon' | 'CheckCircledIcon'
 
