@@ -1,7 +1,7 @@
 import { useDatePickerContext, CalendarMonth } from '@rehookify/datepicker'
 import { Listbox } from '@headlessui/react'
 import classNames from 'classnames'
-import { Icon } from '../../../components/icon'
+import { Icon } from 'components/icon'
 
 export const SelectMonth = () => {
   const {

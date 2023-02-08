@@ -1,11 +1,11 @@
 import { useState, ChangeEvent, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import dayjs from '../../../lib/day'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import dayjs from 'lib/day'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { createDateFromDateString, getTodayAsString } from 'utils/dates'
 import { setActiveDate } from '../dateRangeSlice'
 import { selectActiveDate } from '../selectors'
 import { DATE_DISPLAY_FORMAT, DATE_FORMAT_PATTERN } from '../constants'
-import { createDateFromDateString, getTodayAsString } from '../../../utils/dates'
 
 export const DateInput = () => {
   const dispatch = useAppDispatch()

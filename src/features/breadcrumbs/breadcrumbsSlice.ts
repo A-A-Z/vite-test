@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Divsion, DivisionLevels, DIVISION_ORDER } from '../divisions'
+import { Divsion, DivisionLevels, DIVISION_ORDER } from 'features/divisions'
 
 export interface BreadcrumbsState {
   root?: Divsion

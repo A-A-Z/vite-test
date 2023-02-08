@@ -1,5 +1,5 @@
 import { memo, useState } from 'react'
-import { useGetSearchQuery, DivisionDataObject } from '../../divisions'
+import { useGetSearchQuery, DivisionDataObject } from 'features/divisions'
 import type { CrumbListingProps } from '../types'
 import { CrumbResults } from './crumbResults'
 import { CrumbSearchField } from './crumbSearchField'

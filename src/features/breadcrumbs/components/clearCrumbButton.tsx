@@ -1,6 +1,6 @@
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { clearCrumb } from '../breadcrumbsSlice'
-import { DivisionLevels } from '../../divisions'
+import { DivisionLevels } from 'features/divisions'
 
 interface ClearButtonProps {
   level: DivisionLevels

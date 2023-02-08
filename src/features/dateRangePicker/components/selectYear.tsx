@@ -1,8 +1,8 @@
 import { useDatePickerContext, CalendarYear } from '@rehookify/datepicker'
 import { Listbox } from '@headlessui/react'
 import classNames from 'classnames'
-import dayjs from '../../../lib/day'
-import { Icon } from '../../../components/icon'
+import dayjs from 'lib/day'
+import { Icon } from 'components/icon'
 
 const filterYears = ({ $date }: CalendarYear): boolean => {
   const start = dayjs().year(2013)

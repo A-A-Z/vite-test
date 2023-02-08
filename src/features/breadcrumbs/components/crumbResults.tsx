@@ -1,8 +1,8 @@
 import { memo } from 'react'
 import classNames from 'classnames'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { setCrumbs } from '../breadcrumbsSlice'
-import type { Divsion, DivisionLevels, DivisionDataObject } from '../../divisions'
+import type { Divsion, DivisionLevels, DivisionDataObject } from 'features/divisions'
 
 const formatDivisionAncestor = (data: DivisionDataObject, level: DivisionLevels): Divsion | undefined => {
   const { ancestor, breadcrumb } = data

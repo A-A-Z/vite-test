@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useSelector, shallowEqual } from 'react-redux'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { selectFromToDate } from '../selectors'
 import { navRangeForward, navRangeBack } from '../dateRangeSlice'
-import { formatDateText } from '../../../utils/dates'
-import { Icon } from '../../../components/icon'
+import { formatDateText } from 'utils/dates'
+import { Icon } from 'components/icon'
 
 interface DateNavProps {
   isControlsOpen: boolean

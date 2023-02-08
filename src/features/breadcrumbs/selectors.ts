@@ -1,6 +1,6 @@
 
-import { RootState } from '../../redux/store'
-import { Divsion, DivisionLevels, DIVISION_ORDER } from '../divisions'
+import { RootState } from 'store/store'
+import { Divsion, DivisionLevels, DIVISION_ORDER } from 'features/divisions'
 
 export const selectCrumbs = ({ breadcrumbs: { root, state, client, location } }: RootState) => (
   { root, state, client, location }

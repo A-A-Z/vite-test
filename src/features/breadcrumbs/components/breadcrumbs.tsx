@@ -1,6 +1,6 @@
 import { useSelector, shallowEqual } from 'react-redux'
 import { Crumb } from './crumb'
-import type { DivisionLevels, Divsion } from '../../divisions'
+import type { DivisionLevels, Divsion } from 'features/divisions'
 import type { CrumbType } from '../types'
 import { CRUMBS } from '../constants'
 import {

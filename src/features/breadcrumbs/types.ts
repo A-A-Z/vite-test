@@ -1,4 +1,4 @@
-import type { DivisionLevels } from '../divisions'
+import type { DivisionLevels } from 'features/divisions'
 
 export interface CrumbType {
   name: DivisionLevels

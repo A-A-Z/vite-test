@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import classNames from 'classnames'
-import type { Divsion, DivisionLevels } from '../../divisions'
+import type { Divsion, DivisionLevels } from 'features/divisions'
 import { CrumbSelect } from './crumbSelect'
 import { CrumbSearch } from './crumbSearch'
 import { ClearCrumbButton } from './clearCrumbButton'
-import { useClickOutside } from '../../../hooks/useClickOutside'
+import { useClickOutside } from 'hooks/useClickOutside'
 
 export interface CrumbProps {
   name: DivisionLevels

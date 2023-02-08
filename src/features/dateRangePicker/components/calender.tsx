@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDatePickerContext } from '@rehookify/datepicker'
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
-import dayjs from '../../../lib/day'
+import dayjs from 'lib/day'
 import { selectWeekRange } from '../selectors'
 
 const isActiveWeek = (date: Date, activeDate: Date, range: number): boolean => {
