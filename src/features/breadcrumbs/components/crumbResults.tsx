@@ -1,10 +1,8 @@
 import { memo } from 'react'
-import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
-import { AppDispatch } from '../../redux/store'
-import { setCrumbs } from '../../redux/breadcrumbsSlice'
-import { DivisionDataObject } from '../../features/divisions/divisionsSlice'
-import { Divsion, DivisionLevels } from '../../global/types'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { setCrumbs } from '../breadcrumbsSlice'
+import type { Divsion, DivisionLevels, DivisionDataObject } from '../../divisions'
 
 const formatDivisionAncestor = (data: DivisionDataObject, level: DivisionLevels): Divsion | undefined => {
   const { ancestor, breadcrumb } = data
@@ -23,7 +21,7 @@ interface CrumbResultsItemProps {
 }
 
 const CrumbResultsItem = ({ division, selected }: CrumbResultsItemProps) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const { id, name, level, breadcrumb } = division
 
   const onClick = () => {

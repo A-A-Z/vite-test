@@ -1,5 +1,5 @@
-import { useGetSearchQuery, DivisionDataObject } from '../../features/divisions/divisionsSlice'
-import { CrumbListingProps } from './types'
+import { useGetSearchQuery, DivisionDataObject } from '../../divisions'
+import type { CrumbListingProps } from '../types'
 import { CrumbResults } from './crumbResults'
 
 export const CrumbSelect = ({ level, parentId, selected, isOpen }: CrumbListingProps) => {

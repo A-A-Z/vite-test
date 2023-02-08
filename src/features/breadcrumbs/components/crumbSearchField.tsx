@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, FormEvent } from 'react'
 import { useSelector } from 'react-redux'
-import { selectActiveDivision } from '../../redux/selectors'
+import { selectActiveDivision } from '../selectors'
 
 interface CrumbSearchFieldProps {
   setDebouncedValue: (value: string) => void

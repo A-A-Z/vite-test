@@ -72,13 +72,3 @@ export interface InputProps {
     name: string
     options?: SelectOption[]
 }
-
-export type DivisionLevels = 'root' | 'state' | 'client' | 'location'
-
-export interface Divsion {
-  id: number
-  name: string
-  level: DivisionLevels
-  breadcrumb?: string
-  parentId?: number
-}

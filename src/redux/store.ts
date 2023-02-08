@@ -3,7 +3,7 @@ import { apiSlice } from '../features/api/apiSlice'
 import { divisionsSlice } from '../features/divisions/divisionsSlice'
 import peopleReducer, { PeopleState } from './peopleSlice'
 import noticeReducer, { NoticesState } from './noticesSlice'
-import breadcrumbsReducer, { BreadcrumbsState } from './breadcrumbsSlice'
+import breadcrumbsReducer, { BreadcrumbsState } from '../features/breadcrumbs/breadcrumbsSlice'
 import { dateRangeReducer, DateRangeState } from '../features/dateRangePicker'
 
 interface createStoreState {

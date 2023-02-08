@@ -1,7 +1,6 @@
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../redux/store'
-import { clearCrumb } from '../../redux/breadcrumbsSlice'
-import { DivisionLevels } from '../../global/types'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { clearCrumb } from '../breadcrumbsSlice'
+import { DivisionLevels } from '../../divisions'
 
 interface ClearButtonProps {
   level: DivisionLevels
@@ -9,7 +8,7 @@ interface ClearButtonProps {
 }
 
 export const ClearCrumbButton = ({ level, isDisabled }: ClearButtonProps) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const onClick = () => {
     dispatch(clearCrumb(level))
   }

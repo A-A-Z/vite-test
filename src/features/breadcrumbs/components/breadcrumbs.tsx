@@ -1,49 +1,23 @@
 import { useSelector, shallowEqual } from 'react-redux'
 import { Crumb } from './crumb'
-import { DivisionLevels, Divsion } from '../../global/types'
+import type { DivisionLevels, Divsion } from '../../divisions'
+import type { CrumbType } from '../types'
+import { CRUMBS } from '../constants'
 import {
   selectCrumbs,
   selectDivisionParentId,
   selectActiveDivisionLevel
-} from '../../redux/selectors'
+} from '../selectors'
+import '../assets/styles/index.scss'
 
-interface CrumbType {
-  name: DivisionLevels
-  label: string
-  type: 'select' | 'search'
-}
-
-const CRUMBS: CrumbType[] = [
-  {
-    name: 'root',
-    label: 'Company',
-    type: 'select'
-  },
-  {
-    name: 'state',
-    label: 'State',
-    type: 'select'
-  },
-  {
-    name: 'client',
-    label: 'Client',
-    type: 'search'
-  },
-  {
-    name: 'location',
-    label: 'Service Address',
-    type: 'search'
-  }
-]
-
-export type CrumbsValues = {
+type CrumbsValues = {
   root: Divsion | undefined,
   state: Divsion | undefined,
   client: Divsion | undefined,
   location: Divsion | undefined
 }
 
-export type ParentIds = {
+type ParentIds = {
   root: number,
   state: number,
   client: number,
