@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Provider } from 'react-redux'
-import { store } from '../../../redux/store'
+import { store } from 'store/store'
 import { DateRangePicker } from './dateRangePicker'
 import '../../../assets/style/app.scss'
 

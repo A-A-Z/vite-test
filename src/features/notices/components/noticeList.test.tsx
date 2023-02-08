@@ -1,7 +1,7 @@
 import { it, expect, describe } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { createStore } from '../redux/store'
+import { createStore } from 'store/store'
 import { NoticeList } from './noticeList'
 
 describe('<NoticeList>', () => {

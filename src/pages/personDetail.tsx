@@ -4,7 +4,7 @@ import { useGetPeopleQuery } from '../features/api/apiSlice'
 import { PersonForm } from '../components/personForm'
 import { Loader } from '../components/loader'
 import { Icon } from '../components/icon'
-import { NoticeItem } from '../components/noticeItem'
+import { NoticeItem } from 'features/notices'
 
 const PersonDetailBody = () => {
   const { id } = useParams()

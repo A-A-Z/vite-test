@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../redux/store'
-import { removeNotice, Notice } from '../redux/noticesSlice'
-import { Icon } from './icon'
+import { AppDispatch } from 'store/store'
+import { Icon } from 'components/icon'
+import { removeNotice } from '../noticesSlice'
+import { Notice } from '../types'
 
 type NoticeIconString = 'InfoCircledIcon' | 'CrossCircledIcon' | 'CheckCircledIcon'
 

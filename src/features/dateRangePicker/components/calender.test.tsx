@@ -1,7 +1,7 @@
 import { it, expect, describe } from 'vitest'
 import { render, screen, fireEvent, act } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { createStore, AppStore } from '../../../redux/store'
+import { createStore, AppStore } from 'store/store'
 import { setActiveDate } from '../dateRangeSlice'
 import { Calender } from './calender'
 import { DateRangePickerProvider } from './dateRangePickerProvider'

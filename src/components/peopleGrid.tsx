@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react'
 import { createColumnHelper, RowModel } from '@tanstack/react-table'
-import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { AppDispatch } from '../redux/store'
-import { useGetPeopleQuery } from '../features/api/apiSlice'
+import { AppDispatch } from 'store/store'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { useGetPeopleQuery } from 'features/api/apiSlice'
 import { Grid, ColumnDate, ColumnSelect, HeaderSelect, ToolbarItemProps } from './grid'
-import { Person } from '../global/types'
-import { STATE_OPTIONS } from '../global/constants'
-import { deleteConfirm } from '../redux/peopleSlice'
-import { addNotice } from '../redux/noticesSlice'
+import type { Person } from 'global/types'
+import { STATE_OPTIONS } from 'global/constants'
+import { deleteConfirm } from 'store/peopleSlice'
+import { addNotice } from 'features/notices'
 
 const columnHelper = createColumnHelper<Person>()
 
@@ -77,7 +77,7 @@ const getToolbarItems = (dispatch: AppDispatch): ToolbarItemProps<Person>[] => [
 ]
 
 export const PeopleGrid = () => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const {
     data: people,
     isSuccess,

@@ -2,7 +2,7 @@ import { vi, it, expect, describe } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import type { EnhancedStore, AnyAction } from '@reduxjs/toolkit'
-import { createStore } from '../../../redux/store'
+import { createStore } from 'store/store'
 import { DateInput } from './dateInput'
 import * as dateRangeAction from '../dateRangeSlice'
 

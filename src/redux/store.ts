@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from '../features/api/apiSlice'
 import peopleReducer, { PeopleState } from './peopleSlice'
-import noticeReducer, { NoticesState } from './noticesSlice'
+import { noticeReducer, NoticesState } from 'features/notices'
 import { divisionsSlice } from 'features/divisions'
 import { breadcrumbsReducer, BreadcrumbsState } from 'features/breadcrumbs'
 import { dateRangeReducer, DateRangeState } from 'features/dateRangePicker'

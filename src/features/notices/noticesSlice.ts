@@ -1,12 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-
-export type NoticeType = 'info' | 'warning' | 'success'
-export interface Notice {
-  id?: string
-  title: string
-  body?: string
-  type: NoticeType
-}
+import { Notice } from './types'
 
 export interface NoticesState {
   notices: Notice[]

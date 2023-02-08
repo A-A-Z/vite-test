@@ -1,7 +1,7 @@
 import { vi, it, expect, describe } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { createStore, AppStore } from '../../../redux/store'
+import { createStore, AppStore } from 'store/store'
 import { DateRangePicker } from './dateRangePicker'
 
 // lets hide icons from screen

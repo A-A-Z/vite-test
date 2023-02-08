@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectNotices } from '../redux/selectors'
+import { selectNotices } from '../selectors'
 import { NoticeItemMemo } from './noticeItem'
 
 export const NoticeList = () => {

@@ -2,7 +2,7 @@ import { vi, it, expect, describe } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { EnhancedStore } from '@reduxjs/toolkit'
-import { createStore } from '../../../redux/store'
+import { createStore } from 'store/store'
 import { RangeSelect } from './rangeSelect'
 
 // lets hide icons from screen
