@@ -1,6 +1,6 @@
-import dayjs from 'dayjs'
-import { CellFunc } from './utils'
-import { DATE_DISPLAY } from '../../global/constants'
+import dayjs from 'lib/day'
+import { CellFunc } from '../utils'
+import { DATE_DISPLAY } from 'global/constants'
 
 export const ColumnDate: CellFunc = info => {
   const date = info.getValue()

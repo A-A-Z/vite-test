@@ -1,5 +1,5 @@
-import { HeaderFunc } from './utils'
-import { CheckBox } from '../checkBox'
+import { HeaderFunc } from '../utils'
+import { CheckBox } from 'components/checkBox'
 
 export const HeaderSelect: HeaderFunc = info => {
   const { getIsAllRowsSelected, getToggleAllRowsSelectedHandler } = info.table

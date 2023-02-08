@@ -1,5 +1,5 @@
 import { RowModel } from '@tanstack/react-table'
-import { Icon, IconKey } from '../icon'
+import { Icon, IconKey } from 'components/icon'
 
 export interface ToolbarButtonProps<T> {
   selectedItems: RowModel<T>

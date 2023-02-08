@@ -1,6 +1,6 @@
 import { RowModel } from '@tanstack/react-table'
-import { ToolbarItemProps } from './types'
-import { ToolbarButton } from '.'
+import { ToolbarItemProps } from '../types'
+import { ToolbarButton } from './toolbarButton'
 
 export interface GridToolbarProps<T> {
   items?: ToolbarItemProps<T>[]

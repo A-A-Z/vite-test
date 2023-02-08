@@ -1,8 +1,8 @@
 import {
   flexRender
 } from '@tanstack/react-table'
-import { GridKeys, GridCellHeaderProps } from './types'
-import SortingIcon from '../sortingIcon'
+import { GridKeys, GridCellHeaderProps } from '../types'
+import SortingIcon from 'components/sortingIcon'
 
 export const GridCellHeader = <T extends object, K extends GridKeys>({ header: { isPlaceholder, column, getContext } }: GridCellHeaderProps<T, K>) => (
   <th className="grid__cell-head">{isPlaceholder ? '&nbsp;' : flexRender(column.columnDef.header, getContext())}</th>

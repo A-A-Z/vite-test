@@ -3,6 +3,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { HeartFilledIcon as Icon } from '@radix-ui/react-icons'
 import { Grid } from './grid'
 import '../../assets/style/app.scss'
+import '../assets/style/index.scss'
 interface ExampleData {
   name: string,
   count: number

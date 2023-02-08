@@ -11,12 +11,13 @@ import {
   RowData
 } from '@tanstack/react-table'
 import classNames from 'classnames'
-import { SelectOption } from '../../global/types'
-import { Loader } from '../loader'
-import { GridKeys, ToolbarItemProps } from './types'
+import { SelectOption } from 'global/types'
+import { Loader } from 'components/loader'
+import { GridKeys, ToolbarItemProps } from '../types'
 import { GridCellHeader, GridCellHeaderSortable } from './gridCellHeader'
 import { GridCellHeaderFilter } from './gridCellHeaderFilter'
 import { GridToolbar } from './gridToolbar'
+import '../assets/style/index.scss'
 
 // https://codesandbox.io/s/beautiful-currying-ih7vmi?fontsize=14&hidenavigation=1&theme=dark&file=/src/App.tsx
 

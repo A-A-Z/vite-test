@@ -1,5 +1,5 @@
-import { CellFunc } from './utils'
-import { CheckBox } from '../checkBox'
+import { CellFunc } from '../utils'
+import { CheckBox } from 'components/checkBox'
 
 export const ColumnSelect: CellFunc = (info, config) => {
   const { getIsSelected, getToggleSelectedHandler, original } = info.row

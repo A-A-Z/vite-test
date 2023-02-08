@@ -1,5 +1,5 @@
 import { Header, RowModel } from '@tanstack/react-table'
-import { IconKey } from '../icon'
+import { IconKey } from 'components/icon'
 
 export type GridKeys = string | unknown
 

@@ -1,5 +1,5 @@
-import { Filter } from '../filter'
-import { GridKeys, GridCellHeaderProps } from './types'
+import { Filter } from 'components/filter'
+import { GridKeys, GridCellHeaderProps } from '../types'
 
 export const GridCellHeaderFilter = <T extends object, K extends GridKeys>({ header: { isPlaceholder, column }, isDisabled }: GridCellHeaderProps<T, K>) => (
   isPlaceholder
