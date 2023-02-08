@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDatePickerContext } from '@rehookify/datepicker'
 import { useSelector } from 'react-redux'
-import classNames from 'classnames'
+import { bemNames } from 'lib/className'
 import dayjs from 'lib/day'
 import { selectWeekRange } from '../selectors'
 
@@ -40,14 +40,11 @@ export const Calender = () => {
         const isInActiveRange = isActiveWeek($date, activeDate, weekDate)
         return <li
           key={date}
-          className={classNames(
-            'calendar__date',
-            {
-              'calendar__date--outside-month': !inCurrentMonth,
-              'calendar__date--today': isToday,
-              'calendar__date--selected': isInActiveRange
-            }
-          )}
+          className={bemNames('calendar__date', {
+            'outside-month': !inCurrentMonth,
+            today: isToday,
+            selected: isInActiveRange
+          })}
           onClick={onClick}
           role="button"
           tabIndex={0}
