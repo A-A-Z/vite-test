@@ -1,5 +1,5 @@
-import dayjs from '../../lib/day'
-import { RootState } from '../../redux/store'
+import dayjs from 'lib/day'
+import { RootState } from 'store/store'
 
 export const selectActiveDate = ({ dateRange: { activeDate } }: RootState): Date | undefined =>
   activeDate !== undefined ? new Date(activeDate) : undefined

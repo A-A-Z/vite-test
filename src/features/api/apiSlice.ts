@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { deleteClose, deleteError } from '../../redux/peopleSlice'
-import { addNotice } from '../../redux/noticesSlice'
-import { Person, PersonFormData } from '../../global/types'
-import { fakeApiCall } from '../../utils/api'
+import { deleteClose, deleteError } from 'store/peopleSlice'
+import { addNotice } from 'features/notices'
+import type { Person, PersonFormData } from 'global/types'
+import { fakeApiCall } from 'utils/api'
 
 type PeopleResponse = {
   info: object

@@ -1,8 +1,8 @@
 import { useDatePickerContext, CalendarYear } from '@rehookify/datepicker'
 import { Listbox } from '@headlessui/react'
-import classNames from 'classnames'
-import dayjs from '../../../lib/day'
-import { Icon } from '../../../components/icon'
+import { bemNames } from 'lib/className'
+import dayjs from 'lib/day'
+import { Icon } from 'components/icon'
 
 const filterYears = ({ $date }: CalendarYear): boolean => {
   const start = dayjs().year(2013)
@@ -37,7 +37,7 @@ export const SelectYear = () => {
                 key={yearObj.value}
                 value={yearObj}
                 disabled={yearObj.disabled}
-                className={classNames('select-lite__option', { 'select-lite__option--selected': yearObj.active })}
+                className={bemNames('select-lite__option', { selected: yearObj.active })}
               >
                 <div className="select-lite__value">{yearObj.value}</div>
                 {yearObj.active && <Icon icon="CheckIcon" />}

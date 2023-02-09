@@ -1,14 +1,14 @@
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { RadioGroup } from '@headlessui/react'
-import classNames from 'classnames'
+import { bemNames } from 'lib/className'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { setWeekRange } from '../dateRangeSlice'
 import { selectFromToDate } from '../selectors'
-import { Icon } from '../../../components/icon'
+import { Icon } from 'components/icon'
 import { RANGE_OPTIONS } from '../constants'
 import type { DateRangeOption } from '../types'
-import dayjs from '../../../lib/day'
+import dayjs from 'lib/day'
 
 const createOptionText = ({ length, label = '' }: DateRangeOption): string => (
   label !== '' ? label : `${length} ${length === 1 ? 'Week' : 'Weeks'}`
@@ -37,7 +37,7 @@ export const RangeSelect = () => {
             className="week-range__item"
           >
             {({ checked }) => (
-              <span className={classNames('week-range__option', { 'week-range__option--selected': checked })}>
+              <span className={bemNames('week-range__option', { selected: checked })}>
                 {createOptionText(option)}
                 <span className="week-range__option-hint">{createHintText(from, option.length)}</span>
               </span>
