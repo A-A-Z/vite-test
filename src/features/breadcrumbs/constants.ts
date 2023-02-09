@@ -2,23 +2,23 @@ import type { CrumbType } from './types'
 
 export const CRUMBS: CrumbType[] = [
   {
-    name: 'root',
+    level: 'root',
     label: 'Company',
-    type: 'select'
+    format: 'select'
   },
   {
-    name: 'state',
+    level: 'state',
     label: 'State',
-    type: 'select'
+    format: 'select'
   },
   {
-    name: 'client',
+    level: 'client',
     label: 'Client',
-    type: 'search'
+    format: 'search'
   },
   {
-    name: 'location',
+    level: 'location',
     label: 'Service Address',
-    type: 'search'
+    format: 'search'
   }
 ]

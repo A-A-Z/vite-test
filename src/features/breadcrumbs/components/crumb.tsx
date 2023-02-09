@@ -1,24 +1,16 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
-import classNames from 'classnames'
-import type { Divsion, DivisionLevels } from 'features/divisions'
+import { bemNames } from 'lib/className'
 import { CrumbSelect } from './crumbSelect'
 import { CrumbSearch } from './crumbSearch'
 import { ClearCrumbButton } from './clearCrumbButton'
 import { useClickOutside } from 'hooks/useClickOutside'
+import { useBreadcrumb } from '../hooks/useBreadcrumb'
 
-export interface CrumbProps {
-  name: DivisionLevels
-  label: string
-  type: 'select' | 'search'
-  value?: Divsion
-  parentId?: number
-  isActive: boolean
-}
-
-export const Crumb = ({ name, label, value, type, parentId, isActive }: CrumbProps) => {
+export const Crumb = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const CrumbListing = type === 'search' ? CrumbSearch : CrumbSelect
-  const selected = value?.id
+  const { level, label, selectedDivision, format, parentId, isActive } = useBreadcrumb()
+  const CrumbListing = format === 'search' ? CrumbSearch : CrumbSelect
+  const selected = selectedDivision?.id
   const wrapperRef = useRef(null)
 
   const onClickOutside = useCallback(() => {
@@ -37,19 +29,14 @@ export const Crumb = ({ name, label, value, type, parentId, isActive }: CrumbPro
 
   return (
     <div
-      className={classNames('crumb', { 'crumb--active': isActive, 'crumb--unset': value === undefined, 'crumb--open': isOpen })}
+      className={bemNames('crumb', { active: isActive, unset: selectedDivision === undefined, open: isOpen })}
       onClick={onClickInside}
       ref={wrapperRef}
     >
       <div className="crumb__label">{label}</div>
-      <div className="crumb__value">{value?.name || 'none'} / {parentId}</div>
-      <ClearCrumbButton level={name} isDisabled={value === undefined} />
-      <CrumbListing
-        level={name}
-        parentId={parentId ?? 0}
-        selected={selected}
-        isOpen={isOpen}
-      />
+      <div className="crumb__value">{selectedDivision?.name || 'none'} / {parentId}</div>
+      <ClearCrumbButton level={level} isDisabled={selectedDivision === undefined} />
+      <CrumbListing isOpen={isOpen} />
     </div>
   )
 }

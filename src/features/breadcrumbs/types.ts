@@ -1,14 +1,12 @@
 import type { DivisionLevels } from 'features/divisions'
 
+export type CrumbFormat = 'select' | 'search'
 export interface CrumbType {
-  name: DivisionLevels
+  level: DivisionLevels
   label: string
-  type: 'select' | 'search'
+  format: CrumbFormat
 }
 
 export interface CrumbListingProps {
-  level: DivisionLevels
-  parentId: number
-  selected?: number
   isOpen: boolean
 }

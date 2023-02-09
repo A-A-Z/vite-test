@@ -1,8 +1,9 @@
 import { memo } from 'react'
-import classNames from 'classnames'
+import { bemNames } from 'lib/className'
 import { useAppDispatch } from 'hooks/useAppDispatch'
-import { setCrumbs } from '../breadcrumbsSlice'
 import type { Divsion, DivisionLevels, DivisionDataObject } from 'features/divisions'
+import { setCrumbs } from '../breadcrumbsSlice'
+import { useBreadcrumb } from '../hooks/useBreadcrumb'
 
 const formatDivisionAncestor = (data: DivisionDataObject, level: DivisionLevels): Divsion | undefined => {
   const { ancestor, breadcrumb } = data
@@ -17,10 +18,10 @@ const formatDivisionAncestor = (data: DivisionDataObject, level: DivisionLevels)
 
 interface CrumbResultsItemProps {
   division: DivisionDataObject
-  selected: number | undefined
+  selectedId: number | undefined
 }
 
-const CrumbResultsItem = ({ division, selected }: CrumbResultsItemProps) => {
+const CrumbResultsItem = ({ division, selectedId }: CrumbResultsItemProps) => {
   const dispatch = useAppDispatch()
   const { id, name, level, breadcrumb } = division
 
@@ -37,7 +38,7 @@ const CrumbResultsItem = ({ division, selected }: CrumbResultsItemProps) => {
   return (
     <li
       key={id}
-      className={classNames('crumb-listing__result', { 'crumb-listing__result--selected': (id === selected) })}
+      className={bemNames('crumb-listing__result', { selected: (id === selectedId) })}
       onClick={onClick}
     >
       <div className="crumb-listing__name">{name}</div>
@@ -51,11 +52,12 @@ const CrumbResultsItemMemo = memo(CrumbResultsItem)
 interface CrumbResultsProps {
   results: DivisionDataObject[]
   isLoading: boolean
-  selected: number | undefined
   isHidden?: boolean
 }
 
-export const CrumbResults = ({ results, isLoading, selected, isHidden = false }: CrumbResultsProps) => {
+export const CrumbResults = ({ results, isLoading, isHidden = false }: CrumbResultsProps) => {
+  const { selectedId } = useBreadcrumb()
+
   if (isHidden) {
     return null
   }
@@ -65,6 +67,6 @@ export const CrumbResults = ({ results, isLoading, selected, isHidden = false }:
   }
 
   return <ul className="crumb-listing__results">
-    {results.map(division => <CrumbResultsItemMemo key={division.id} division={division} selected={selected} />)}
+    {results.map(division => <CrumbResultsItemMemo key={division.id} division={division} selectedId={selectedId} />)}
   </ul>
 }
