@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from 'store/store'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 import { Icon } from 'components/icon'
 import { removeNotice } from '../noticesSlice'
 import { Notice } from '../types'
@@ -15,7 +14,7 @@ const iconMap = {
 }
 
 export const NoticeItem = ({ id = '', title, body, type }: Notice) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const iconType = iconMap[type] as NoticeIconString
   const onClick = useCallback(() => {
     dispatch(removeNotice(id))
