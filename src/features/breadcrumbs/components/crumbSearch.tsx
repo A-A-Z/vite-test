@@ -4,8 +4,7 @@ import type { CrumbListingProps } from '../types'
 import { CrumbResults } from './crumbResults'
 import { CrumbSearchField } from './crumbSearchField'
 import { useBreadcrumb } from '../hooks/useBreadcrumb'
-
-const isSearchValid = (input: unknown, validLength = 3): boolean => typeof input === 'string' && input.length >= validLength
+import { isSearchValid } from '../utils/search'
 
 const CrumbSearchFieldMemo = memo(CrumbSearchField)
 
@@ -26,7 +25,7 @@ export const CrumbSearch = ({ isOpen }: CrumbListingProps) => {
   }
 
   return (
-    <div className="crumb-listing">
+    <div className="crumb-listing crumb-listing--search">
       <CrumbSearchFieldMemo setDebouncedValue={setSearch} />
       <CrumbResults results={results} isLoading={isFetching} isHidden={!isSearchValid(search)} />
     </div>

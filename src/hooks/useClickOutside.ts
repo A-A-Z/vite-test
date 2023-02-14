@@ -5,7 +5,7 @@ import { useEffect, MutableRefObject } from 'react'
  * @param ref - A reference to the element that you want to detect clicks outside of.
  * @param callback - A callback function that will be invoked when a click outside of the element is detected.
  */
-export const useClickOutside = (ref: MutableRefObject<HTMLInputElement | null>, callback: () => void) => {
+export const useClickOutside = <T extends Node>(ref: MutableRefObject<T | null>, callback: () => void) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {

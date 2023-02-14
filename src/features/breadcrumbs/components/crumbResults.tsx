@@ -1,9 +1,10 @@
-import { memo } from 'react'
-import { bemNames } from 'lib/className'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useAppDispatch } from 'hooks/useAppDispatch'
+import { useNavKey, keyAction } from 'hooks/useNavKey'
 import type { Divsion, DivisionLevels, DivisionDataObject } from 'features/divisions'
 import { setCrumbs } from '../breadcrumbsSlice'
 import { useBreadcrumb } from '../hooks/useBreadcrumb'
+import { CrumbResultsItem } from './crumbResultsItem'
 
 const formatDivisionAncestor = (data: DivisionDataObject, level: DivisionLevels): Divsion | undefined => {
   const { ancestor, breadcrumb } = data
@@ -16,39 +17,6 @@ const formatDivisionAncestor = (data: DivisionDataObject, level: DivisionLevels)
   return { ...levelAncestor, level, breadcrumb } as Divsion
 }
 
-interface CrumbResultsItemProps {
-  division: DivisionDataObject
-  selectedId: number | undefined
-}
-
-const CrumbResultsItem = ({ division, selectedId }: CrumbResultsItemProps) => {
-  const dispatch = useAppDispatch()
-  const { id, name, level, breadcrumb } = division
-
-  const onClick = () => {
-    dispatch(setCrumbs({
-      root: formatDivisionAncestor(division, 'root'),
-      state: formatDivisionAncestor(division, 'state'),
-      client: formatDivisionAncestor(division, 'client'),
-      location: formatDivisionAncestor(division, 'location'),
-      activeLevel: level
-    }))
-  }
-
-  return (
-    <li
-      key={id}
-      className={bemNames('crumb-listing__result', { selected: (id === selectedId) })}
-      onClick={onClick}
-    >
-      <div className="crumb-listing__name">{name}</div>
-      <div className="crumb-listing__breadcrumb">{breadcrumb}</div>
-    </li>
-  )
-}
-
-const CrumbResultsItemMemo = memo(CrumbResultsItem)
-
 interface CrumbResultsProps {
   results: DivisionDataObject[]
   isLoading: boolean
@@ -56,7 +24,53 @@ interface CrumbResultsProps {
 }
 
 export const CrumbResults = ({ results, isLoading, isHidden = false }: CrumbResultsProps) => {
-  const { selectedId } = useBreadcrumb()
+  const dispatch = useAppDispatch()
+  const [focusIndex, setFocusIndex] = useState(-1)
+  const { selectedId, wrapperRef, level } = useBreadcrumb()
+
+  const setDivision = useCallback((division: DivisionDataObject) => {
+    dispatch(setCrumbs({
+      root: formatDivisionAncestor(division, 'root'),
+      state: formatDivisionAncestor(division, 'state'),
+      client: formatDivisionAncestor(division, 'client'),
+      location: formatDivisionAncestor(division, 'location'),
+      activeLevel: level
+    }))
+  }, [])
+
+  const focusUp = useCallback(() => {
+    if (!isLoading && results.length > 0) {
+      setFocusIndex(state => state > 0 ? state - 1 : state)
+    }
+  }, [isLoading])
+
+  const focusDown = useCallback(() => {
+    if (!isLoading && results.length > 0) {
+      setFocusIndex(state => state < (results.length - 1) ? state + 1 : state)
+    }
+  }, [isLoading])
+
+  const onEnter = () => {
+    if (focusIndex >= 0) {
+      setDivision(results[focusIndex])
+    }
+  }
+
+  const actions: keyAction = useMemo(() => (
+    isHidden
+      ? {}
+      : {
+          ArrowUp: focusUp,
+          ArrowDown: focusDown,
+          Enter: onEnter
+        }
+  ), [isLoading, isHidden, focusIndex])
+  useNavKey<HTMLDivElement>(wrapperRef, actions)
+
+  // reset the focusIndex when the results change or hidden
+  useEffect(() => {
+    setFocusIndex(-1)
+  }, [isLoading, isHidden])
 
   if (isHidden) {
     return null
@@ -67,6 +81,14 @@ export const CrumbResults = ({ results, isLoading, isHidden = false }: CrumbResu
   }
 
   return <ul className="crumb-listing__results">
-    {results.map(division => <CrumbResultsItemMemo key={division.id} division={division} selectedId={selectedId} />)}
+    {results.map((division, currentIndex) =>
+      <CrumbResultsItem
+        key={division.id}
+        division={division}
+        selectedId={selectedId}
+        isFocused={currentIndex === focusIndex}
+        setDivision={setDivision}
+      />
+    )}
   </ul>
 }

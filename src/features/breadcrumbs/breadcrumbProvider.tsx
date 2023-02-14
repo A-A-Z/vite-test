@@ -1,4 +1,4 @@
-import React, { createContext, useMemo } from 'react'
+import React, { createContext, useMemo, RefObject } from 'react'
 import { useSelector, shallowEqual } from 'react-redux'
 import type { Divsion, DivisionLevels } from 'features/divisions'
 import type { CrumbType, CrumbFormat } from './types'
@@ -16,6 +16,7 @@ interface BreadcrumbContextValue {
   format: 'select' | 'search'
   parentId: number
   isActive: boolean
+  wrapperRef: RefObject<HTMLDivElement>
 }
 
 export const BreadcrumbContext = createContext<BreadcrumbContextValue>({
@@ -25,7 +26,8 @@ export const BreadcrumbContext = createContext<BreadcrumbContextValue>({
   selectedDivision: undefined,
   format: 'select' as CrumbFormat,
   parentId: 0,
-  isActive: false
+  isActive: false,
+  wrapperRef: React.createRef<HTMLDivElement>()
 })
 
 interface BreadcrumbProviderProps {
@@ -44,6 +46,7 @@ export const BreadcrumbProvider = ({ children, crumb }: BreadcrumbProviderProps)
   const parentId = parentIds[level] ?? 0
   const isActive = activeLevel === level
   const selectedId = selectedDivision?.id
+  const wrapperRef = React.createRef<HTMLDivElement>()
 
   const value = useMemo(() => ({
     level,
@@ -52,7 +55,8 @@ export const BreadcrumbProvider = ({ children, crumb }: BreadcrumbProviderProps)
     selectedDivision,
     format,
     parentId,
-    isActive
+    isActive,
+    wrapperRef
   }), [selectedId, parentId, isActive])
 
   return (

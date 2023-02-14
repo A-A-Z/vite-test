@@ -1,8 +1,8 @@
 @use './common';
 
 .crumb-listing {
-  border-top: 1px solid #999;
-  padding: 5px 0 0 0;
+  border-top: 1px solid var(--colour-border);
+  padding: 0;
   
   &__results {
     @include common.list;
@@ -10,15 +10,19 @@
 
   &__result {
     cursor: pointer;
-    padding: 4px 0;
+    padding: 4px 10px;
     
     &--selected {
       font-weight: 800;
     }
+
+    &--focus {
+      background-color: var(--colour-active-light);
+    }
   }
 
   &__breadcrumb {
-    color: #999;
+    color: var(--colour-text-light);
     font-size: 0.7rem;
     line-height: 1;
   }

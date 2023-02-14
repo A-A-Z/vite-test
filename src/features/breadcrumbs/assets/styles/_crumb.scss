@@ -2,7 +2,6 @@
   border: 1px solid #444;
   cursor: pointer;
   min-width: 200px;
-  padding: 10px;
 
   &--active {
     border-color: rgb(0, 212, 0);
@@ -14,6 +13,10 @@
 
   &:not(.crumb--unset) .crumb__value {
     font-weight: 400;
+  }
+
+  &__body {
+    padding: 10px;
   }
 
   &__label {

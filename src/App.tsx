@@ -12,7 +12,7 @@ function App () {
     <div className="App">
       <PageHeader title="Vite POC Test" />
       <Routes>
-        <Route path="/" element={<ListPeople />} />
+        <Route path="" element={<ListPeople />} />
         <Route path="/week" element={<WeekView />} />
         <Route path="person/:id" element={<PersonDetail />} />
       </Routes>
