@@ -1,5 +1,6 @@
 import React, { createContext, useMemo, RefObject } from 'react'
 import { useSelector, shallowEqual } from 'react-redux'
+// import { useParams } from 'react-router-dom'
 import type { Divsion, DivisionLevels } from 'features/divisions'
 import type { CrumbType, CrumbFormat } from './types'
 import {
@@ -36,11 +37,14 @@ interface BreadcrumbProviderProps {
 }
 
 export const BreadcrumbProvider = ({ children, crumb }: BreadcrumbProviderProps) => {
+  // const params = useParams()
   const { level, label, format } = crumb
 
   const crumbValues = useSelector(selectCrumbs, shallowEqual)
   const parentIds = useSelector(selectDivisionParentId, shallowEqual)
   const activeLevel = useSelector(selectActiveDivisionLevel, shallowEqual)
+  // console.log('crumbValues', crumbValues)
+  // console.log('useParams', params)
 
   const selectedDivision = crumbValues[level]
   const parentId = parentIds[level] ?? 0

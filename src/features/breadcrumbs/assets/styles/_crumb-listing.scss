@@ -35,6 +35,10 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .icon {
+      margin: 0 0 0 0.5rem;
+    }
   }
 
   &__breadcrumb {
@@ -61,8 +65,15 @@
   }
 
   &__input {
-    margin: 5px;
+    margin: 5px var(--crumb-padding);
     outline-color: var(--colour-active-light);
-    width: calc(100% - 10px);
+    width: calc(100% - (var(--crumb-padding) * 2));
+  }
+
+  &__recent_title {
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 5px var(--crumb-padding) 0 var(--crumb-padding);
+    text-align: center;
   }
 }

@@ -1,7 +1,7 @@
 .crumb {
   --colour-crumb-default: transparent;
   --colour-crumb-set: #f1f1ff;
-  --colour-crumb-active: --colour-link;
+  --colour-crumb-active: var(--colour-link);
   --crumb-padding: 8px;
 
   cursor: pointer;

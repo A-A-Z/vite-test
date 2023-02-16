@@ -11,6 +11,9 @@ export interface Divsion {
 interface AncestorDataObject {
   id: number | ''
   name: string
+  entityCode?: string
+  startDate?: string | null
+  endDate?: string | null
 }
 
 interface AncestorsDataObject {
@@ -20,6 +23,20 @@ interface AncestorsDataObject {
   location: AncestorDataObject
 }
 
+interface AddressDateObject {
+  state: string
+}
+
+interface GeoDateObject {
+  longitude: number
+  latitude: number
+}
+
+interface DateDateObject {
+  start: string | null
+  end: string | null
+}
+
 export interface DivisionDataObject {
   id: number
   name: string
@@ -27,4 +44,7 @@ export interface DivisionDataObject {
   breadcrumb: string
   status: string
   ancestor: AncestorsDataObject
+  address?: AddressDateObject
+  geo?: GeoDateObject
+  date?: DateDateObject
 }
