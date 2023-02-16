@@ -9,7 +9,7 @@ import { useBreadcrumb } from '../hooks/useBreadcrumb'
 
 export const Crumb = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { level, label, selectedDivision, selectedId, format, parentId, isActive, wrapperRef } = useBreadcrumb()
+  const { level, label, selectedDivision, selectedId, format, isActive, wrapperRef } = useBreadcrumb()
   const CrumbListing = format === 'search' ? CrumbSearch : CrumbSelect
 
   const onClickOutside = useCallback(() => {
@@ -45,7 +45,7 @@ export const Crumb = () => {
 
   return (
     <div
-      className={bemNames('crumb', { active: isActive, unset: selectedDivision === undefined, open: isOpen })}
+      className={bemNames('crumb', { active: isActive, set: selectedId !== undefined, open: isOpen })}
       onClick={onClickInside}
       onBlur={onBlur}
       ref={wrapperRef}
@@ -53,7 +53,7 @@ export const Crumb = () => {
     >
       <div className="crumb__body">
         <div className="crumb__label">{label}</div>
-        <div className="crumb__value">{selectedDivision?.name || 'none'} / {parentId}</div>
+        <div className="crumb__value">{selectedDivision?.name || 'None'}</div>
         <ClearCrumbButton level={level} isDisabled={selectedDivision === undefined} />
       </div>
       <CrumbListing isOpen={isOpen} />

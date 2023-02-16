@@ -1,40 +1,63 @@
 .wilson-loader {
-  $colour-wilson-red: #f00;
+//   $colour-wilson-red: #f00;
   $time: 1.2s;
-  $fill-on: rgba($colour-wilson-red, 1);
-  $fill-off: rgba($colour-wilson-red, 0);
+//   $fill-on: rgba($colour-wilson-red, 1);
+//   $fill-off: rgba($colour-wilson-red, 0);
   $move-in: translate(0, 0);
   $move-out: translate(10%, 15%);
 
-  @keyframes fadeInRed1 {
-      0% { fill: $fill-off; transform: $move-out; }
-      20% { fill: $fill-on; transform: $move-in; }
-      40% { fill: $fill-on; }
-      100% { fill: $fill-off;  }
-  }
+//   @keyframes fadeInRed1 {
+//       0% { fill: $fill-off; transform: $move-out; }
+//       20% { fill: $fill-on; transform: $move-in; }
+//       40% { fill: $fill-on; }
+//       100% { fill: $fill-off;  }
+//   }
 
-  @keyframes fadeInRed2 {
-      0% { fill: $fill-off; transform: $move-out; }
-      10% { fill: $fill-off; transform: $move-out; }
-      30% { fill: $fill-on; transform: $move-in; }
-      50% { fill: $fill-on; }
-      100% { fill: $fill-off;  }
-  }
+//   @keyframes fadeInRed2 {
+//       0% { fill: $fill-off; transform: $move-out; }
+//       10% { fill: $fill-off; transform: $move-out; }
+//       30% { fill: $fill-on; transform: $move-in; }
+//       50% { fill: $fill-on; }
+//       100% { fill: $fill-off;  }
+//   }
 
-  @keyframes fadeInRed3 {
-      0% { fill: $fill-off; transform: $move-out; }
-      20% { fill: $fill-off; transform: $move-out; }
-      40% { fill: $fill-on; transform: $move-in; }
-      60% { fill: $fill-on; }
-      100% { fill: $fill-off;  }
-  }
-  
+//   @keyframes fadeInRed3 {
+//       0% { fill: $fill-off; transform: $move-out; }
+//       20% { fill: $fill-off; transform: $move-out; }
+//       40% { fill: $fill-on; transform: $move-in; }
+//       60% { fill: $fill-on; }
+//       100% { fill: $fill-off;  }
+//   }
+    @keyframes fadeInRed1 {
+        0% { opacity: 0; transform: $move-out; }
+        20% { opacity: 1; transform: $move-in; }
+        40% { opacity: 1; }
+        100% { opacity: 0;  }
+    }
+
+    @keyframes fadeInRed2 {
+        0% { opacity: 0; transform: $move-out; }
+        10% { opacity: 0; transform: $move-out; }
+        30% { opacity: 1; transform: $move-in; }
+        50% { opacity: 1; }
+        100% { opacity: 0;  }
+    }
+
+    @keyframes fadeInRed3 {
+        0% { opacity: 0; transform: $move-out; }
+        20% { opacity: 0; transform: $move-out; }
+        40% { opacity: 1; transform: $move-in; }
+        60% { opacity: 1; }
+        100% { opacity: 0;  }
+    }
+    
   width: 100%;
 
   &__bar {
       animation-duration: $time;
       animation-iteration-count: infinite;
-      fill: rgba($colour-wilson-red, 0);
+      // fill: rgba($colour-wilson-red, 0);
+      fill: var(--colour-loader);
       
       &:nth-child(1) {
           animation-delay: 0;

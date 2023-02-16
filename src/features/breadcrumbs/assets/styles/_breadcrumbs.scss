@@ -2,8 +2,7 @@
 
 .breadcrumbs {
   @include common.list;
-
   display: flex;
-  gap: 15px;
+  gap: 5px;
   margin: 15px;
 }

@@ -13,7 +13,7 @@
     @include block;
 
     color: var(--colour-text-normal);
-    outline: none;
+    outline-color: transparent;
     transition: border-color 0.2s ease;
 
     &:hover {

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useNavKey, keyAction } from 'hooks/useNavKey'
 import type { Divsion, DivisionLevels, DivisionDataObject } from 'features/divisions'
+import { Loader } from 'components/loader'
 import { setCrumbs } from '../breadcrumbsSlice'
 import { useBreadcrumb } from '../hooks/useBreadcrumb'
 import { CrumbResultsItem } from './crumbResultsItem'
@@ -56,15 +57,11 @@ export const CrumbResults = ({ results, isLoading, isHidden = false }: CrumbResu
     }
   }
 
-  const actions: keyAction = useMemo(() => (
-    isHidden
-      ? {}
-      : {
-          ArrowUp: focusUp,
-          ArrowDown: focusDown,
-          Enter: onEnter
-        }
-  ), [isLoading, isHidden, focusIndex])
+  const actions: keyAction = useMemo(() => ({
+    ArrowUp: focusUp,
+    ArrowDown: focusDown,
+    Enter: onEnter
+  }), [isLoading, isHidden, focusIndex])
   useNavKey<HTMLDivElement>(wrapperRef, actions)
 
   // reset the focusIndex when the results change or hidden
@@ -77,7 +74,7 @@ export const CrumbResults = ({ results, isLoading, isHidden = false }: CrumbResu
   }
 
   if (isLoading) {
-    return <div className="crumb-listing__loading">Loading</div>
+    return <div className="crumb-listing__loading"><Loader size="small" colour="dark" /></div>
   }
 
   return <ul className="crumb-listing__results">

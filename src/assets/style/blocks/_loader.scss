@@ -1,7 +1,28 @@
 .loader {
+  --colour-brand: #f00;
+  --colour-dark: #111;
+  --colour-light: #fff;
+
+  --colour-loader: #999;
+  --loader-height: 80px;
+
   margin: 0 auto;
   max-width: 150px;
   padding: 30px;
+
+  &--small {
+    --loader-height: 2.2rem;
+  }
+
+  &--dark {
+    --colour-loader: var(--colour-dark);
+  }
+  &--light {
+    --colour-loader: var(--colour-light);
+  }
+  &--brand {
+    --colour-loader: var(--colour-brand);
+  }
 
   &__container {
     align-items: center;
@@ -10,7 +31,7 @@
   }
 
   &__label {
-    color: #f00;
+    color: var(--colour-loader);
     font-size: 0.8rem;
     font-weight: 600;
     margin: 0;
@@ -18,7 +39,21 @@
     white-space: nowrap;
   }
 
+  &--inline {
+    max-width: 90%;
+
+    .loader__container {
+      flex-direction: row;
+      gap: 0.6rem;
+    }
+
+    .loader__label {
+      font-size: 1rem;
+    }
+  }
+
   svg {
-    max-height: 80px;
+    height: var(--loader-height);
+    width: var(--loader-height);
   }
 }

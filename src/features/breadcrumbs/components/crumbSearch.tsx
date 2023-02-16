@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useState, useLayoutEffect } from 'react'
 import { useGetSearchQuery, DivisionDataObject } from 'features/divisions'
 import type { CrumbListingProps } from '../types'
 import { CrumbResults } from './crumbResults'
@@ -19,6 +19,10 @@ export const CrumbSearch = ({ isOpen }: CrumbListingProps) => {
     }),
     skip: !isSearchValid(search)
   })
+
+  useLayoutEffect(() => {
+    setSearch('')
+  }, [isOpen])
 
   if (!isOpen) {
     return null

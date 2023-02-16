@@ -86,7 +86,7 @@
       },
       "55": {
           "id": 55,
-          "name": "WA",
+          "name": "WA Realllly long name is there to stay something",
           "level": "state",
           "breadcrumb": "Wilson > WA",
           "status": "active",
@@ -107,7 +107,7 @@
               },
               "state": {
                   "id": 55,
-                  "name": "WA"
+                  "name": "WA Realllly long name is there to stay something"
               },
               "root": {
                   "id": 1,

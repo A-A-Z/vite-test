@@ -34,5 +34,5 @@ export const CrumbSearchField = ({ setDebouncedValue }: CrumbSearchFieldProps) =
     setDebouncedValue('')
   }, [activeDivisionId])
 
-  return <input type="text" value={inputValue} onChange={onChange} aria-label="Search" autoFocus />
+  return <input className="crumb-listing__input" type="text" value={inputValue} onChange={onChange} aria-label="Search" autoFocus />
 }
