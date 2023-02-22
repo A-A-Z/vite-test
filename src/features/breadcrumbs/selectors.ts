@@ -1,6 +1,6 @@
 
 import { RootState } from 'store/store'
-import { Divsion, DivisionLevels, DIVISION_ORDER } from 'features/divisions'
+import { Division, DivisionLevels, DIVISION_ORDER } from 'features/divisions'
 
 export const selectCrumbs = ({ breadcrumbs: { root, state, client, location } }: RootState) => (
   { root, state, client, location }
@@ -28,7 +28,12 @@ export const selectDivisionParentId = ({ breadcrumbs }: RootState) => {
 
 export const selectActiveDivisionLevel = ({ breadcrumbs }: RootState): DivisionLevels | undefined => breadcrumbs.activeLevel
 
-export const selectActiveDivision = (state: RootState): Divsion | undefined => {
+export const selectActiveDivision = (state: RootState): Division | undefined => {
   const activeLevel = selectActiveDivisionLevel(state)
   return activeLevel !== undefined ? state.breadcrumbs[activeLevel] : undefined
+}
+
+export const selectActiveDivisionId = (state: RootState): number => {
+  const { id } = selectActiveDivision(state) ?? { id: 0 }
+  return id
 }

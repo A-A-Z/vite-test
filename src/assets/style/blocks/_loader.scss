@@ -2,6 +2,7 @@
   --colour-brand: #f00;
   --colour-dark: #111;
   --colour-light: #fff;
+  --colour-grey: #666;
 
   --colour-loader: #999;
   --loader-height: 80px;
@@ -10,6 +11,9 @@
   max-width: 150px;
   padding: 30px;
 
+  &--tiny {
+    --loader-height: 1.4rem;
+  }
   &--small {
     --loader-height: 2.2rem;
   }
@@ -19,6 +23,9 @@
   }
   &--light {
     --colour-loader: var(--colour-light);
+  }
+  &--grey {
+    --colour-loader: var(--colour-grey);
   }
   &--brand {
     --colour-loader: var(--colour-brand);
@@ -41,6 +48,7 @@
 
   &--inline {
     max-width: 90%;
+    padding: 0;
 
     .loader__container {
       flex-direction: row;

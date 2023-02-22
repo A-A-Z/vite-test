@@ -21,6 +21,11 @@
     &:hover {
       background-color: var(--colour-active-light);
     }
+
+    a,
+    a:is(:hover) {
+      color: var(--colour-text-normal);
+    }
   }
 
   &__name {

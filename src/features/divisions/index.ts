@@ -1,9 +1,15 @@
-import { divisionsSlice, useGetInfoQuery, useGetSearchQuery } from './divisionsSlice'
+import {
+  divisionsSlice,
+  useGetInfoQuery,
+  useGetSearchQuery,
+  useLazyGetSummaryQuery
+} from './divisionsSlice'
 
 export {
   divisionsSlice,
   useGetInfoQuery,
-  useGetSearchQuery
+  useGetSearchQuery,
+  useLazyGetSummaryQuery
 }
 
 export * from './constants'

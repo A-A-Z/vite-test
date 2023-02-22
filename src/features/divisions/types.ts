@@ -1,6 +1,6 @@
 export type DivisionLevels = 'root' | 'state' | 'client' | 'location'
 
-export interface Divsion {
+export interface Division {
   id: number
   name: string
   level: DivisionLevels
@@ -16,11 +16,8 @@ interface AncestorDataObject {
   endDate?: string | null
 }
 
-interface AncestorsDataObject {
-  root: AncestorDataObject
-  state: AncestorDataObject
-  client: AncestorDataObject
-  location: AncestorDataObject
+type AncestorsDataObject = {
+  [key in DivisionLevels]: AncestorDataObject
 }
 
 interface AddressDateObject {

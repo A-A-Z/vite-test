@@ -5,6 +5,7 @@ import divisionRootData from './data/divsion_root.json'
 import divisionStateData from './data/division_state.json'
 import divisionClientData from './data/division_client.json'
 import divisionLocationData from './data/division_location.json'
+import summaryClientData from './data/summary_client.json'
 
 interface InfoBody {
   test: string
@@ -47,6 +48,17 @@ export const worker = setupWorker(
         data = divisionMiscData
     }
 
+    return res(
+      ctx.delay(1500),
+      ctx.json(data)
+    )
+  }),
+
+  rest.get('/mockapi/division/:id/summary', async (req, res, ctx) => {
+    const data = summaryClientData
+    const { id } = req.params
+    const fakeId = parseInt(id as string)
+    data.data.id = fakeId
     return res(
       ctx.delay(1500),
       ctx.json(data)

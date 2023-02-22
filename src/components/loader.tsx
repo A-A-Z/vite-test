@@ -4,8 +4,8 @@ import { ReactComponent as LoadingBars } from '../assets/images/wilson-bars.svg'
 
 interface ConfirmModalProps {
   label?: string
-  size?: 'small' | 'normal' | 'large'
-  colour?: 'dark' | 'light' | 'brand'
+  size?: 'tiny' | 'small' | 'normal' | 'large'
+  colour?: 'dark' | 'light' | 'grey' | 'brand'
   inline?: boolean
 }
 export const Loader = ({ label = '', size = 'normal', colour = 'brand', inline = false }: ConfirmModalProps) => (
